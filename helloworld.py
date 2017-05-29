@@ -1,5 +1,5 @@
-from flask import Flask
+from flask import Flask,render_template
 app = Flask(__name__)
 @app.route('/')
-def start():
-    return  "<ul><li>Joe</li><li>Rio</li><li>Stack</li></ul>"
+def index():
+    return render_template("main.html")

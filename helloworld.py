@@ -1,5 +1,10 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,redirect,request,url_for
 app = Flask(__name__)
-@app.route('/')
+app.config['DEBUG'] = True
+comments = []
+@app.route('/', methods = ["GET","POST"])
 def index():
-    return render_template("main.html")
+    if request.method == "GET":
+        return render_template("main.html",comments = comments)
+    comments.append(request.form["contents"])
+    return redirect(url_for('index'))

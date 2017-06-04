@@ -5,6 +5,45 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
        <title> The game</title>
+        <script>
+   window.onload = function() {
+    var drawingCanvas = document.getElementById('smile');
+    if(drawingCanvas && drawingCanvas.getContext) {
+     var context = drawingCanvas.getContext('2d');
+     // Рисуем окружность
+     context.fillStyle = "green"
+     context.fillRect(0,0,drawingCanvas.width,drawingCanvas.height);
+     context.strokeStyle = "#000";
+     context.fillStyle = "#fc0";
+     context.beginPath();
+     context.arc(100,100,50,0,Math.PI*2,true);
+     context.closePath();
+     context.stroke();
+     context.fill();
+     // Рисуем левый глаз
+     context.fillStyle = "#fff";
+     context.beginPath();
+     context.arc(84,90,8,0,Math.PI*2,true);
+     context.closePath();
+     context.stroke();
+     context.fill();
+     // Рисуем правый глаз
+     context.beginPath();
+     context.arc(116,90,8,0,Math.PI*2,true);
+     context.closePath();
+     context.stroke();
+     context.fill();
+     // Рисуем рот
+     context.beginPath();
+     context.moveTo(70,115);
+     context.quadraticCurveTo(100,130,130,115);
+     context.quadraticCurveTo(100,150,70,115);
+     context.closePath();
+     context.stroke();
+     context.fill();
+    }
+   }
+  </script>
     </head>
     <body>
         <nav class="navbar navbar-inverse">
@@ -34,6 +73,15 @@
                 <input type="submit" value="Post comment">
             </form>
         </div>
+
+<div>
+     <form action="/start_game" method="POST">
+                <button style="width:80px;height:50px" type="submit" value="Start Game">
+                    Start Game
+                </button>
+     </form>
+</div>
         </div><!-- /.container -->
+        <canvas id="smile" width="200" height="200" border = 5>ff</canvas>
     </body>
 </html>

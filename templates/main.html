@@ -5,47 +5,153 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
        <title> The game</title>
+       <style>
+          .button_d {
+              float:left;
+          }
+          .par_d {
+              font-family: 'Verdana';
+              font-size: 24pt;
+          }
+          BODY{background-image: url(/static/table2.jpg);
+               background-position: 0% 10%;
+               background-repeat: no-repeat;
+
+          }
+
+
+
+       </style>
         <script>
    window.onload = function() {
+
     var drawingCanvas = document.getElementById('smile');
+    drawingCanvas.setAttribute('width',1200);
+    drawingCanvas.setAttribute('height',440);
     if(drawingCanvas && drawingCanvas.getContext) {
-     var context = drawingCanvas.getContext('2d');
+    var context = drawingCanvas.getContext('2d');
      // Рисуем окружность
-     context.fillStyle = "green"
-     context.fillRect(0,0,drawingCanvas.width,drawingCanvas.height);
-     context.strokeStyle = "#000";
-     context.fillStyle = "#fc0";
-     context.beginPath();
-     context.arc(100,100,50,0,Math.PI*2,true);
-     context.closePath();
-     context.stroke();
-     context.fill();
-     // Рисуем левый глаз
-     context.fillStyle = "#fff";
-     context.beginPath();
-     context.arc(84,90,8,0,Math.PI*2,true);
-     context.closePath();
-     context.stroke();
-     context.fill();
-     // Рисуем правый глаз
-     context.beginPath();
-     context.arc(116,90,8,0,Math.PI*2,true);
-     context.closePath();
-     context.stroke();
-     context.fill();
-     // Рисуем рот
-     context.beginPath();
-     context.moveTo(70,115);
-     context.quadraticCurveTo(100,130,130,115);
-     context.quadraticCurveTo(100,150,70,115);
-     context.closePath();
-     context.stroke();
-     context.fill();
-    }
-   }
+
+
+    context.fillStyle = "Indigo";
+    context.font = '24px "Tahoma"';
+    context.rotate(90*(Math.PI/180));
+
+    context.fillText("YOU",230,-100);
+    context.fillText("Dealer",100,-100);
+    context.rotate(270*(Math.PI/180));
+   /* if({{game_started}}&&!{{round_is_ongoing}})
+    {
+        var ty =5;
+
+    if ({{busted}}){
+     context.font = '40px "Tahoma"';
+     context.fillStyle = "Red";
+     context.fillText("Busted!",320,70);
+    }else
+    {
+     context.font = '40px "Tahoma"';
+     context.fillStyle = "Black";
+     var winner ="";
+     if ({{values_in_dealer_hand}}<{{values_in_player_hand}})
+     {
+         winner = "Player";
+
+     }else {
+          winner = "Dealer";
+     };
+     var textResult = {{values_in_dealer_hand}}+":"+{{values_in_player_hand}}+" " + winner+ " win!";
+     context.fillText(textResult,320,70);
+     };
+
+
+    };*/
+
+
+
+
+
+
+    var image1 = document.createElement("img");
+    image1.src = "/static/cards.png";
+    var backImage = document.createElement("img");
+    backImage.src = "/static/back.jpg";
+    backImage.onload = function(){
+        if({{round_is_ongoing}}){
+    context.drawImage(backImage,2, 3,{{tile_width}},{{tile_heigth}},130,100,{{tile_width}},{{tile_heigth}});
+        };
+    };
+    image1.onload = function() {
+        var counter = 0;
+
+        var cards = {{cards_in_hand|safe}};
+
+        for ( i = 0;i<cards.length;i++)
+        {
+
+           context.drawImage(image1,1+{{tile_width}}*cards[i][0],1+ {{tile_heigth}}*cards[i][1],{{tile_width}}-2,{{tile_heigth}}-2,130+i*{{tile_width}},220,{{tile_width}},{{tile_heigth}});
+        };
+        counter = 0;
+
+        cards = {{dealer_hand|safe}};
+        for ( i = 0;i<cards.length;i++)
+        {
+           if (!(i==0&&{{round_is_ongoing}})){
+
+           context.drawImage(image1,1+{{tile_width}}*cards[i][0],1+ {{tile_heigth}}*cards[i][1],{{tile_width}}-2,{{tile_heigth}}-2,130+i*{{tile_width}},100,{{tile_width}},{{tile_heigth}});
+           };
+        };
+        //end
+    };
+
+   };
+   };
   </script>
     </head>
     <body>
+        <div id="button_start" class="button_d">
+     <form action="/start_game" method="POST">
+                <button style="width:80px;height:50px" type="submit" value="Start Game">
+                    Start Game
+                </button>
+     </form>
+</div>
+
+<div id="button_hit" class="button_d">
+     <form action="/hit" method="POST">
+                <button style="width:80px;height:50px" type="submit" value="Hit">
+                    Hit
+                </button>
+     </form>
+</div>
+<div id="button_stand" class="button_d">
+     <form action="/stand" method="POST">
+                <button style="width:80px;height:50px" type="submit" value="Stand">
+                    Stand
+                </button>
+     </form>
+</div>
+<div id="button_deal" class="button_d">
+     <form action="/deal" method="POST">
+                <button style="width:80px;height:50px" type="submit" value="Deal">
+                    Deal
+                </button>
+     </form>
+</div>
+        <canvas id="smile" width="200" height="200" border = 5>ff</canvas>
+        <p class="par_d">
+        {% if busted %}
+        Busted!
+        {% elif game_started and not round_is_ongoing %}
+                    Dealer: {{values_in_dealer_hand}}. Player: {{values_in_player_hand}}.
+               {% if (values_in_dealer_hand < values_in_player_hand) or  values_in_dealer_hand>21 %}
+                     Player wins!
+               {% else %}
+                     Dealer wins!
+               {% endif %}
+        {% endif %}
+         Score- Dealer {{dealer_wins}} : {{player_wins}}  Player
+        </p>
         <nav class="navbar navbar-inverse">
   <div class="container">
     <div class="navbar-header">
@@ -64,7 +170,7 @@
 <div class="container">
         {% for comment in comments %}
     <div class="row">
-        {{ comment }}
+        {{ comment.content }}
     </div>
 {% endfor %}
 <div>
@@ -74,14 +180,8 @@
             </form>
         </div>
 
-<div>
-     <form action="/start_game" method="POST">
-                <button style="width:80px;height:50px" type="submit" value="Start Game">
-                    Start Game
-                </button>
-     </form>
-</div>
+
         </div><!-- /.container -->
-        <canvas id="smile" width="200" height="200" border = 5>ff</canvas>
+
     </body>
 </html>

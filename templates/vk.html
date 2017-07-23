@@ -1,0 +1,59 @@
+<head>
+<title>BlackJack</title>
+<script src="https://vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>
+<script>
+window.onload=function(){
+    VK.init(
+    function(){
+
+
+          },
+    function(){
+               document.getElementById('error').innerHTML = "Ошибка инициализации API Вконтакте";
+          },'5.67'
+
+
+    );
+    var parts = document.location.search.substr(1).split("&");
+    var flash_vars = {},curr;
+    for(i=0;i<parts.length;i++){
+          curr = parts[i].split("=");
+          flash_vars[curr[0]] = curr[1];
+
+         };
+    var viewerID = flash_vars["viewer_id"];
+    VK.api("getProfiles",{uids:viewerID},
+               function(data){
+                      document.getElementById('name').innerHTML = "Разрабатываемое приложение Блэкджек приветствует вас, "+ data.response[0].first_name+ " "+ data.response[0].last_name;
+
+
+               }
+
+    );
+
+
+
+
+    //VK.api("account.getProfileInfo",{},
+    //   function(profile){
+    //       document.getElementById('name').innerHTML = profile.first_name;
+
+
+    //   };
+
+
+    //);
+
+};
+</script>
+</head>
+<body>
+   <div id="error">
+   </div>
+   <div id="name">
+   </div>
+   <div>
+
+
+   </div>
+</body>

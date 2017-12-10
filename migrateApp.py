@@ -26,12 +26,12 @@ class Comment(db.Model):
 class UserData(db.Model):
     __tablename__ = "users"
     login = db.Column(db.String(10))
-    password = db.Column(db.String(10))
+    password = db.Column(db.String(128))
     id = db.Column(db.Integer,primary_key=True)
     wines = db.Column(db.Integer)
     loses = db.Column(db.Integer)
     money = db.Column(db.Integer)
-    comments = db.relationship("Comment")
+    comments = db.relationship("Comment",backref = "author",lazy = "dynamic")
     vk =db.Column(db.Boolean)
 if __name__ == '__main__':
     manager.run()

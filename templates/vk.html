@@ -1,4 +1,7 @@
+<!DOCTYPE html>
+<html>
 <head>
+<meta charset="utf-8">
 <title>BlackJack</title>
 <script src="https://vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>
 <script>
@@ -22,16 +25,52 @@ window.onload=function(){
 
          };
     var viewerID = flash_vars["viewer_id"];
+    document.getElementById('vk_id').setAttribute("value",viewerID);
     VK.api("getProfiles",{uids:viewerID},
                function(data){
-                      document.getElementById('name').innerHTML = "Разрабатываемое приложение Блэкджек приветствует вас, "+ data.response[0].first_name+ " "+ data.response[0].last_name;
+                      document.getElementById('name').innerHTML = "Разрабатываемое приложение Блэкджек приветствует вас, "+data.response[0].first_name+ " "+ data.response[0].last_name;
+
 
 
                }
 
     );
+    var canvasPanel = document.getElementById("BlackJackPanel");
+    if (canvasPanel && canvasPanel.getContext("2d")){
+         var context = canvasPanel.getContext("2d");
+         var x =300;
+         var word = "BLACKJACK";
+         var lettersPos = [10];
+         var currentLetterAnimation = 1;
+         lettersPos[currentLetterAnimation] = 300;
+         function drawOnCanvas(){
+              context.clearRect(0,0,canvasPanel.width,canvasPanel.height);
+
+              context.fillStyle = "black";
+              context.font = '24px "Tahoma"';
 
 
+              var limitOfPos = lettersPos[currentLetterAnimation-1]+context.measureText(word[currentLetterAnimation-1]).width+4;
+              console.log(lettersPos[currentLetterAnimation]>limitOfPos);
+
+              if (lettersPos[currentLetterAnimation]>limitOfPos){
+                  lettersPos[currentLetterAnimation]-=2;
+              }else{
+                 if (currentLetterAnimation<(word.length)){
+                      console.log("punch")
+                      currentLetterAnimation++;
+                      lettersPos[currentLetterAnimation] = 300;
+                      var punchTag = document.getElementById("punchSound");
+                      punchTag.play();
+                 };
+              };
+              for (var key in word){
+                    context.fillText(word[key],lettersPos[key],50);
+              };
+              window.setTimeout(drawOnCanvas,5);
+         };
+         drawOnCanvas();
+    };
 
 
     //VK.api("account.getProfileInfo",{},
@@ -48,12 +87,22 @@ window.onload=function(){
 </script>
 </head>
 <body>
+    <div>
+         <canvas id = "BlackJackPanel" width = "400" height = "100"> Your browser doesn't support Canvas</canvas>
+    </div>
    <div id="error">
    </div>
    <div id="name">
+
    </div>
    <div>
-
-
+        <form method="POST"  action="/vk_start">
+            <button type = "submit">
+                 Начать игру
+            </button>
+            <input name = "vk_id" value="id" id ="vk_id" type="hidden"></input>
+        </form>
    </div>
+   <audio id ="punchSound" duration = "1" src="static/punchSound.ogg">Your browser does not support the audio element.</audio>
 </body>
+</html>

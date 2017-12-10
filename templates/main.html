@@ -1,3 +1,4 @@
+<!DOCTYPE HTML>
 <html>
     <head> <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -6,40 +7,67 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
        <title> The game</title>
        <style>
+          .button_style_active{width:80px;
+                       height:50px;
+                       border-radius:10px;
+          }
+          .button_style_unactive{
+                       width:80px;
+                       height:50px;
+                       background-color:gray;
+                       border-color:gray;
+                       border-radius:10px;
+          }
           .button_d {
               float:left;
+
           }
+
           .par_d {
-              font-family: 'Verdana';
+              font-family: 'Impact';
               font-size: 24pt;
+          }
+          .pos_center {
+              display:inline-block;
+              position:relative;
+              left:250px;
+          }
+          #info_panel{
+              position:relative;
+              top:14px;
           }
           BODY{background-image: url(/static/table2.jpg);
                background-position: 0% 10%;
                background-repeat: no-repeat;
+          }
+          @media (min-width: 768px){
+          .textRight {
+               text-align:right;
 
+           }
           }
 
-
-
        </style>
+
         <script>
+        var test = "test";
    window.onload = function() {
+
 
     var drawingCanvas = document.getElementById('smile');
     drawingCanvas.setAttribute('width',1200);
-    drawingCanvas.setAttribute('height',440);
+    drawingCanvas.setAttribute('height',350);
     if(drawingCanvas && drawingCanvas.getContext) {
     var context = drawingCanvas.getContext('2d');
-     // Рисуем окружность
-
-
+    context.setTransform(1,0,0,1,0,0);
     context.fillStyle = "Indigo";
     context.font = '24px "Tahoma"';
     context.rotate(90*(Math.PI/180));
 
     context.fillText("YOU",230,-100);
     context.fillText("Dealer",100,-100);
-    context.rotate(270*(Math.PI/180));
+    context.setTransform(1,0,0,1,0,0);
+    //context.rotate(270*(Math.PI/180));
    /* if({{game_started}}&&!{{round_is_ongoing}})
     {
         var ty =5;
@@ -109,36 +137,72 @@
   </script>
     </head>
     <body>
-        <div id="button_start" class="button_d">
-     <form action="/start_game" method="POST">
-                <button style="width:80px;height:50px" type="submit" value="Start Game">
-                    Start Game
-                </button>
-     </form>
-</div>
+        <div  class="button_d" >
+             User: {{login}}
+        </div>
+        {% if not vk %}
+        <div>
+            <form action ="/logout" method=GET>
+                 <button class = "button_style_active" type="submit">
+                       Logout
+                 </button>
 
-<div id="button_hit" class="button_d">
-     <form action="/hit" method="POST">
-                <button style="width:80px;height:50px" type="submit" value="Hit">
-                    Hit
-                </button>
-     </form>
-</div>
-<div id="button_stand" class="button_d">
-     <form action="/stand" method="POST">
-                <button style="width:80px;height:50px" type="submit" value="Stand">
+            </form>
+        </div>
+        {% else %}
+        <div>
+            <form action ="/vk" method=GET>
+                 <button class = "button_style_active" type="submit">
+                       Back
+                 </button>
+
+            </form>
+        </div>
+        {% endif %}
+       <div>
+             <canvas id="smile" width="200" height="200" border = 5>“Your browser does not support HTML5 Canvas.”</canvas>
+       </div>
+       <div id="button_hit" class ="pos_center">
+             <form action="/hit" method="GET">
+                   <button
+                       {% if round_is_ongoing %}
+                            class = "button_style_active"
+                       {% else %}
+                            class = "button_style_unactive"
+                       {% endif %}
+                      type="submit" value="Hit">
+                       Hit
+                    </button>
+              </form>
+       </div>
+<div id="button_stand" class="pos_center">
+     <form action="/stand" method="GET">
+                <button
+                      {% if round_is_ongoing %}
+                         class = "button_style_active"
+                      {% else %}
+                         class = "button_style_unactive"
+                      {% endif %}
+
+                    type="submit" value="Stand">
                     Stand
                 </button>
      </form>
 </div>
-<div id="button_deal" class="button_d">
-     <form action="/deal" method="POST">
-                <button style="width:80px;height:50px" type="submit" value="Deal">
+<div id="button_deal" class="pos_center">
+     <form action="/deal" method="GET">
+                <button
+                      {% if round_is_ongoing %}
+                         class = "button_style_unactive"
+                      {% else %}
+                         class = "button_style_active"
+                      {% endif %}
+                          type="submit" value="Deal">
                     Deal
                 </button>
      </form>
 </div>
-        <canvas id="smile" width="200" height="200" border = 5>ff</canvas>
+        <div id="info_panel">
         <p class="par_d">
         {% if busted %}
         Busted!
@@ -151,7 +215,8 @@
                {% endif %}
         {% endif %}
          Score- Dealer {{dealer_wins}} : {{player_wins}}  Player
-        </p>
+         </p>
+        </div>
         <nav class="navbar navbar-inverse">
   <div class="container">
     <div class="navbar-header">
@@ -170,11 +235,13 @@
 <div class="container">
         {% for comment in comments %}
     <div class="row">
-        {{ comment.content }}
+
+              <div class ="col-sm-4 textRight">{{ comment[0]}}</div>
+       <div class ="col-sm-8">{{ comment[1] }}</div>
     </div>
 {% endfor %}
 <div>
-            <form action="." method="POST">
+            <form action="/blackjack" method="POST">
                 <textarea name="contents" placeholder="Enter a comment"></textarea>
                 <input type="submit" value="Post comment">
             </form>

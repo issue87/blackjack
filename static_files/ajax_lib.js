@@ -39,7 +39,6 @@ ajaxUtils.sendGetRequest =
     dataString += key+"="+data[key];
     counter++;
     };
-    console.log(dataString);
     request.send(dataString); // for POST only
   };
 
@@ -51,8 +50,8 @@ function handleResponse(request,
                         responseHandler) {
   if ((request.readyState == 4) &&
      (request.status == 200)) {
-    responseHandler(request);
-  }
+    responseHandler(request)
+  };
 }
 
 

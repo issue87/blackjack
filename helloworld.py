@@ -11,7 +11,7 @@ rangs = ("A","2","3","4","5","6","7","8","9","10","J","Q","K")
 suits_images = {"трефы":chr(9827),"черви":chr(9829),"пики":chr(9824),"буби":chr(9830)}
 suits = ("трефы","черви","пики","буби")
 app = Flask(__name__)
-app.secret_key = '44353459342958349583445963ty54ytyu4c653mui3t94r836g843b37853kk54534'
+app.secret_key = '44353459342958349583445963t54ytyu4c653mu3t94r836g843b378539k54534'
 app.config['DEBUG'] = False
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
     username="issue87",
@@ -280,18 +280,6 @@ def logout():
 def index():
     if session['logged_in'] == False:
         return redirect(url_for('login'))
-    if games_session[session['username']].get_user_hand() != "":
-        cards_in_hand = games_session[session['username']].get_user_hand().get_cards_in_hand()
-        values_in_player_hand = games_session[session['username']].get_user_hand().get_values_of_hand()
-    else:
-        cards_in_hand = []
-        values_in_player_hand = 0
-    if games_session[session['username']].get_dealer_hand() != "":
-        cards_in_dealer_hand = games_session[session['username']].get_dealer_hand().get_cards_in_hand()
-        values_in_dealer_hand = games_session[session['username']].get_dealer_hand().get_values_of_hand()
-    else:
-        cards_in_dealer_hand = []
-        values_in_dealer_hand = 0
     if request.method == "GET":
         user_data = get_user_data(session['username'])
         return render_template("main_blackjack.html",
@@ -307,6 +295,26 @@ def index():
     db.session.add(comment)
     db.session.commit()
     return redirect(url_for('index'))
+@app.route('/test', methods = ["GET","POST"])
+def test():
+    if session['logged_in'] == False:
+        return redirect(url_for('login'))
+    if request.method == "GET":
+        user_data = get_user_data(session['username'])
+        return render_template("main_blackjack_dev.html",
+                                          comments = get_comments_with_author(Comment.query.all()),
+                                          player_wins = user_data.wines,
+                                          dealer_wins = user_data.loses,
+                                          money = user_data.money,
+                                          login = session['username'],
+                                          vk = games_session[session['username']].is_vk()
+                                          )
+
+    author_id = get_user_data(session['username']).id
+    comment = Comment(content = request.form["contents"],user_id = author_id)
+    db.session.add(comment)
+    db.session.commit()
+    return redirect(url_for('test'))
 @app.route('/ajax_sent_result', methods = ["POST"])
 def ajax_sent_result():
     result = request.form["won"]

@@ -26,20 +26,32 @@ ajaxUtils.sendGetRequest =
     var request = getRequestObject();
     request.onreadystatechange =
       function() {
-        handleResponse(request, responseHandler);
+          if (responseHandler!==""){
+              handleResponse(request, responseHandler);
+          };
       };
-    request.open("POST", requestUrl, true);
-    request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    dataString="";
-    var counter = 0;
-    for (key in data){
-    if (counter!=0){
-      dataString+="&";
+    if (data.typeOfRequest=="fileData"){
+         request.open("POST", requestUrl, true);
     };
-    dataString += key+"="+data[key];
-    counter++;
+    if (data.typeOfRequest=="GET"){
+         request.open("GET", requestUrl, true);
+         request.send();
     };
-    request.send(dataString); // for POST only
+    if (data.typeOfRequest=="formData"){
+         request.open("POST", requestUrl, true);
+         request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+         dataString="";
+         var counter = 0;
+         for (key in data){
+         if (counter!=0){
+             dataString+="&";
+         };
+         dataString += key+"="+data[key];
+             counter++;
+         };
+         request.send(dataString);
+    };
+
   };
 
 

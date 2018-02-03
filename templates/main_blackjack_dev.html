@@ -1,0 +1,571 @@
+<!DOCTYPE HTML>
+<html>
+    <head> <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       <title> The game</title>
+       <style>
+          .button_style{width:80px;
+                       height:50px;
+                       border-radius:10px;
+                       border:none;
+          }
+
+          .button_d {
+              float:left;
+          }
+          .par_d {
+              font-family: 'Impact';
+              font-size: 24pt;
+          }
+          .pos_center {
+              display:inline-block;
+              position:relative;
+          }
+          .slider {
+              -webkit-appearance: none;
+               width: 308px; /* Full-width */
+               height: 48px; /* Specified height */
+               outline: none; /* Remove outline */
+               background:none;
+                /* Set transparency (for mouse-over effects on hover) */
+                -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+                   transition: opacity .2s;
+            }
+          .slider::-webkit-slider-thumb {
+              -webkit-appearance: none; /* Override default look */
+              appearance: none;
+              width: 96px; /* Set a specific slider handle width */
+              height: 48px; /* Slider handle height */
+              background-image: url("static/SliderButton6.png"); /* Green background */
+              background-size:96px 48px;
+              cursor: pointer; /* Cursor on hover */
+              }
+
+          .slider::-moz-range-thumb {
+               width: 96px; /* Set a specific slider handle width */
+               height: 48px; /* Slider handle height */
+               background-image: url("static/SliderButton6.png"); /* Green background */
+               cursor: pointer; /* Cursor on hover */
+               }
+          .navbar-nav li{
+               background:linear-gradient(to bottom, #B8860B, #DAA520);
+               text-align:center;
+               margin:2px;
+               padding:5px;
+               color:#FFFF00;
+          }
+          #info_panel{
+              position:relative;
+              top:14px;
+          }
+          #gameCanvas{ position:absolute;
+                       z-index:1;
+                       width:867px;
+                       height:493px;
+                       left:0;
+                       top:0;
+          }
+          .gameControl{
+              position:absolute;
+              z-index:100;
+              top:425px;
+              left:0;
+              width:867px;
+              height:68px;
+
+          }
+          #sliderButton{
+              width:308px;
+              height:48px;
+          }
+          #gameContainer{
+              position:relative;
+              width:867px;
+              height:493px;
+          }
+
+          #b_hit{
+              background-image:url('static/buttonHit.png');
+              width:152px;
+          }
+          #b_stand{
+              background-image:url('static/buttonStand.png');
+              width:151px;
+          }
+          #b_double{
+              background-image:url('static/buttonDouble2.png');
+              width:186px;
+          }
+          #b_rebet{
+              background-image:url('static/buttonRebet.png');
+              width:148px;
+
+          }
+          #b_split{
+              background-image:url('static/buttonSplit.png');
+              width:153px;
+          }
+          #b_bet{
+              background-image:url('static/buttonBet.png');
+              width:146px;
+          }
+          #b_deal{
+              background-image:url('static/buttonDeal.png');
+              width:146px;
+          }
+          #gameControlActions{
+              visibility:hidden;
+              left:100px;
+          }
+          #gameControlBet{
+              visibility:visible;
+              left:200px;
+          }
+          #gameControlSlider{
+              visibility:visible;
+              top:367px;
+              height:48px;
+              left:270px;
+          }
+       </style>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="static/ajax_lib.js" charset="UTF-8"></script>
+        <script>
+        CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
+        function RandomSort(a,b){
+                                     return (Math.random() - 0.5);
+                                 };
+        function Desk(number_of_cards){
+           this.cards = [];
+           var counter = 0;
+           while (counter < 13){
+              var counter_suits = 0;
+              while (counter_suits < 4){
+                  this.cards.push(new Card(counter,counter_suits,0));
+                  counter_suits +=1;
+              };
+              if (number_of_cards == 36 && counter == 0){
+                   counter += 5;
+              }else{
+                   counter += 1;
+                };
+              };
+           this.cards.sort(RandomSort);
+           this.takeCard = function(){
+               return this.cards.pop();
+           };
+           this.takeCard = function(){
+               return this.cards.pop();
+           };
+           this.getCards = function(){
+               return this.cards;
+           };
+           this.getFirstCard = function(){
+               return this.cards[0];
+           };
+           this.getLenCards = function(){
+               return this.cards.length;
+           };
+        };
+
+        function Card(rang,suit,value)
+             {
+                this.rang = rang;
+                this.suit = suit;
+                this.value = value;
+                this.getValue = function()
+                     {
+                         return this.value;
+                     };
+                this.getRang = function()
+                     {
+                         return this.rang;
+                     };
+                this.setValue = function(value)
+                     {
+                         this.value = value;
+                     };
+                this.getSuit = function()
+                     {
+                        return this.suit;
+                     };
+             };
+        function Hand()
+        {
+             this.cards = [];
+             this.giveCard = function(card){
+                 this.cards.push(card);
+             };
+             this.clearHand = function(){
+                 this.cards = [];
+             };
+             this.getLength = function(){
+                 return this.cards.length;
+             };
+             this.getCardsInHand = function(){
+                 return this.cards;
+             };
+             this.getValuesOfHand = function(){
+                 var value =0;
+                 for (card in this.cards){
+                      value += this.cards[card].getValue();
+                 };
+                 return value;
+             };
+        };
+        function  getCardToHand(hand,desk){
+               var card = desk.takeCard();
+               var value = CardValues[card.getRang()];
+               if (value == 11 && hand.getValuesOfHand()>10){
+                     card.setValue(1);
+               }else{
+                     card.setValue(value);
+                     hand.giveCard(card);
+               };
+        };
+        function logout(){
+               dataForRequest = new Object();
+               dataForRequest.typeOfRequest ="GET";
+               $ajaxUtils.sendGetRequest("/logout", "",dataForRequest);
+        };
+
+        function initGame(){
+            var roundIsOngoing = false;
+            var busted = false;
+            var GameDesk,GameStarted;
+            var buttonDeal = document.getElementById("b_deal");
+            var buttonHit = document.getElementById("b_hit");
+            var buttonStand = document.getElementById("b_stand");
+            var buttonBet = document.getElementById("b_bet");
+            var gameControlActions = document.getElementById("gameControlActions");
+            var gameControlBet = document.getElementById("gameControlBet");
+            var gameControlSlider = document.getElementById("gameControlSlider");
+            var PlayerHand = new Hand();
+            var DealerHand = new Hand();
+            var money = {{money}};
+            var sliderRange = document.getElementById("sliderRange");
+            var betInSlider = 1;
+            var betInGame = 1;
+            var resultOfTheRoundStr = "";
+            function resultOfRound(playerLose)
+            {
+                     roundIsOngoing =false;
+                     buttonDeal.style.backgroundColor = "";
+                     gameControlActions.style.visibility = "hidden";
+                     gameControlBet.style.visibility = "visible";
+                     gameControlSlider.style.visibility = "visible";
+                     dataForRequest = new Object();
+                     dataForRequest.bet = betInGame;
+                     dataForRequest.typeOfRequest ="formData";
+                     if (playerLose || (!(DealerHand.getValuesOfHand()>21) && DealerHand.getValuesOfHand()>=PlayerHand.getValuesOfHand()))
+                     {
+                                dataForRequest.won = false;
+                                resultOfTheRoundStr = "lose " + betInGame;
+                      }else
+                      {
+                                dataForRequest.won = true;
+                                 resultOfTheRoundStr = "win " + betInGame;
+                      };
+
+                      $ajaxUtils.sendGetRequest('/ajax_sent_result',resultGameHandler,dataForRequest);
+            };
+            function deal()
+            {
+
+                if (!roundIsOngoing)
+                {
+                     resultOfTheRoundStr = "";
+                     GameDesk = new Desk(52);
+                     PlayerHand = new Hand();
+                     DealerHand = new Hand();
+                     GameStarted = true;
+                     getCardToHand(PlayerHand,GameDesk);
+                     getCardToHand(PlayerHand,GameDesk);
+                     getCardToHand(DealerHand,GameDesk);
+                     getCardToHand(DealerHand,GameDesk);
+                     roundIsOngoing = true;
+                     busted = false;
+                     gameControlActions.style.visibility = "visible";
+                     gameControlBet.style.visibility = "hidden";
+                     gameControlSlider.style.visibility = "hidden";
+                };
+            };
+            function stand()
+            {
+               if (roundIsOngoing)
+               {
+                        while (DealerHand.getValuesOfHand() < 17)
+                        {
+                            getCardToHand(DealerHand,GameDesk);
+                        };
+                        resultOfRound(false);
+               };
+            };
+
+            function hit()
+            {
+                 if (roundIsOngoing)
+                 {
+                       getCardToHand(PlayerHand,GameDesk)
+                       if (PlayerHand.getValuesOfHand()>21){
+                           busted = true;
+                           resultOfRound(true);
+                       };
+
+                 };
+            };
+            function bet() {
+                 betInGame = betInSlider;
+            };
+            var resultGameHandler = function (res){
+                result_obj = JSON.parse(res.responseText);
+                money += result_obj.bet*(Number(result_obj.won)*2-1);
+                betInSlider = 1;
+                betInGame = 1;
+                sliderRange.setAttribute("max",money);
+            };
+            buttonDeal.addEventListener("click",deal);
+            buttonHit.addEventListener("click",hit);
+            buttonStand.addEventListener("click",stand);
+            buttonBet.addEventListener("click",bet);
+            sliderRange.oninput = function setValueInBet(){
+                betInSlider = sliderRange.value;
+            };
+            var image1 = document.createElement("img");
+            var tableImage = document.createElement('img');
+            var imageGameScore = document.createElement("img");
+            var balanceImage = document.createElement("img");
+            var sliderButton = document.createElement("img");
+            var sliderCashBase = document.createElement("img");
+            function canvasAnimation()
+            {
+                 var tileWidth = 144;
+                 var tileHeigth = 201;
+                 var drawingCanvas = document.getElementById('gameCanvas');
+                 if(drawingCanvas && drawingCanvas.getContext) {
+                     var context = drawingCanvas.getContext('2d');
+                     drawingCanvas.setAttribute('width',tableImage.width/3);
+                     drawingCanvas.setAttribute('height',tableImage.height/3);
+                     context.drawImage(tableImage,0,0,tableImage.width,tableImage.height,0,0,tableImage.width/3,tableImage.height/3);
+                     var counter = 0;
+                     var cards = PlayerHand.getCardsInHand();
+                     var playerHandX = 410 - Math.floor(cards.length/2)*tileWidth*0.1;
+                     for ( i = 0;i<cards.length;i++)
+                     {
+                         context.setTransform(1,0,0,1,0,0);
+                         var rad_angle;
+                         if ((cards.length-1)/2 == i)
+                         {
+                             rad_angle =0;
+                         }
+                         else if(Math.round(i/cards.length)==0)
+                         {
+                             rad_angle = -5*(Math.floor(cards.length/2)-i);
+                         }
+                         else
+                         {
+                             rad_angle = 5*(i-Math.ceil(cards.length/2)+1);
+                         };
+                         context.translate(playerHandX+i*tileWidth*0.1 + 0.5*(tileWidth/3),240+ 0.5*(tileHeigth/3));
+                         context.rotate(Math.ceil(cards.length/2)*rad_angle*(Math.PI/180));
+                         context.drawImage(image1,57+(tileWidth+11)*(cards[i].getRang()%7),258+ ((tileHeigth+16)*2+36)*cards[i].getSuit()+Math.floor(cards[i].getRang()/7)*(tileHeigth+16),tileWidth,tileHeigth,-0.5*tileWidth/3,-0.5*tileHeigth/3,tileWidth/3,tileHeigth/3);
+                     };
+                     context.setTransform(1,0,0,1,0,0);
+                     counter = 0;
+                     cards = DealerHand.getCardsInHand();
+                     if(roundIsOngoing){
+                         context.drawImage(image1,57+(tileWidth+11)*6, 258+tileHeigth+16,tileWidth,tileHeigth,410 - Math.ceil(cards.length/2)*tileWidth*0.1,70,tileWidth/3,tileHeigth/3);
+                     };
+                     for ( i = 0;i<cards.length;i++)
+                     {
+                          if (!(i==0&&roundIsOngoing)){
+                                 context.drawImage(image1,57+(tileWidth+11)*(cards[i].getRang()%7),258+ ((tileHeigth+16)*2+36)*cards[i].getSuit()+Math.floor(cards[i].getRang()/7)*(tileHeigth+16),tileWidth,tileHeigth,410- Math.ceil(cards.length/2)*tileWidth*0.1+i*tileWidth*0.1,70,tileWidth/3,tileHeigth/3);
+                          };
+                     };
+                     context.drawImage(imageGameScore,410,140,50,26);
+                     context.drawImage(imageGameScore,410,215,50,26);
+                     var playerScoreText = "" + PlayerHand.getValuesOfHand();
+                     var dealerScoreText = "" + DealerHand.getValuesOfHand();
+                     context.font ="bold 16px serif";
+                     var dealerScoreTextMetrics = context.measureText(dealerScoreText);
+                     var playerScoreTextMetrics = context.measureText(playerScoreText);
+                     dealerScoreTextX = 435 - dealerScoreTextMetrics.width/2;
+                     playerScoreTextX = 435 - playerScoreTextMetrics.width/2;
+                     if (!roundIsOngoing){
+                        context.fillText(dealerScoreText,dealerScoreTextX,158);
+                     };
+                     context.fillText(playerScoreText,playerScoreTextX,233);
+                     context.drawImage(balanceImage,0,0,180,90);
+                     context.fillStyle = "#FFFF00";
+                     context.font ="25px monospace";
+                     var gradient = context.createLinearGradient(70,35,70,50);
+                     gradient.addColorStop(0,"#f1e5b0");
+                     gradient.addColorStop(0.5,"#8e5e19");
+                     gradient.addColorStop(1,"#f1e5b0");
+                     context.fillStyle = gradient;
+                     var metrics = context.measureText(money);
+                     context.fillText(money,75 - metrics.width/2,50);
+                     var gradient = context.createLinearGradient(70,68,70,78);
+                     gradient.addColorStop(0,"#f1e5b0");
+                     gradient.addColorStop(0.5,"#8e5e19");
+                     gradient.addColorStop(1,"#f1e5b0");
+                     context.fillStyle = gradient;
+                     context.font ="20px monospace";
+                     var metrics = context.measureText(betInGame);
+                     context.fillText(betInGame,85 - metrics.width/2,78);
+                     if (resultOfTheRoundStr){
+                         context.font ="50px monospace"
+                         var metrics = context.measureText(resultOfTheRoundStr);
+                         context.fillText(resultOfTheRoundStr,435 - metrics.width/2,200);
+                     };
+                     if (!roundIsOngoing){
+                     context.drawImage(sliderButton,252,320,348,118);
+                     context.drawImage(sliderCashBase,330,340,200,40);
+                     var metrics = context.measureText(betInSlider);
+                     context.fillStyle = "black";
+                     context.font ="25px monospace";
+                     context.fillText(betInSlider,430 - metrics.width/2,368);
+                     };
+                 };
+                 window.setTimeout(canvasAnimation,300);
+
+            };
+
+            var images = 0;
+            var detectLoading = function (){
+                 images++;
+                 console.log;
+                 if (images == 6){
+                    canvasAnimation();
+                 };
+            };
+            image1.src = "/static/Small_Cards.png";
+            tableImage.src ="/static/XRENDER2.png";
+            imageGameScore.src = "/static/resultBox.png";
+            balanceImage.src ="/static/balance.png";
+            sliderButton.src="/static/SliderBase.png";
+            sliderCashBase.src="/static/SliderCashBase.png";
+            tableImage.onload = detectLoading;
+            image1.onload = detectLoading;
+            imageGameScore.onload = detectLoading;
+            balanceImage.onload = detectLoading;
+            sliderButton.onload = detectLoading;
+            sliderCashBase.onload = detectLoading;
+
+
+
+        };
+
+   window.onload = function() {
+
+        initGame();
+       };
+   window.onbeforeunload = function(){
+       var buttonLogout = window.getElementById("buttonLogout");
+       alert("some");
+       buttonLogout.click();
+   };
+  </script>
+    </head>
+    <body>
+        <nav class ="navbar navbar-default">
+            <div class="container-fluid">
+                 <div class="navbar-header">
+                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                     </button>
+                 </div>
+                 <div  class="button_d hidden-xs">
+                      User: {{login}}
+                 </div>
+
+                 {% if not vk %}
+                      <div>
+                           <form action ="/logout" method=GET class = "hidden-xs">
+                                   <button class = "button_style" type="submit" id = "buttonLogout">
+                                         Logout
+                                   </button>
+
+                           </form>
+                      </div>
+                 {% else %}
+
+                    <div>
+                        <form action ="/vk" method=GET>
+                            <button class = "button_style" type="submit">
+                                 Back
+                            </button>
+
+                        </form>
+                    </div>
+                {% endif %}
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav" >
+                        <li style>Register</li>
+                        <li>login</li>
+                        <li onclick = "logout();">log out</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+       <div id = "gameContainer">
+             <canvas id="gameCanvas">“Your browser does not support HTML5 Canvas.”</canvas>
+             <div id = "gameControlActions" class="gameControl">
+                   <div id="button_hit" class ="pos_center">
+                        <button id = "b_hit" class = "button_style"
+                              type="button" value="Hit">
+
+                        </button>
+                   </div>
+                   <div id="button_stand" class="pos_center">
+                        <button id = "b_stand" class = "button_style" type="button" value="Stand">
+
+                        </button>
+                   </div>
+                   <div id="button_split" class="pos_center">
+                        <button id = "b_split" class = "button_style" type="button">
+
+                        </button>
+                   </div>
+                   <div id="button_double" class="pos_center">
+                        <button id = "b_double" class = "button_style" type="button">
+
+                        </button>
+                   </div>
+             </div>
+             <div id = "gameControlBet" class="gameControl">
+                   <div id="button_bet" class="pos_center">
+                        <button id = "b_bet" class = "button_style" type="button">
+
+                        </button>
+                   </div>
+                   <div id="button_rebet" class="pos_center">
+                        <button id = "b_rebet" class = "button_style" type="button">
+
+                        </button>
+                   </div>
+                    <div id="button_deal" class="pos_center">
+                        <button id ="b_deal" class = "button_style" type="button">
+                        </button>
+                   </div>
+
+             </div>
+             <div id = "gameControlSlider" class="gameControl">
+                   <div id="sliderButton" class="pos_center">
+                        <input type="range" min=1 max={{money}} value = 1 class="slider" id="sliderRange"></input>
+                   </div>
+             </div>
+       </div>
+
+
+
+
+    </body>
+</html>

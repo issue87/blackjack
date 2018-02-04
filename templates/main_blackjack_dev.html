@@ -255,20 +255,7 @@
                      hand.giveCard(card);
                };
         };
-        function logout(){
-               dataForRequest = new Object();
-               dataForRequest.typeOfRequest ="GET";
-               $ajaxUtils.sendGetRequest("/logout", logoutServerResponse,dataForRequest);
-        };
-		function login(){
-		     var loginForm = document.getElementById("input_form");
-			 loginForm.style.visibility = "visible";
-		};
-        function logoutServerResponse(request){
-		   var logoutLabel = document.getElementById("logoutLabel");
-		   logoutLabel.textContent ="";
-		   logged_in = false;
-		};
+        
         function initGame(){
             var roundIsOngoing = false;
             var busted = false;
@@ -287,6 +274,20 @@
             var betInSlider = 1;
             var betInGame = 1;
             var resultOfTheRoundStr = "";
+			function logout(){
+               dataForRequest = new Object();
+               dataForRequest.typeOfRequest ="GET";
+               $ajaxUtils.sendGetRequest("/logout", logoutServerResponse,dataForRequest);
+            };
+			function login(){
+				 var loginForm = document.getElementById("input_form");
+				 loginForm.style.visibility = "visible";
+			};
+			function logoutServerResponse(request){
+			   var logoutLabel = document.getElementById("logoutLabel");
+			   logoutLabel.textContent ="";
+			   logged_in = false;
+			};
             function resultOfRound(playerLose)
             {
                      roundIsOngoing =false;

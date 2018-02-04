@@ -136,6 +136,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="static/ajax_lib.js" charset="UTF-8"></script>
         <script>
+		var logged_in = !!{{logged_in}};
         CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
         function RandomSort(a,b){
                                      return (Math.random() - 0.5);
@@ -231,9 +232,12 @@
         function logout(){
                dataForRequest = new Object();
                dataForRequest.typeOfRequest ="GET";
-               $ajaxUtils.sendGetRequest("/logout", "",dataForRequest);
+               $ajaxUtils.sendGetRequest("/logout", logoutServerResponse,dataForRequest);
         };
-
+        function logoutServerResponse(request){
+		   var logoutLabel = document.getElementById("logoutLabel");
+		   logoutLabel.textContent ="";
+		};
         function initGame(){
             var roundIsOngoing = false;
             var busted = false;
@@ -322,8 +326,8 @@
             function bet() {
                  betInGame = betInSlider;
             };
-            var resultGameHandler = function (res){
-                result_obj = JSON.parse(res.responseText);
+            var resultGameHandler = function (request){
+                result_obj = JSON.parse(request.responseText);
                 money += result_obj.bet*(Number(result_obj.won)*2-1);
                 betInSlider = 1;
                 betInGame = 1;
@@ -482,8 +486,10 @@
                           <span class="icon-bar"></span>
                      </button>
                  </div>
-                 <div  class="button_d hidden-xs">
-                      User: {{login}}
+                 <div id = "logoutLabel" class="button_d hidden-xs">
+                     {% if logged_in %}
+					    {{login}}
+					 {% endif %}
                  </div>
 
                  {% if not vk %}

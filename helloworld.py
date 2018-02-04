@@ -302,6 +302,7 @@ def test():
     if request.method == "GET":
         user_data = get_user_data(session['username'])
         return render_template("main_blackjack_dev.html",
+		                                  logged_in = int(session['logged_in']),
                                           comments = get_comments_with_author(Comment.query.all()),
                                           player_wins = user_data.wines,
                                           dealer_wins = user_data.loses,

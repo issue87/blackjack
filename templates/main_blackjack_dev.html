@@ -158,7 +158,7 @@
 		$(function(){
 		   $("#navbarToggleButton").blur(
 		      function(event){
-			      var scrinWidth = window.innerWidth;
+			      var scrinWidth = window.visualViewport.width;
 				  if (scrinWidth < 768){
 				     $("#myNavbar").collapse('hide');
 				  };

@@ -90,7 +90,6 @@
 		      position:absolute;
 			  right:0;
 			  top:0;
-			  background:linear-gradient(to bottom, #B8860B, #DAA520);
               color:black;
 			  border:none;
 		  }
@@ -185,6 +184,9 @@
 		function login(){
 		   var loginForm = document.getElementById("input_fieldset");
 		   loginForm.style.visibility = "visible";
+		};
+		function closeInputForm(spanNode){
+		   spanNode.parentNode.style.visibility = "hidden";
 		};
 		function logoutServerResponse(request){
 		   var logoutLabel = document.getElementById("logoutLabel");
@@ -582,7 +584,7 @@
 				 </button>
 				 
 			</fieldset>
-			<span class="glyphicon glyphicon-remove button-cancel visible-xs"></span>
+			<span class="glyphicon glyphicon-remove button-cancel visible-xs" onclick = "closeInputForm(this);"></span>
 		</div>
        <div id = "gameContainer">
              <canvas id="gameCanvas">“Your browser does not support HTML5 Canvas.”</canvas>

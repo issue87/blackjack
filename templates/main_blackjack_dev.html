@@ -182,13 +182,11 @@
 		   $ajaxUtils.sendGetRequest("/logout", logoutServerResponse,dataForRequest);
 		};
 		function login(){
-		   var loginForm = document.getElementById("input_fieldset");
+		   var loginForm = document.getElementById("input_form");
 		   loginForm.style.visibility = "visible";
 		};
 		function closeInputForm(spanNode){
 		   spanNode.parentNode.style.visibility = "hidden";
-		   console.log(spanNode);
-		   console.log(spanNode.parentNode);
 		};
 		function logoutServerResponse(request){
 		   var logoutLabel = document.getElementById("logoutLabel");

@@ -86,6 +86,11 @@
 		  .navbar-toggle:focus {
                  background-color: #fff;
           }
+		  .button-cancel {
+		      position:absolute;
+			  right:0;
+			  top:0;
+		  }
           #sliderButton{
               width:308px;
               height:48px;
@@ -557,19 +562,25 @@
                 </div>
             </div>
         </nav>
-		<fieldset class="input_form" id ="input_form">
-		     <div class="input-group">
-		          <span class="input-group-addon" id="login_label">login </span>
-		          <input type="text" id ="login_log" class="form-control"></input>
-			 </div>
-			 <div class="input-group">	 
-			      <span class="input-group-addon">password</span>
-			      <input type="password" id ="password_log" class="form-control"></input>
-			 </div>
-			 <button type="button" class="btn btn-primary btn-block">
-			      Log in
-			 </button>
-		</fieldset>
+		<div>
+			<fieldset class="input_form" id ="input_form">
+				 <div class="input-group">
+					  <span class="input-group-addon" id="login_label">login </span>
+					  <input type="text" id ="login_log" class="form-control"></input>
+				 </div>
+				 <div class="input-group">	 
+					  <span class="input-group-addon">password</span>
+					  <input type="password" id ="password_log" class="form-control"></input>
+				 </div>
+				 <button type="button" class="btn btn-primary btn-block">
+					  Log in
+				 </button>
+				 
+			</fieldset>
+			     <button type="button" class="btn btn-primary btn-xs button-cancel">
+					 <span class="glyphicon glyphicon-remove"></span>
+				 </button>
+		</div>
        <div id = "gameContainer">
              <canvas id="gameCanvas">“Your browser does not support HTML5 Canvas.”</canvas>
              <div id = "gameControlActions" class="gameControl">

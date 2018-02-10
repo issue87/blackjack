@@ -50,7 +50,7 @@
                background-image: url("static/SliderButton6.png"); /* Green background */
                cursor: pointer; /* Cursor on hover */
                }
-          .navbar-nav li,.input-group span,.input_form button{
+          .navbar-nav li,.input-group span,.input_fieldset button{
                background:linear-gradient(to bottom, #B8860B, #DAA520);
                text-align:center;
                padding:5px;
@@ -79,7 +79,7 @@
               height:68px;
 
           }
-		  .input_form{
+		  .input_fieldset{
 		      width:260px;
 			  visibility:hidden;
 		  }
@@ -148,12 +148,16 @@
 		      width:71px;
 		  }
 		  @media (max-width:767px){
-		      .input_form{
+		      .input_fieldset{
 		           position:relative;
 				   left:50%;
 				   transform:translateX(-50%);
 		      }
+			  .input_form{
+			  position:relative;
+			  }
 		  }
+		  
        </style>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -178,7 +182,7 @@
 		   $ajaxUtils.sendGetRequest("/logout", logoutServerResponse,dataForRequest);
 		};
 		function login(){
-		   var loginForm = document.getElementById("input_form");
+		   var loginForm = document.getElementById("input_fieldset");
 		   loginForm.style.visibility = "visible";
 		};
 		function logoutServerResponse(request){
@@ -562,8 +566,8 @@
                 </div>
             </div>
         </nav>
-		<div>
-			<fieldset class="input_form" id ="input_form">
+		<div class="input_form" id="input_form_login">
+			<fieldset class="input_fieldset" id ="input_fieldset">
 				 <div class="input-group">
 					  <span class="input-group-addon" id="login_label">login </span>
 					  <input type="text" id ="login_log" class="form-control"></input>
@@ -577,7 +581,7 @@
 				 </button>
 				 
 			</fieldset>
-			     <button type="button" class="btn btn-primary btn-xs button-cancel">
+			     <button type="button" class="btn btn-primary btn-xs button-cancel visible-xs">
 					 <span class="glyphicon glyphicon-remove"></span>
 				 </button>
 		</div>

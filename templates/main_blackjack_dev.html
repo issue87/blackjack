@@ -185,8 +185,14 @@
 		   var loginForm = document.getElementById("input_form_login");
 		   loginForm.style.visibility = "visible";
 		};
-		function hideNode(node){
-		    node.style.visibility = "hidden";
+		function hideLoginRegistrationForm(node){
+		    var loginForm = getElementById("input_form_login");
+			if (loginForm.visibility.style == "visible"){
+			    loginForm.style.visibility = "hidden";
+			};
+		};
+		function stopBubbles(){
+		    event.stopPropagation();
 		};
 		function closeInputForm(spanNode){
 		   spanNode.parentNode.style.visibility = "hidden";
@@ -527,7 +533,7 @@
    };
   </script>
     </head>
-    <body>
+    <body onclick="hideLoginRegistrationForm();">
         <nav class ="navbar navbar-default">
             <div class="container-fluid">
                  <div class="navbar-header">
@@ -566,13 +572,13 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li style>Register</li>
-                        <li onmousedown = "login();">login</li>
+                        <li onmousedown = "login();" onclick="stopBubbles();">login</li>
                         <li onmousedown = "logout();">log out</li>
                     </ul>
                 </div>
             </div>
         </nav>
-		<div class="input_form" id="input_form_login" onblur="hideNode(this);">
+		<div class="input_form" id="input_form_login" onclick="stopBubbles();">
 			<fieldset class="input_fieldset" id ="input_fieldset">
 				 <div class="input-group">
 					  <span class="input-group-addon" id="login_label">login </span>

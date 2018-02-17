@@ -185,6 +185,9 @@
 		   var loginForm = document.getElementById("input_form_login");
 		   loginForm.style.visibility = "visible";
 		};
+		function hideNode(node){
+		    node.style.visibility = "hidden";
+		};
 		function closeInputForm(spanNode){
 		   spanNode.parentNode.style.visibility = "hidden";
 		};
@@ -569,15 +572,15 @@
                 </div>
             </div>
         </nav>
-		<div class="input_form" id="input_form_login">
+		<div class="input_form" id="input_form_login" onblur="hideNode(this);">
 			<fieldset class="input_fieldset" id ="input_fieldset">
 				 <div class="input-group">
 					  <span class="input-group-addon" id="login_label">login </span>
-					  <input type="text" id ="login_log" class="form-control"></input>
+					  <input type="text" id ="login_log" class="form-control"  pattern="[A-Za-z]{2}[\w\.]{1,15}" title="17 Letters,numbers,'_','.'; first 2 must be the english alphabet letters></input>
 				 </div>
 				 <div class="input-group">	 
 					  <span class="input-group-addon">password</span>
-					  <input type="password" id ="password_log" class="form-control"></input>
+					  <input type="password" id ="password_log" class="form-control" minlength="6" maxlength="128" title="from 6 to 128 symbols"></input>
 				 </div>
 				 <button type="button" class="btn btn-primary btn-block">
 					  Log in

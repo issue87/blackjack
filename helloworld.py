@@ -11,7 +11,7 @@ rangs = ("A","2","3","4","5","6","7","8","9","10","J","Q","K")
 suits_images = {"трефы":chr(9827),"черви":chr(9829),"пики":chr(9824),"буби":chr(9830)}
 suits = ("трефы","черви","пики","буби")
 app = Flask(__name__)
-app.secret_key = '443534593429583495n83445963t54ytyu4c653mu3t94r836g843b378539k54534'
+app.secret_key = '443534593429583495n83445963t54ytyu4c653mu56783t94r836tyrtg845673564b378456tyr75tyr39k54534'
 app.config['DEBUG'] = False
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
     username="issue87",
@@ -150,53 +150,12 @@ class UserData(db.Model):
     money = db.Column(db.Integer)
     comments = db.relationship("Comment",backref = "author",lazy = "dynamic")
     vk =db.Column(db.Boolean)
-def hit_handler():
-    if games_session[session['username']].get_round_is_ongoing():
-        get_card_to_hand(games_session[session['username']].get_user_hand())
-        if games_session[session['username']].get_user_hand().get_values_of_hand()>21:
-            games_session[session['username']].set_busted(True)
-            result_of_round(True)
-
-def stand_handler():
-    if games_session[session['username']].get_round_is_ongoing():
-        while games_session[session['username']].get_dealer_hand().get_values_of_hand() < 17:
-            get_card_to_hand(games_session[session['username']].get_dealer_hand())
-        result_of_round(False)
-def deal_handler():
-    if not games_session[session['username']].get_round_is_ongoing():
-        games_session[session['username']].set_game_desk(54)
-        games_session[session['username']].start_game()
-        games_session[session['username']].create_hands()
-        get_card_to_hand(games_session[session['username']].get_dealer_hand())
-        get_card_to_hand(games_session[session['username']].get_dealer_hand())
-        get_card_to_hand(games_session[session['username']].get_user_hand())
-        get_card_to_hand(games_session[session['username']].get_user_hand())
-        games_session[session['username']].set_round_is_ongoing(True)
-        games_session[session['username']].set_busted(False)
-
-def get_card_to_hand(hand):
-    card = games_session[session['username']].get_game_desk().take_card()
-    value = Card_Values[card.get_rang()]
-    if value == 11 and hand.get_values_of_hand()>10:
-        card.set_value(1)
-    else:
-        card.set_value(value)
-    hand.give_card(card)
 def save_result_in_database(player_won,bet):
     record_n = db.session.query(UserData).filter(UserData.login==session['username'])[0]
     record_n.loses += int(not player_won)
     record_n.wines += int(player_won)
     record_n.money += bet*((player_won*2)-1)
     db.session.commit()
-def result_of_round(player_lose):
-    global player_wins,computer_wins
-    if player_lose or (not (games_session[session['username']].get_dealer_hand().get_values_of_hand()>21) and games_session[session['username']].get_dealer_hand().get_values_of_hand()>= games_session[session['username']].get_user_hand().get_values_of_hand()):
-        games_session[session['username']].record_result(False)
-        save_result_in_database(False)
-    else:
-        games_session[session['username']].record_result(True)
-        save_result_in_database(True)
-    games_session[session['username']].set_round_is_ongoing(False)
 def get_user_data(login):
     user_records = db.session.query(UserData).filter(UserData.login ==  login).all()
     if len(user_records) > 0:
@@ -231,11 +190,13 @@ def addMoneyToUsers():
     db.session.commit()
 @app.route('/', methods = ["GET","POST"])
 def login():
+
     if request.method == "GET":
-        if session.get('logged_in') and not games_session[session['username']].is_vk():
+        if session.get('logged_in'):
             return redirect(url_for('index'))
         else:
             return render_template("login.html")
+
     user_data = get_user_data( request.form["login"])
     if not user_data:
         flash("Such user hasn't registered!")
@@ -250,28 +211,23 @@ def login():
             return redirect(url_for('index'))
 @app.route('/login_ajax', methods = ["POST"])
 def login_ajax():
-    login,loses,wines,money,comments
+    login = loses = wines = money  = None
     userSigned = True
-	correctPassword = True
+    correctPassword = True
     user_data = get_user_data( request.form["login"])
-	if not user_data:
+    if not user_data:
 	    userSigned = False
+	    correctPassword = False
     elif not check_password_hash(user_data.password, request.form["password"]):
-        correctPassword = False	
-	else:
+        correctPassword = False
+    else:
 	    init_user_in_game(request.form["login"])
-		login = user_data.login
-		loses = user_data.loses
-		wines = user_data.wines
-		money = user_data.money
-		comments = user_data.comments
-	return jsonify({"userSigned":userSigned,"correctPassword":correctPassword,"login":login
-	                                                                         ,"loses":loses
-																			 ,"wines":wines
-																			 ,"money":money
-																			 ,"comments":comments
-																			 })
-@app.route('/registration', methods = ["GET","POST"])  
+	    login = user_data.login
+	    loses = user_data.loses
+	    wines = user_data.wines
+	    money = user_data.money
+    return jsonify({"userSigned":userSigned,"correctPassword":correctPassword,"login":login,"loses":loses,"wines":wines,"money":money})
+@app.route('/registration', methods = ["GET","POST"])
 def registration():
     if request.method == "GET":
         return render_template("registration.html")
@@ -291,13 +247,8 @@ def registration():
         return redirect(url_for('registration'))
 @app.route('/logout', methods = ["GET"])
 def logout():
-    vk = games_session[session['username']].is_vk()
     session['logged_in'] = False
-    del games_session[session['username']]
-    if vk:
-        return redirect(url_for('vk'))
-    else:
-        return redirect(url_for('login'))
+    return redirect(url_for('login'))
 @app.route('/blackjack', methods = ["GET","POST"])
 def index():
     if session['logged_in'] == False:
@@ -310,7 +261,7 @@ def index():
                                           dealer_wins = user_data.loses,
                                           money = user_data.money,
                                           login = session['username'],
-                                          vk = games_session[session['username']].is_vk()
+                                          vk = int(user_data.vk)
                                           )
     author_id = get_user_data(session['username']).id
     comment = Comment(content = request.form["contents"],user_id = author_id)
@@ -330,7 +281,7 @@ def test():
                                           dealer_wins = user_data.loses,
                                           money = user_data.money,
                                           login = session['username'],
-                                          vk = games_session[session['username']].is_vk()
+                                          vk = int(user_data.vk)
                                           )
 
     author_id = get_user_data(session['username']).id
@@ -348,18 +299,6 @@ def ajax_sent_result():
         result = False
     save_result_in_database(result,bet)
     return jsonify({"won":result,"bet":bet})
-@app.route('/hit', methods = ["GET"])
-def hit():
-    hit_handler()
-    return redirect(url_for('index'))
-@app.route('/deal', methods = ["GET"])
-def deal():
-    deal_handler()
-    return redirect(url_for('index'))
-@app.route('/stand', methods = ["GET"])
-def stand():
-    stand_handler()
-    return redirect(url_for('index'))
 @app.route('/vk',methods = ["GET"])
 def vk():
     #viewer_id = request.args.get("viewer_id")

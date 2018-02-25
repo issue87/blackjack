@@ -157,7 +157,7 @@
 				visibility:hidden;
 			  }
 		  }
-		  
+
        </style>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -174,7 +174,7 @@
 			  }
 		   )
 		});
-		
+
 		var logged_in = !!{{logged_in}};
 		function logout(){
 		   dataForRequest = new Object();
@@ -211,8 +211,9 @@
 		   logoutLabel.textContent ="";
 		   logged_in = false;
 		};
-		function loginServerResponse(request)
-		    var response.obj = JSON.parse(request.responseText);
+		function loginServerResponse(request){
+		    var responseObj = JSON.parse(request.responseText);
+		    console.log(responseObj);
 		};
         CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
         function RandomSort(a,b){
@@ -306,7 +307,7 @@
                      hand.giveCard(card);
                };
         };
-        
+
         function initGame(){
             var roundIsOngoing = false;
             var busted = false;
@@ -596,14 +597,14 @@
 					  <span class="input-group-addon" id="login_label">login </span>
 					  <input type="text" id ="login_log" class="form-control"  pattern="[A-Za-z]{2}[\w\.]{1,15}" title="17 Letters,numbers,'_','.'; first 2 must be the english alphabet letters></input>
 				 </div>
-				 <div class="input-group">	 
+				 <div class="input-group">
 					  <span class="input-group-addon">password</span>
 					  <input type="password" id ="password_log" class="form-control" minlength="6" maxlength="128" title="from 6 to 128 symbols"></input>
 				 </div>
 				 <button type="button" class="btn btn-primary btn-block" onclick="loginServer();">
 					  Log in
 				 </button>
-				 
+
 			</fieldset>
 			<span class="glyphicon glyphicon-remove button-cancel visible-xs" onclick = "closeInputForm(this);"></span>
 		</div>

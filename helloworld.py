@@ -204,10 +204,9 @@ def get_user_data(login):
         return userInfo
     else:
         return False
-def init_user_in_game(login,user_data):
+def init_user_in_game(login):
     session['username'] = login
     session['logged_in'] = True
-    games_session[session['username']] = BlackJackGame(user_data.wines,user_data.loses,user_data.money,user_data.vk)
 def sort_by_differ(user):
     return(int(user.password)*(-1))
 def register_user(login, password,vk):
@@ -247,9 +246,32 @@ def login():
             flash("Password isn't right!")
             return redirect(url_for('login'))
         else:
-            init_user_in_game(request.form["login"],user_data)
+            init_user_in_game(request.form["login"])
             return redirect(url_for('index'))
-@app.route('/registration', methods = ["GET","POST"])
+@app.route('/login_ajax', methods = ["POST"])
+def login_ajax():
+    login,loses,wines,money,comments
+    userSigned = True
+	correctPassword = True
+    user_data = get_user_data( request.form["login"])
+	if not user_data:
+	    userSigned = False
+    elif not check_password_hash(user_data.password, request.form["password"]):
+        correctPassword = False	
+	else:
+	    init_user_in_game(request.form["login"])
+		login = user_data.login
+		loses = user_data.loses
+		wines = user_data.wines
+		money = user_data.money
+		comments = user_data.comments
+	return jsonify({"userSigned":userSigned,"correctPassword":correctPassword,"login":login
+	                                                                         ,"loses":loses
+																			 ,"wines":wines
+																			 ,"money":money
+																			 ,"comments":comments
+																			 })
+@app.route('/registration', methods = ["GET","POST"])  
 def registration():
     if request.method == "GET":
         return render_template("registration.html")
@@ -351,7 +373,7 @@ def vk_start():
         if not user_data:
             register_user(viewer_id,"",True)
         user_data = get_user_data(viewer_id)
-        init_user_in_game(viewer_id,user_data)
+        init_user_in_game(viewer_id)
     return redirect(url_for('index'))
 @app.route('/raiting',methods = ["GET"])
 def raiting():

@@ -184,6 +184,7 @@
 		function login(){
 		   var loginForm = document.getElementById("input_form_login");
 		   loginForm.style.visibility = "visible";
+		   stopBubbles(event);
 		};
 		function loginServer(){
 		   var login = document.getElementById("login_log").value;
@@ -606,7 +607,7 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li style>Register</li>
-                        <li onmousedown = "login();" onclick="stopBubbles(event);">login</li>
+                        <li onmousedown = "login();">login</li>
                         <li onmousedown = "logout();">log out</li>
                     </ul>
                 </div>

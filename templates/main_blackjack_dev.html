@@ -199,6 +199,7 @@
 			if (loginForm.style.visibility == "visible"){
 			    loginForm.style.visibility = "hidden";
 			};
+			console.log("sign_up form has been hidden");
 		};
 		function stopBubbles(){
 		    event.stopPropagation();
@@ -400,6 +401,8 @@
                 betInGame = 1;
                 sliderRange.setAttribute("max",money);
             };
+			function sign_up(){
+			};
             buttonDeal.addEventListener("click",deal);
             buttonHit.addEventListener("click",hit);
             buttonStand.addEventListener("click",stand);
@@ -621,6 +624,23 @@
 				 </div>
 				 <button type="button" class="btn btn-primary btn-block" onclick="loginServer();">
 					  Log in
+				 </button>
+
+			</fieldset>
+			<span class="glyphicon glyphicon-remove button-cancel visible-xs" onclick = "closeInputForm(this);"></span>
+		</div>
+		<div class="input_form" id="input_form_sign_up">
+			<fieldset class="input_fieldset" id ="sign_up_input_fieldset">
+				 <div class="input-group">
+					  <span class="input-group-addon" id="login_label">login </span>
+					  <input type="text" id ="login_log" class="form-control"  pattern="[A-Za-z]{2}[\w\.]{1,15}" title="17 Letters,numbers,'_','.'; first 2 must be the english alphabet letters></input>
+				 </div>
+				 <div class="input-group">
+					  <span class="input-group-addon">password</span>
+					  <input type="password" id ="password_log" class="form-control" minlength="6" maxlength="128" title="from 6 to 128 symbols"></input>
+				 </div>
+				 <button type="button" class="btn btn-primary btn-block" onclick="sign_up();">
+					  sign up
 				 </button>
 
 			</fieldset>

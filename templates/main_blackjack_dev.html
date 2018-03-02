@@ -211,23 +211,7 @@
 		   logoutLabel.innerHTML ="";
 		   logged_in = false;
 		};
-		function loginServerResponse(request){
-		    var notification = "";
-		    var responseObj = JSON.parse(request.responseText);
-		    if (!responseObj.userSigned){
-			    notification = "Such login hasn't signed in";
-			}else if(!responseObj.correctPassword){
-			    notification = "Password isn't correct";
-			}else{
-			   var loginLabel = document.getElementById("logoutLabel");
-		       loginLabel.innerHTML = responseObj.login;
-			   return;
-			};
-			var loginFieldset = document.getElementById("input_fieldset");
-				var notificationDiv = document.createElement("div");
-				notificationDiv.innerHTML = notification;
-				loginFieldset.appendChild(notificationDiv);
-		};
+		var loginServerResponse = function(request){window.setTimeout(loginServerResponse,1000)};
         CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
         function RandomSort(a,b){
                                      return (Math.random() - 0.5);
@@ -423,6 +407,27 @@
             sliderRange.oninput = function setValueInBet(){
                 betInSlider = sliderRange.value;
             };
+			loginServerResponse = function (request){
+					var notification = "";
+					var responseObj = JSON.parse(request.responseText);
+					if (!responseObj.userSigned){
+						notification = "Such login hasn't signed in";
+					}else if(!responseObj.correctPassword){
+						notification = "Password isn't correct";
+					}else{
+					   var loginLabel = document.getElementById("logoutLabel");
+					   loginLabel.innerHTML = responseObj.login;
+					   money = responseObj.money;
+					   betInSlider = 1;
+                       betInGame = 1;
+                       sliderRange.setAttribute("max",money);
+					   return;
+					};
+					var loginFieldset = document.getElementById("input_fieldset");
+					var notificationDiv = document.createElement("div");
+					notificationDiv.innerHTML = notification;
+					loginFieldset.appendChild(notificationDiv);
+		    };
             var image1 = document.createElement("img");
             var tableImage = document.createElement('img');
             var imageGameScore = document.createElement("img");

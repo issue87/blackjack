@@ -404,10 +404,10 @@
             };
 			function sign_up(){
 			};
-            buttonDeal.addEventListener("click",deal);
-            buttonHit.addEventListener("click",hit);
-            buttonStand.addEventListener("click",stand);
-            buttonBet.addEventListener("click",bet);
+            buttonDeal.addEventListener("mousedown",deal);
+            buttonHit.addEventListener("mousedown",hit);
+            buttonStand.addEventListener("mousedown",stand);
+            buttonBet.addEventListener("mousedown",bet);
             sliderRange.oninput = function setValueInBet(){
                 betInSlider = sliderRange.value;
             };
@@ -564,11 +564,10 @@
    window.onbeforeunload = function(){
        var buttonLogout = window.getElementById("buttonLogout");
        alert("some");
-       buttonLogout.click();
    };
   </script>
     </head>
-    <body onclick="hideLoginRegistrationForm();">
+    <body onmousedown ="hideLoginRegistrationForm();">
         <nav class ="navbar navbar-default">
             <div class="container-fluid">
                  <div class="navbar-header">
@@ -613,7 +612,7 @@
                 </div>
             </div>
         </nav>
-		<div class="input_form" id="input_form_login" onclick="stopBubbles(event);">
+		<div class="input_form" id="input_form_login" onmousedown="stopBubbles(event);">
 			<fieldset class="input_fieldset" id ="input_fieldset">
 				 <div class="input-group">
 					  <span class="input-group-addon" id="login_label">login </span>
@@ -623,12 +622,12 @@
 					  <span class="input-group-addon">password</span>
 					  <input type="password" id ="password_log" class="form-control" minlength="6" maxlength="128" title="from 6 to 128 symbols"></input>
 				 </div>
-				 <button type="button" class="btn btn-primary btn-block" onclick="loginServer();">
+				 <button type="button" class="btn btn-primary btn-block" onmousedown="loginServer();">
 					  Log in
 				 </button>
 
 			</fieldset>
-			<span class="glyphicon glyphicon-remove button-cancel visible-xs" onclick = "closeInputForm(this);"></span>
+			<span class="glyphicon glyphicon-remove button-cancel visible-xs" onmousedown = "closeInputForm(this);"></span>
 		</div>
 		<div class="input_form" id="input_form_sign_up">
 			<fieldset class="input_fieldset" id ="sign_up_input_fieldset">
@@ -640,12 +639,12 @@
 					  <span class="input-group-addon">password</span>
 					  <input type="password" id ="password_log_sign_up" class="form-control" minlength="6" maxlength="128" title="from 6 to 128 symbols"></input>
 				 </div>
-				 <button type="button" class="btn btn-primary btn-block" onclick="sign_up();">
+				 <button type="button" class="btn btn-primary btn-block" onmousedown="sign_up();">
 					  sign up
 				 </button>
 
 			</fieldset>
-			<span class="glyphicon glyphicon-remove button-cancel visible-xs" onclick = "closeInputForm(this);"></span>
+			<span class="glyphicon glyphicon-remove button-cancel visible-xs" onmousedown = "closeInputForm(this);"></span>
 		</div>
        <div id = "gameContainer">
              <canvas id="gameCanvas">“Your browser does not support HTML5 Canvas.”</canvas>

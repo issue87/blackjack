@@ -201,7 +201,7 @@
 			};
 			console.log("sign_up form has been hidden");
 		};
-		function stopBubbles(){
+		function stopBubbles(event){
 		    event.stopPropagation();
 		};
 		function closeInputForm(spanNode){
@@ -606,13 +606,13 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li style>Register</li>
-                        <li onmousedown = "login();" onclick="stopBubbles();">login</li>
+                        <li onmousedown = "login();" onclick="stopBubbles(event);">login</li>
                         <li onmousedown = "logout();">log out</li>
                     </ul>
                 </div>
             </div>
         </nav>
-		<div class="input_form" id="input_form_login" onclick="stopBubbles();">
+		<div class="input_form" id="input_form_login" onclick="stopBubbles(event);">
 			<fieldset class="input_fieldset" id ="input_fieldset">
 				 <div class="input-group">
 					  <span class="input-group-addon" id="login_label">login </span>

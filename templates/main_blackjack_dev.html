@@ -93,6 +93,10 @@
               color:black;
 			  border:none;
 		  }
+		  .halfDivButton{
+		      width = 50%;
+			  border:none;
+		  }
           #sliderButton{
               width:308px;
               height:48px;
@@ -618,6 +622,14 @@
         </nav>
 		<div class="input_form" id="input_form_login" onmousedown="stopBubbles(event);">
 			<fieldset class="input_fieldset" id ="input_fieldset">
+			    <div class="hidden-xs">
+					 <button type="button" class="btn btn-primary halfDivButton">
+						  sign in
+					 </button>
+					 <button type="button" class="btn btn-primary halfDivButton">
+						  sign up
+					 </button>
+				 </div>
 				 <div class="input-group">
 					  <span class="input-group-addon" id="login_label">login </span>
 					  <input type="text" id ="login_log" class="form-control"  pattern="[A-Za-z]{2}[\w\.]{1,15}" title="17 Letters,numbers,'_','.'; first 2 must be the english alphabet letters></input>
@@ -627,7 +639,7 @@
 					  <input type="password" id ="password_log" class="form-control" minlength="6" maxlength="128" title="from 6 to 128 symbols"></input>
 				 </div>
 				 <button type="button" class="btn btn-primary btn-block" onmousedown="loginServer();">
-					  Log in
+					  sign in
 				 </button>
 
 			</fieldset>

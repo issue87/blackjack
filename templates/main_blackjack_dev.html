@@ -187,13 +187,11 @@
 		var logged_in = !!{{logged_in}};
 		function changeFloat (){
 		    var elements = document.getElementsByClassName('halfDiv');
-			for (indexOfElement in elements){
-			    if (elements[indexOfElement].style.cssFloat=="left"){
-				     elements[indexOfElement].style.cssFloat="right";
-				}else{
-				     elements[indexOfElement].style.cssFloat="left";
-				};
-			};
+			if (elements[0].style.cssFloat=="left"){
+				elements[0].style.cssFloat="right";
+			}else{
+				elements[0].style.cssFloat="left";
+		    };
 		};
 		function logout(){
 		   dataForRequest = new Object();

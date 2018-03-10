@@ -188,10 +188,8 @@
 		function changeFloat (){
 		    var elements = document.getElementsByClassName('halfDiv');
 			if (elements[0].style.cssFloat == "left"){
-			    console.log("float changed to right");
 				elements[0].style.cssFloat="right";
 			}else{
-			    console.log("float changed to left");
 				elements[0].style.cssFloat="left";
 		    };
 		};
@@ -637,10 +635,10 @@
 		<div class="input_form" id="input_form_login" onmousedown="stopBubbles(event);">
 			<fieldset class="input_fieldset" id ="input_fieldset">
 			    <div class="hidden-xs">
-					 <button type="button" class="btn btn-primary halfDiv">
+					 <button type="button" class="btn btn-primary halfDiv" onmousedown = "changeFloat()";>
 						  sign in
 					 </button>
-					 <div class = "halfDiv" onmousedown = "changeFloat()";>
+					 <div class = "halfDiv" >
 						  sign up
 					 </div>
 				 </div>

@@ -93,9 +93,13 @@
               color:black;
 			  border:none;
 		  }
-		  .halfDivButton{
-		      width = 50%;
+		  .halfDiv{
+		      float:left;
+		      width: 49.23%;
 			  border:none;
+			  display:inline-block;
+			  text-align:center;
+			  border-radius:0;
 		  }
           #sliderButton{
               width:308px;
@@ -181,6 +185,16 @@
 		});
 
 		var logged_in = !!{{logged_in}};
+		function changeFloat (){
+		    var elements = document.getElementsByClassName('halfDiv');
+			for (indexOfElement in elements){
+			    if (elements[indexOfElement].style.float="left"){
+				     elements[indexOfElement].style.float="right";
+				}else{
+				     elements[indexOfElement].style.float="left";
+				};
+			};
+		};
 		function logout(){
 		   dataForRequest = new Object();
 		   dataForRequest.typeOfRequest ="GET";
@@ -623,12 +637,12 @@
 		<div class="input_form" id="input_form_login" onmousedown="stopBubbles(event);">
 			<fieldset class="input_fieldset" id ="input_fieldset">
 			    <div class="hidden-xs">
-					 <button type="button" class="btn btn-primary halfDivButton">
+					 <button type="button" class="btn btn-primary halfDiv">
 						  sign in
 					 </button>
-					 <button type="button" class="btn btn-primary halfDivButton">
+					 <div class = "halfDiv" onmousedown = "changeFloat()";>
 						  sign up
-					 </button>
+					 </div>
 				 </div>
 				 <div class="input-group">
 					  <span class="input-group-addon" id="login_label">login </span>

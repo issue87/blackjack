@@ -187,9 +187,11 @@
 		var logged_in = !!{{logged_in}};
 		function changeFloat (){
 		    var elements = document.getElementsByClassName('halfDiv');
-			if (elements[0].style.cssFloat=="left"){
+			if (elements[0].style.cssFloat == "left"){
+			    console.log("float changed to right");
 				elements[0].style.cssFloat="right";
 			}else{
+			    console.log("float changed to left");
 				elements[0].style.cssFloat="left";
 		    };
 		};

@@ -228,11 +228,9 @@
 		   $ajaxUtils.sendGetRequest("/login_ajax",loginServerResponse,dataForRequest);
 		};
 		function hideLoginRegistrationForm(arrayOfIds){
-		    if (window.visualViewport.width<768){
-				for (var i in arrayOfIds){
-					var loginForm = document.getElementById(arrayOfIds[i]);
-					loginForm.style.visibility = "hidden";
-				};
+			for (var i in arrayOfIds){
+				var loginForm = document.getElementById(arrayOfIds[i]);
+				loginForm.style.visibility = "hidden";
 			};
 		};
 		function stopBubbles(event){
@@ -603,7 +601,7 @@
    };
   </script>
     </head>
-    <body onmousedown ="hideLoginRegistrationForm(["input_form_login","input_form_sign_up"]);">
+    <body onmousedown ="if(window.visualViewport.width < 768){hideLoginRegistrationForm(['input_form_login','input_form_sign_up']);};">
         <nav class ="navbar navbar-default">
             <div class="container-fluid">
                  <div class="navbar-header">

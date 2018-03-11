@@ -253,10 +253,6 @@
 		function showForm(elementID){
 		    changeCssClassOfElement(elementID,"inputFormHidden","inputFormVisible");
 		};
-		function stopBubbles(event){
-		    event.stopPropagation();
-			console.log(event);
-		};
 		function logoutServerResponse(request){
 		   var logoutLabel = document.getElementById("logoutLabel");
 		   logoutLabel.innerHTML ="";
@@ -635,14 +631,14 @@
                  </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav visible-xs">
-                        <li onmousedown = "hideFormXS('input_form_sign_up');">sign up</li>
-                        <li onmousedown = "showFormXS('input_form_login');">login</li>
+                        <li onmousedown = "hideFormXS('input_form_sign_up');event.stopPropagation();">sign up</li>
+                        <li onmousedown = "showFormXS('input_form_login');event.stopPropagation();">login</li>
                         <li onmousedown = "logout();">log out</li>
                     </ul>
                 </div>
             </div>
         </nav>
-		<div class="input_form inputFormVisible input_form_hidden_xs" id="input_form_login" onmousedown="stopBubbles(event);">
+		<div class="input_form inputFormVisible input_form_hidden_xs" id="input_form_login" onmousedown="event.stopPropagation();">
 			<fieldset class="input_fieldset" id ="input_fieldset">
 			    <div class="hidden-xs" id = "loginRegSwitchPanel">
 					 <button type="button" class="btn btn-primary halfDiv" onmousedown = "changeFloat()";>
@@ -667,7 +663,7 @@
 			</fieldset>
 			<span class="glyphicon glyphicon-remove button-cancel visible-xs" onmousedown = "hideFormXS(this.parentNode.id);"span>
 		</div>
-		<div class="input_form inputFormHidden input_form_hidden_xs" id="input_form_sign_up" onmousedown="stopBubbles(event)">
+		<div class="input_form inputFormHidden input_form_hidden_xs" id="input_form_sign_up" onmousedown="event.stopPropagation()">
 			<fieldset class="input_fieldset" id ="sign_up_input_fieldset">
 			     <div class="hidden-xs" id = "loginRegSwitchPanel">
 					 <div class = "halfDiv" >

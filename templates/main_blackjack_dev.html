@@ -209,7 +209,7 @@
 		   $ajaxUtils.sendGetRequest("/logout", logoutServerResponse,dataForRequest);
 		};
 		function showLoginSignUpForm(id){
-		   var loginForm = document.getElementById("input_form_login");
+		   var loginForm = document.getElementById(id);
 		   loginForm.style.visibility = "visible";
 		   stopBubbles(event);
 		};

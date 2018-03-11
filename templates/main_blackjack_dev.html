@@ -216,11 +216,7 @@
 		   dataForRequest.typeOfRequest ="GET";
 		   $ajaxUtils.sendGetRequest("/logout", logoutServerResponse,dataForRequest);
 		};
-		function showLoginSignUpForm(id){
-		   var loginForm = document.getElementById(id);
-		   loginForm.style.visibility = "visible";
-		   stopBubbles(event);
-		};
+
 		function signUpForm(){
 		     var signUpForm = document.getElementById("input_form_sign_up");
 		     signUpForm.style.visibility = "visible";
@@ -236,7 +232,7 @@
 		   $ajaxUtils.sendGetRequest("/login_ajax",loginServerResponse,dataForRequest);
 		};
 		function changeCssClassOfElement(elementID,currentClass,newClass){
-		     var elementHTMLClasses = getElementById(elementID).classList;
+		     var elementHTMLClasses = document.getElementById(elementID).classList;
 			 if (!classList.contains(newClass)){
 				elementHTMLClasses.add(newClass);
 			 };
@@ -638,8 +634,8 @@
                  </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav visible-xs">
-                        <li onmousedown = "showLoginSignUpForm('input_form_sign_up');">sign up</li>
-                        <li onmousedown = "showLoginSignUpForm('input_form_login');">login</li>
+                        <li onmousedown = "hideFormXS('input_form_sign_up');">sign up</li>
+                        <li onmousedown = "showFormXS('input_form_login');">login</li>
                         <li onmousedown = "logout();">log out</li>
                     </ul>
                 </div>

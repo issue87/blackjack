@@ -232,6 +232,7 @@
 		   $ajaxUtils.sendGetRequest("/login_ajax",loginServerResponse,dataForRequest);
 		};
 		function changeCssClassOfElement(elementID,currentClass,newClass){
+		     console.log(elementID);
 		     var elementHTMLClasses = document.getElementById(elementID).classList;
 			 if (!classList.contains(newClass)){
 				elementHTMLClasses.add(newClass);

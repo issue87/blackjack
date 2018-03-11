@@ -94,8 +94,9 @@
 			  border:none;
 		  }
 		  .halfDiv{
-		      float:left;
+		      float:right;
 		      width: 49.23%;
+			  height:100%;
 			  border:none;
 			  display:inline-block;
 			  text-align:center;
@@ -157,6 +158,13 @@
 		  #login_label{
 		      width:71px;
 		  }
+		  #regLoginSwitchPanelUnFocusText{
+               position:relative;
+			   top:3px;
+		  }
+		  #input_form_sign_up{
+		     visibility:hidden;
+		  }
 		  @media (max-width:767px){
 			  .input_form{
 			    position:relative;
@@ -187,21 +195,30 @@
 		var logged_in = !!{{logged_in}};
 		function changeFloat (){
 		    var elements = document.getElementsByClassName('halfDiv');
-			if (elements[0].style.cssFloat == "left"){
-				elements[0].style.cssFloat="right";
-			}else{
-				elements[0].style.cssFloat="left";
-		    };
+			for (var i in elements){
+				if (elements[i].style.cssFloat == "left"){
+				    hideLoginRegistrationForm(["input_form_sign_up"]);
+					showLoginSignUpForm("input_form_login");
+				}else{
+                    hideLoginRegistrationForm(["input_form_login"]);
+					showLoginSignUpForm("input_form_sign_up");
+				};
+			};
 		};
 		function logout(){
 		   dataForRequest = new Object();
 		   dataForRequest.typeOfRequest ="GET";
 		   $ajaxUtils.sendGetRequest("/logout", logoutServerResponse,dataForRequest);
 		};
-		function login(){
+		function showLoginSignUpForm(id){
 		   var loginForm = document.getElementById("input_form_login");
 		   loginForm.style.visibility = "visible";
 		   stopBubbles(event);
+		};
+		function signUpForm(){
+		     var signUpForm = document.getElementById("input_form_sign_up");
+		     signUpForm.style.visibility = "visible";
+		     stopBubbles(event);
 		};
 		function loginServer(){
 		   var login = document.getElementById("login_log").value;
@@ -212,12 +229,13 @@
 		   dataForRequest.password = psw;
 		   $ajaxUtils.sendGetRequest("/login_ajax",loginServerResponse,dataForRequest);
 		};
-		function hideLoginRegistrationForm(){
-		    var loginForm = document.getElementById("input_form_login");
-			if (loginForm.style.visibility == "visible"){
-			    loginForm.style.visibility = "hidden";
+		function hideLoginRegistrationForm(arrayOfIds){
+		    if (window.visualViewport.width<768){
+				for (var i in arrayOfIds){
+					var loginForm = document.getElementById(arrayOfIds[i]);
+					loginForm.style.visibility = "hidden";
+				};
 			};
-			console.log("sign_up form has been hidden");
 		};
 		function stopBubbles(event){
 		    event.stopPropagation();
@@ -587,7 +605,7 @@
    };
   </script>
     </head>
-    <body onmousedown ="hideLoginRegistrationForm();">
+    <body onmousedown ="hideLoginRegistrationForm(["input_form_login","input_form_sign_up"]);">
         <nav class ="navbar navbar-default">
             <div class="container-fluid">
                  <div class="navbar-header">
@@ -602,30 +620,9 @@
 					    {{login}}
 					 {% endif %}
                  </div>
-
-                 {% if not vk %}
-                      <div>
-                           <form action ="/logout" method=GET class = "hidden-xs">
-                                   <button class = "button_style" type="submit" id = "buttonLogout">
-                                         Logout
-                                   </button>
-
-                           </form>
-                      </div>
-                 {% else %}
-
-                    <div>
-                        <form action ="/vk" method=GET>
-                            <button class = "button_style" type="submit">
-                                 Back
-                            </button>
-
-                        </form>
-                    </div>
-                {% endif %}
                 <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li style>Register</li>
+                    <ul class="nav navbar-nav visible-xs">
+                        <li onmousedown = "signUpForm();">sign up</li>
                         <li onmousedown = "login();">login</li>
                         <li onmousedown = "logout();">log out</li>
                     </ul>
@@ -634,12 +631,12 @@
         </nav>
 		<div class="input_form" id="input_form_login" onmousedown="stopBubbles(event);">
 			<fieldset class="input_fieldset" id ="input_fieldset">
-			    <div class="hidden-xs">
+			    <div class="hidden-xs" id = "loginRegSwitchPanel">
 					 <button type="button" class="btn btn-primary halfDiv" onmousedown = "changeFloat()";>
-						  sign in
+						  <span>sign up</span>
 					 </button>
 					 <div class = "halfDiv" >
-						  sign up
+						  <span id = "regLoginSwitchPanelUnFocusText">sign in</span>
 					 </div>
 				 </div>
 				 <div class="input-group">
@@ -657,8 +654,17 @@
 			</fieldset>
 			<span class="glyphicon glyphicon-remove button-cancel visible-xs" onmousedown = "closeInputForm(this);"></span>
 		</div>
-		<div class="input_form" id="input_form_sign_up">
+		<div class="input_form" id="input_form_sign_up" onmousedown="stopBubbles(event)>
 			<fieldset class="input_fieldset" id ="sign_up_input_fieldset">
+			     <div class="hidden-xs" id = "loginRegSwitchPanel">
+					 <div class = "halfDiv" >
+						  <span id = "regLoginSwitchPanelUnFocusText">sign up</span>
+					 </div>
+					 <button type="button" class="btn btn-primary halfDiv" onmousedown = "changeFloat()";>
+						  <span>sign in</span>
+					 </button>
+					 
+				 </div>
 				 <div class="input-group">
 					  <span class="input-group-addon" id="login_label_sign_up">login </span>
 					  <input type="text" id ="login_sign_up" class="form-control"  pattern="[A-Za-z]{2}[\w\.]{1,15}" title="17 Letters,numbers,'_','.'; first 2 must be the english alphabet letters></input>

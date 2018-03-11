@@ -194,15 +194,13 @@
 
 		var logged_in = !!{{logged_in}};
 		function changeFloat (){
-		    var elements = document.getElementsByClassName('halfDiv');
-			for (var i in elements){
-				if (elements[i].style.cssFloat == "left"){
-				    hideLoginRegistrationForm(["input_form_sign_up"]);
-					showLoginSignUpForm("input_form_login");
-				}else{
-                    hideLoginRegistrationForm(["input_form_login"]);
-					showLoginSignUpForm("input_form_sign_up");
-				};
+		    var formLoginNode = document.getElementById("input_form_login");
+			if (formLoginNode.style.visibility == "hidden"){
+				hideLoginRegistrationForm(["input_form_sign_up"]);
+				showLoginSignUpForm("input_form_login");
+			}else{
+				hideLoginRegistrationForm(["input_form_login"]);
+				showLoginSignUpForm("input_form_sign_up");
 			};
 		};
 		function logout(){

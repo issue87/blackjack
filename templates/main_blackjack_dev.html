@@ -234,10 +234,10 @@
 		function changeCssClassOfElement(elementID,currentClass,newClass){
 		     console.log(elementID);
 		     var elementHTMLClasses = document.getElementById(elementID).classList;
-			 if (!classList.contains(newClass)){
+			 if (!elementHTMLClasses.contains(newClass)){
 				elementHTMLClasses.add(newClass);
 			 };
-			 if (classList.contains(currentClass)){
+			 if (elementHTMLClasses.contains(currentClass)){
 				elementHTMLClasses.remove(currentClass);
 			 };
 		};

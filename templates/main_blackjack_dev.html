@@ -108,6 +108,10 @@
 		  .inputFormVisible{
 		      visibility:visible;
 		  }
+		  #input_form_sign_up{
+		     position:absolute;
+			 top:0px;
+		  }
           #sliderButton{
               width:308px;
               height:48px;
@@ -638,56 +642,58 @@
                 </div>
             </div>
         </nav>
-		<div class="input_form inputFormVisible input_form_hidden_xs" id="input_form_login" onmousedown="event.stopPropagation();">
-			<fieldset class="input_fieldset" id ="input_fieldset">
-			    <div class="hidden-xs" id = "loginRegSwitchPanel">
-					 <button type="button" class="btn btn-primary halfDiv" onmousedown = "changeFloat()";>
-						  <span>sign up</span>
-					 </button>
-					 <div class = "halfDiv" >
-						  <span id = "regLoginSwitchPanelUnFocusText">sign in</span>
+		<div style="position:relative">
+			<div class="input_form inputFormVisible input_form_hidden_xs" id="input_form_login" onmousedown="event.stopPropagation();">
+				<fieldset class="input_fieldset" id ="input_fieldset">
+					<div class="hidden-xs" id = "loginRegSwitchPanel">
+						 <button type="button" class="btn btn-primary halfDiv" onmousedown = "changeFloat()";>
+							  <span>sign up</span>
+						 </button>
+						 <div class = "halfDiv" >
+							  <span id = "regLoginSwitchPanelUnFocusText">sign in</span>
+						 </div>
 					 </div>
-				 </div>
-				 <div class="input-group">
-					  <span class="input-group-addon" id="login_label">login </span>
-					  <input type="text" id ="login_log" class="form-control"  pattern="[A-Za-z]{2}[\w\.]{1,15}" title="17 Letters,numbers,'_','.'; first 2 must be the english alphabet letters></input>
-				 </div>
-				 <div class="input-group">
-					  <span class="input-group-addon">password</span>
-					  <input type="password" id ="password_log" class="form-control" minlength="6" maxlength="128" title="from 6 to 128 symbols"></input>
-				 </div>
-				 <button type="button" class="btn btn-primary btn-block" onmousedown="loginServer();">
-					  sign in
-				 </button>
+					 <div class="input-group">
+						  <span class="input-group-addon" id="login_label">login </span>
+						  <input type="text" id ="login_log" class="form-control"  pattern="[A-Za-z]{2}[\w\.]{1,15}" title="17 Letters,numbers,'_','.'; first 2 must be the english alphabet letters></input>
+					 </div>
+					 <div class="input-group">
+						  <span class="input-group-addon">password</span>
+						  <input type="password" id ="password_log" class="form-control" minlength="6" maxlength="128" title="from 6 to 128 symbols"></input>
+					 </div>
+					 <button type="button" class="btn btn-primary btn-block" onmousedown="loginServer();">
+						  sign in
+					 </button>
 
-			</fieldset>
-			<span class="glyphicon glyphicon-remove button-cancel visible-xs" onmousedown = "hideFormXS(this.parentNode.id);"span>
-		</div>
-		<div class="input_form inputFormHidden input_form_hidden_xs" id="input_form_sign_up" onmousedown="event.stopPropagation()">
-			<fieldset class="input_fieldset" id ="sign_up_input_fieldset">
-			     <div class="hidden-xs" id = "loginRegSwitchPanel">
-					 <div class = "halfDiv" >
-						  <span id = "regLoginSwitchPanelUnFocusText">sign up</span>
+				</fieldset>
+				<span class="glyphicon glyphicon-remove button-cancel visible-xs" onmousedown = "hideFormXS(this.parentNode.id);"span>
+			</div>
+			<div class="input_form inputFormHidden input_form_hidden_xs" id="input_form_sign_up" onmousedown="event.stopPropagation()">
+				<fieldset class="input_fieldset" id ="sign_up_input_fieldset">
+					 <div class="hidden-xs" id = "loginRegSwitchPanel">
+						 <div class = "halfDiv" >
+							  <span id = "regLoginSwitchPanelUnFocusText">sign up</span>
+						 </div>
+						 <button type="button" class="btn btn-primary halfDiv" onmousedown = "changeFloat()";>
+							  <span>sign in</span>
+						 </button>
+						 
 					 </div>
-					 <button type="button" class="btn btn-primary halfDiv" onmousedown = "changeFloat()";>
-						  <span>sign in</span>
+					 <div class="input-group">
+						  <span class="input-group-addon" id="login_label_sign_up">login </span>
+						  <input type="text" id ="login_sign_up" class="form-control"  pattern="[A-Za-z]{2}[\w\.]{1,15}" title="17 Letters,numbers,'_','.'; first 2 must be the english alphabet letters"></input>
+					 </div>
+					 <div class="input-group">
+						  <span class="input-group-addon">password</span>
+						  <input type="password" id ="password_log_sign_up" class="form-control" minlength="6" maxlength="128" title="from 6 to 128 symbols"></input>
+					 </div>
+					 <button type="button" class="btn btn-primary btn-block" onmousedown="sign_up();">
+						  sign up
 					 </button>
-					 
-				 </div>
-				 <div class="input-group">
-					  <span class="input-group-addon" id="login_label_sign_up">login </span>
-					  <input type="text" id ="login_sign_up" class="form-control"  pattern="[A-Za-z]{2}[\w\.]{1,15}" title="17 Letters,numbers,'_','.'; first 2 must be the english alphabet letters"></input>
-				 </div>
-				 <div class="input-group">
-					  <span class="input-group-addon">password</span>
-					  <input type="password" id ="password_log_sign_up" class="form-control" minlength="6" maxlength="128" title="from 6 to 128 symbols"></input>
-				 </div>
-				 <button type="button" class="btn btn-primary btn-block" onmousedown="sign_up();">
-					  sign up
-				 </button>
-     
-			</fieldset>
-			<span class="glyphicon glyphicon-remove button-cancel visible-xs" onmousedown = "hideFormXS(this.parentNode.id);"></span>
+		 
+				</fieldset>
+				<span class="glyphicon glyphicon-remove button-cancel visible-xs" onmousedown = "hideFormXS(this.parentNode.id);"></span>
+			</div>
 		</div>
        <div id = "gameContainer">
              <canvas id="gameCanvas">“Your browser does not support HTML5 Canvas.”</canvas>

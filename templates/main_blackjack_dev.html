@@ -102,6 +102,12 @@
 			  text-align:center;
 			  border-radius:0;
 		  }
+		  .inputFormHidden{
+		      visibility:hidden;
+		  }
+		  .inputFormVisible{
+		      visibility:visible;
+		  }
           #sliderButton{
               width:308px;
               height:48px;
@@ -162,16 +168,18 @@
                position:relative;
 			   top:3px;
 		  }
-		  #input_form_sign_up{
-		     visibility:hidden;
-		  }
 		  @media (max-width:767px){
 			  .input_form{
 			    position:relative;
 			    width:284px;
 				left:50%;
 				transform:translateX(-50%);
-				visibility:hidden;
+			  }
+			  .input_form_hidden_xs{
+			    visibility:hidden;
+			  }
+			  .input_form_visible_xs{
+			    visibility:visible;
 			  }
 		  }
 
@@ -195,12 +203,12 @@
 		var logged_in = !!{{logged_in}};
 		function changeFloat (){
 		    var formLoginNode = document.getElementById("input_form_login");
-			if (formLoginNode.style.visibility == "hidden"){
-				hideLoginRegistrationForm(["input_form_sign_up"]);
-				showLoginSignUpForm("input_form_login");
+			if (formLoginNode.classList.contains("inputFormHidden")){
+				hideForm("input_form_sign_up");
+				showForm("input_form_login");
 			}else{
-				hideLoginRegistrationForm(["input_form_login"]);
-				showLoginSignUpForm("input_form_sign_up");
+				hideForm("input_form_login");
+				showForm("input_form_sign_up");
 			};
 		};
 		function logout(){
@@ -227,18 +235,30 @@
 		   dataForRequest.password = psw;
 		   $ajaxUtils.sendGetRequest("/login_ajax",loginServerResponse,dataForRequest);
 		};
-		function hideLoginRegistrationForm(arrayOfIds){
-			for (var i in arrayOfIds){
-				var loginForm = document.getElementById(arrayOfIds[i]);
-				loginForm.style.visibility = "hidden";
-			};
+		function changeCssClassOfElement(elementID,currentClass,newClass){
+		     var elementHTMLClasses = getElementById(elementID).classList;
+			 if (!classList.contains(newClass)){
+				elementHTMLClasses.add(newClass);
+			 };
+			 if (classList.contains(currentClass)){
+				elementHTMLClasses.remove(currentClass);
+			 };
+		};
+		function hideFormXS(elementID){
+		    changeCssClassOfElement(elementID,"input_form_visible_xs","input_form_hidden_xs");
+		};
+		function showFormXS(elementID){
+		    changeCssClassOfElement(elementID,"input_form_hidden_xs","input_form_visible_xs");
+		};
+		function hideForm(elementID){
+		    changeCssClassOfElement(elementID,"inputFormVisible","inputFormHidden");
+		};
+		function showForm(elementID){
+		    changeCssClassOfElement(elementID,"inputFormHidden","inputFormVisible");
 		};
 		function stopBubbles(event){
 		    event.stopPropagation();
 			console.log(event);
-		};
-		function closeInputForm(spanNode){
-		   spanNode.parentNode.style.visibility = "hidden";
 		};
 		function logoutServerResponse(request){
 		   var logoutLabel = document.getElementById("logoutLabel");
@@ -601,7 +621,7 @@
    };
   </script>
     </head>
-    <body onmousedown ="if(window.visualViewport.width < 768){hideLoginRegistrationForm(['input_form_login','input_form_sign_up']);};">
+    <body onmousedown ="hideFormXS('input_form_login');hideFormXS('input_form_sign_up');">
         <nav class ="navbar navbar-default">
             <div class="container-fluid">
                  <div class="navbar-header">
@@ -625,7 +645,7 @@
                 </div>
             </div>
         </nav>
-		<div class="input_form" id="input_form_login" onmousedown="stopBubbles(event);">
+		<div class="input_form inputFormVisible input_form_hidden_xs" id="input_form_login" onmousedown="stopBubbles(event);">
 			<fieldset class="input_fieldset" id ="input_fieldset">
 			    <div class="hidden-xs" id = "loginRegSwitchPanel">
 					 <button type="button" class="btn btn-primary halfDiv" onmousedown = "changeFloat()";>
@@ -648,9 +668,9 @@
 				 </button>
 
 			</fieldset>
-			<span class="glyphicon glyphicon-remove button-cancel visible-xs" onmousedown = "closeInputForm(this);"></span>
+			<span class="glyphicon glyphicon-remove button-cancel visible-xs" onmousedown = "hideFormXS(this.parentNode.id);"span>
 		</div>
-		<div class="input_form" id="input_form_sign_up" onmousedown="stopBubbles(event)">
+		<div class="input_form inputFormHidden input_form_hidden_xs" id="input_form_sign_up" onmousedown="stopBubbles(event)">
 			<fieldset class="input_fieldset" id ="sign_up_input_fieldset">
 			     <div class="hidden-xs" id = "loginRegSwitchPanel">
 					 <div class = "halfDiv" >
@@ -672,9 +692,9 @@
 				 <button type="button" class="btn btn-primary btn-block" onmousedown="sign_up();">
 					  sign up
 				 </button>
-                 <span class="glyphicon glyphicon-remove button-cancel visible-xs" onmousedown = "closeInputForm(this);"></span>
+     
 			</fieldset>
-			<span class="glyphicon glyphicon-remove button-cancel visible-xs" onmousedown = "closeInputForm(this);"></span>
+			<span class="glyphicon glyphicon-remove button-cancel visible-xs" onmousedown = "hideFormXS(this.parentNode.id);"></span>
 		</div>
        <div id = "gameContainer">
              <canvas id="gameCanvas">“Your browser does not support HTML5 Canvas.”</canvas>

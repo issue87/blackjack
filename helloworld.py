@@ -1,5 +1,5 @@
 from flask import Flask,render_template,redirect,request,url_for,session,flash,jsonify
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash,check_password_hash
 import random
 games_session ={}
@@ -22,121 +22,66 @@ SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostnam
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 db = SQLAlchemy(app)
-class Desk:
-    def __init__(self,number_of_cards):
-
-        self.cards = []
-        counter = 0
-        while counter < len(rangs):
-            counter_suits = 0
-            while counter_suits < 4:
-                self.cards.append(Card(counter,counter_suits,0))
-                counter_suits +=1
-            if number_of_cards == 36 and counter == 0:
-                counter += 5
-            else:
-                counter += 1
-        random.shuffle(self.cards)
-    def take_card(self):
-        return self.cards.pop()
-    def get_first_card(self):
-        return self.cards[0]
-    def get_len_cards(self):
-        return len(self.cards)
-    def get_cards(self):
-        return self.cards
-
-class Card:
-    def __init__(self,rang,suit,value):
-        self.rang = rang
-        self.suit = suit
-        self.value = value
-    def __str__(self):
-        return("rang is "+rangs_a[self.rang]+ "; suit is " + suits[self.suit])
-    def get_value(self):
-        return self.value
-    def set_value(self,value):
-        self.value = value
-    def get_rang(self):
-        return self.rang
-    def get_suit(self):
-        return self.suit
-class Hand:
-    def __init__(self):
-        self.cards = []
-    def __str__(self):
-        cards_in_hand = "Hand contains "
-        for card in self.cards:
-            cards_in_hand += " " + str(card)
-        return cards_in_hand
-    def give_card(self,card):
-        self.cards.append(card)
-    def clear_hand(self):
-        self.cards = []
-    def get_len(self):
-        return len(self.cards)
-    def get_cards_in_hand(self):
-        return self.cards
-    def get_values_of_hand(self):
-        value = 0
-        for card in self.cards:
-            value += card.get_value()
-        return value
-class BlackJackGame:
-    def  __init__(self,wines,loses,money,vk):
-
-        self.game_desk = ""
-        self.player_wins = wines
-        self.computer_wins = loses
-        self.money = money
-        self.game_started = False
-        self.player_hand=""
-        self.bankir_hand = ""
-        self.round_is_ongoing = False
-        self.busted = False
-        self.vk =vk
-    def set_game_desk(self,number_of_cards):
-        self.game_desk = Desk(number_of_cards)
-    def get_game_desk(self):
-        return self.game_desk
-    def get_wines(self):
-        return self.player_wins
-    def get_loses(self):
-        return self.computer_wins
-    def record_result(self,is_user_win):
-        if is_user_win:
-            self.player_wins += 1
-        else:
-            self.computer_wins += 1
-    def create_hands(self):
-        self.player_hand = Hand()
-        self.bankir_hand = Hand()
-    def get_user_hand(self):
-        return self.player_hand
-    def get_dealer_hand(self):
-        return self.bankir_hand
-    def set_round_is_ongoing(self,round_is_ongoing):
-        self.round_is_ongoing = round_is_ongoing
-    def get_round_is_ongoing(self):
-        return self.round_is_ongoing
-    def start_game(self):
-        self.game_started = True
-    def is_game_started(self):
-        return self.game_started
-    def set_busted(self,is_busted):
-        self.busted = is_busted
-    def is_busted(self):
-        return self.busted
-    def is_vk(self):
-        vk = self.vk
-        if vk is None:
-            return False
-        else:
-            return self.vk
+# class Desk:
+#     def __init__(self,number_of_cards):
+#         self.cards = []
+#         counter = 0
+#         while counter < len(rangs):
+#             counter_suits = 0
+#             while counter_suits < 4:
+#                 self.cards.append(Card(counter,counter_suits,0))
+#                 counter_suits +=1
+#             if number_of_cards == 36 and counter == 0:
+#                 counter += 5
+#             else:
+#                 counter += 1
+#         random.shuffle(self.cards)
+#     def take_card(self):
+#         return self.cards.pop()
+#     def get_first_card(self):
+#         return self.cards[0]
+#     def get_len_cards(self):
+#         return len(self.cards)
+#     def get_cards(self):
+#         return self.card
+# class Card:
+#     def __init__(self,rang,suit,value):
+#         self.rang = rang
+#         self.suit = suit
+#         self.value = value
+#     def __str__(self):
+#         return("rang is "+rangs_a[self.rang]+ "; suit is " + suits[self.suit])
+#     def get_value(self):
+#         return self.value
+#     def set_value(self,value):
+#         self.value = value
+#     def get_rang(self):
+#         return self.rang
+#     def get_suit(self):
+#         return self.suit
+# class Hand:
+#     def __init__(self):
+#         self.cards = []
+#     def __str__(self):
+#         cards_in_hand = "Hand contains "
+#         for card in self.cards:
+#             cards_in_hand += " " + str(card)
+#         return cards_in_hand
+#     def give_card(self,card):
+#         self.cards.append(card)
+#     def clear_hand(self):
+#         self.cards = []
+#     def get_len(self):
+#         return len(self.cards)
+#     def get_cards_in_hand(self):
+#         return self.cards
+#     def get_values_of_hand(self):
+#         value = 0
+#         for card in self.cards:
+#             value += card.get_value()
+#         return value
 class Comment(db.Model):
-
     __tablename__ = "comments"
-
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(4096))
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
@@ -161,8 +106,7 @@ def get_user_data(login):
     if len(user_records) > 0:
         userInfo = user_records[0]
         return userInfo
-    else:
-        return False
+    return False
 def init_user_in_game(login):
     session['username'] = login
     session['logged_in'] = True
@@ -194,8 +138,7 @@ def login():
     if request.method == "GET":
         if session.get('logged_in'):
             return redirect(url_for('index'))
-        else:
-            return render_template("login.html")
+        return render_template("login.html")
 
     user_data = get_user_data( request.form["login"])
     if not user_data:
@@ -206,9 +149,8 @@ def login():
         if not  check_password_hash(user_data.password, request.form["password"]):
             flash("Password isn't right!")
             return redirect(url_for('login'))
-        else:
-            init_user_in_game(request.form["login"])
-            return redirect(url_for('index'))
+        init_user_in_game(request.form["login"])
+        return redirect(url_for('index'))
 @app.route('/login_ajax', methods = ["POST"])
 def login_ajax():
     login = loses = wines = money  = None
@@ -216,16 +158,16 @@ def login_ajax():
     correctPassword = True
     user_data = get_user_data( request.form["login"])
     if not user_data:
-	    userSigned = False
-	    correctPassword = False
+        userSigned = False
+        correctPassword = False
     elif not check_password_hash(user_data.password, request.form["password"]):
         correctPassword = False
     else:
-	    init_user_in_game(request.form["login"])
-	    login = user_data.login
-	    loses = user_data.loses
-	    wines = user_data.wines
-	    money = user_data.money
+        init_user_in_game(request.form["login"])
+        login = user_data.login
+        loses = user_data.loses
+        wines = user_data.wines
+        money = user_data.money
     return jsonify({"userSigned":userSigned,"correctPassword":correctPassword,"login":login,"loses":loses,"wines":wines,"money":money})
 @app.route('/registration', methods = ["GET","POST"])
 def registration():
@@ -289,6 +231,7 @@ def test():
     db.session.add(comment)
     db.session.commit()
     return redirect(url_for('test'))
+
 @app.route('/ajax_sent_result', methods = ["POST"])
 def ajax_sent_result():
     result = request.form["won"]
@@ -298,7 +241,7 @@ def ajax_sent_result():
     else:
         result = False
     save_result_in_database(result,bet)
-    return jsonify({"won":result,"bet":bet})
+    return jsonify({"won":result,"bet":bet})#in previoos versions who wins was determined on the server, from that time this statement exists
 @app.route('/vk',methods = ["GET"])
 def vk():
     #viewer_id = request.args.get("viewer_id")
@@ -326,4 +269,3 @@ def raiting():
 @app.route('/record_result',methods = ["GET"])
 def record_result():
     flash("Record function worked")
-

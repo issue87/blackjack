@@ -258,7 +258,7 @@
                                 dataForRequest.won = true;
                                  resultOfTheRoundStr = "win " + betInGame;
                       };
-
+                      dataForRequest.typeOfRequest="formData"
                       $ajaxUtils.sendGetRequest('/ajax_sent_result',resultGameHandler,dataForRequest);
             };
             function deal()
@@ -432,7 +432,7 @@
                  };
             };
             image1.src = "/static/Small_Cards.png";
-            tableImage.src ="/static/XRENDER2.png";
+            tableImage.src ="/static/table.jpg";
             imageGameScore.src = "/static/resultBox.png";
             balanceImage.src ="/static/balance.png";
             sliderButton.src="/static/SliderBase.png";

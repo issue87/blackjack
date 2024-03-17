@@ -1,0 +1,71 @@
+[33mcommit bf49d654b02dfafcb9b45e0e85868528a70d04bd[m
+Author: Victor Semenov <issue87@mail.ru>
+Date:   Sun Dec 10 21:03:28 2017 +0000
+
+    game result at the table anvas was added, rendering new version main file on user request
+
+[33mcommit 04f2b0443e8236aff716963adbdbcb76500697b4[m
+Author: Victor Semenov <issue87@mail.ru>
+Date:   Sun Dec 3 12:21:15 2017 +0000
+
+    ajax was implemented, new graphic elements, buttons, money logic was implemented
+
+[33mcommit 1e601fdcf04f9e75bd0a626150f09a8c681e16cc[m
+Author: Victor Semenov <issue87@mail.ru>
+Date:   Wed Sep 20 17:38:39 2017 +0000
+
+    users raiting have been added. In vk was added animation. Logout in vk was modified. In main blackjack have been added classes from server impleented in client. New set of sprites was added in the game.
+
+[33mcommit 4f6b5f9ceda1e059fc62686ac0019868cb40d408[m
+Author: Victor Semenov <issue87@mail.ru>
+Date:   Sat Jul 29 17:02:18 2017 +0000
+
+    vk_boolean_added user_id_added_in_tables_comments migration_done
+
+[33mcommit 5306aaeb70c19545bdd101baa109d6b399a913ad[m
+Author: Victor Semenov <issue87@mail.ru>
+Date:   Sun Jul 23 12:45:09 2017 +0000
+
+    vk_html get_user_data_func
+
+[33mcommit 0cc6ad6b11f1277b33beda487cf24ee4ace5dd9c[m
+Author: Victor Semenov <issue87@mail.ru>
+Date:   Sat Jul 15 09:30:46 2017 +0000
+
+    Login and registration html files were changed by html and css standarts
+
+[33mcommit 39df7ff277065ea9c06bc728d8b9cab200c6d258[m
+Author: Victor Semenov <issue87@mail.ru>
+Date:   Sun Jun 11 21:59:59 2017 +0000
+
+    game done
+
+[33mcommit 88774c609fd153bf11e9ab454fa0d7ebb1e7b964[m
+Author: Victor Semenov <issue87@mail.ru>
+Date:   Sun Jun 4 18:47:04 2017 +0000
+
+    adding database
+
+[33mcommit 016c8d9c67d2fdf79af2ab030295cff65b86c9e0[m
+Author: Victor Semenov <issue87@mail.ru>
+Date:   Tue May 30 20:55:20 2017 +0000
+
+    add posting comments
+
+[33mcommit 768039a02ef0fe6292154e63c04ba1d317123892[m
+Author: Victor Semenov <issue87@mail.ru>
+Date:   Mon May 29 20:49:15 2017 +0000
+
+    2.0
+
+[33mcommit 52ca31b8ecc538e40e8ee5ddff63aa03a8a5b76a[m
+Author: Victor Semenov <issue87@mail.ru>
+Date:   Mon May 29 20:18:56 2017 +0000
+
+    A first cut at the template
+
+[33mcommit 5aa74478888a043025e1e2428e16cd92fb1ff0b0[m
+Author: Victor Semenov <issue87@mail.ru>
+Date:   Sun May 28 16:24:39 2017 +0000
+
+    Old version

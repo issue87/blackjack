@@ -1,0 +1,104 @@
+[1mdiff --git a/helloworld.py b/helloworld.py[m
+[1mindex a832eec..b301532 100644[m
+[1m--- a/helloworld.py[m
+[1m+++ b/helloworld.py[m
+[36m@@ -1,10 +1,29 @@[m
+ from flask import Flask,render_template,redirect,request,url_for[m
+[32m+[m[32mfrom flask.ext.sqlalchemy import SQLAlchemy[m
+ app = Flask(__name__)[m
+ app.config['DEBUG'] = True[m
+[32m+[m[32mSQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format([m
+[32m+[m[32m    username="issue87",[m
+[32m+[m[32m    password="maggyh87",[m
+[32m+[m[32m    hostname="issue87.mysql.pythonanywhere-services.com",[m
+[32m+[m[32m    databasename="issue87$comments",[m
+[32m+[m[32m)[m
+[32m+[m[32mapp.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI[m
+[32m+[m[32mapp.config["SQLALCHEMY_POOL_RECYCLE"] = 299[m
+[32m+[m[32mdb = SQLAlchemy(app)[m
+[32m+[m[32mclass Comment(db.Model):[m
+[32m+[m
+[32m+[m[32m    __tablename__ = "comments"[m
+[32m+[m
+[32m+[m[32m    id = db.Column(db.Integer, primary_key=True)[m
+[32m+[m[32m    content = db.Column(db.String(4096))[m
+ comments = [][m
+ @app.route('/', methods = ["GET","POST"])[m
+ def index():[m
+     if request.method == "GET":[m
+         return render_template("main.html",comments = comments)[m
+     comments.append(request.form["contents"])[m
+[31m-    return redirect(url_for('index'))[m
+\ No newline at end of file[m
+[32m+[m[32m    return redirect(url_for('index'))[m
+[32m+[m[32m@app.route('/start_game', methods = ["POST"])[m
+[32m+[m[32mdef start_game():[m
+[32m+[m[32m    pass[m
+\ No newline at end of file[m
+[1mdiff --git a/templates/main.html b/templates/main.html[m
+[1mindex 488c17f..9c5a270 100644[m
+[1m--- a/templates/main.html[m
+[1m+++ b/templates/main.html[m
+[36m@@ -5,6 +5,45 @@[m
+ [m
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">[m
+        <title> The game</title>[m
+[32m+[m[32m        <script>[m
+[32m+[m[32m   window.onload = function() {[m
+[32m+[m[32m    var drawingCanvas = document.getElementById('smile');[m
+[32m+[m[32m    if(drawingCanvas && drawingCanvas.getContext) {[m
+[32m+[m[32m     var context = drawingCanvas.getContext('2d');[m
+[32m+[m[32m     // Рисуем окружность[m
+[32m+[m[32m     context.fillStyle = "green"[m
+[32m+[m[32m     context.fillRect(0,0,drawingCanvas.width,drawingCanvas.height);[m
+[32m+[m[32m     context.strokeStyle = "#000";[m
+[32m+[m[32m     context.fillStyle = "#fc0";[m
+[32m+[m[32m     context.beginPath();[m
+[32m+[m[32m     context.arc(100,100,50,0,Math.PI*2,true);[m
+[32m+[m[32m     context.closePath();[m
+[32m+[m[32m     context.stroke();[m
+[32m+[m[32m     context.fill();[m
+[32m+[m[32m     // Рисуем левый глаз[m
+[32m+[m[32m     context.fillStyle = "#fff";[m
+[32m+[m[32m     context.beginPath();[m
+[32m+[m[32m     context.arc(84,90,8,0,Math.PI*2,true);[m
+[32m+[m[32m     context.closePath();[m
+[32m+[m[32m     context.stroke();[m
+[32m+[m[32m     context.fill();[m
+[32m+[m[32m     // Рисуем правый глаз[m
+[32m+[m[32m     context.beginPath();[m
+[32m+[m[32m     context.arc(116,90,8,0,Math.PI*2,true);[m
+[32m+[m[32m     context.closePath();[m
+[32m+[m[32m     context.stroke();[m
+[32m+[m[32m     context.fill();[m
+[32m+[m[32m     // Рисуем рот[m
+[32m+[m[32m     context.beginPath();[m
+[32m+[m[32m     context.moveTo(70,115);[m
+[32m+[m[32m     context.quadraticCurveTo(100,130,130,115);[m
+[32m+[m[32m     context.quadraticCurveTo(100,150,70,115);[m
+[32m+[m[32m     context.closePath();[m
+[32m+[m[32m     context.stroke();[m
+[32m+[m[32m     context.fill();[m
+[32m+[m[32m    }[m
+[32m+[m[32m   }[m
+[32m+[m[32m  </script>[m
+     </head>[m
+     <body>[m
+         <nav class="navbar navbar-inverse">[m
+[36m@@ -34,6 +73,15 @@[m
+                 <input type="submit" value="Post comment">[m
+             </form>[m
+         </div>[m
+[32m+[m
+[32m+[m[32m<div>[m
+[32m+[m[32m     <form action="/start_game" method="POST">[m
+[32m+[m[32m                <button style="width:80px;height:50px" type="submit" value="Start Game">[m
+[32m+[m[32m                    Start Game[m
+[32m+[m[32m                </button>[m
+[32m+[m[32m     </form>[m
+[32m+[m[32m</div>[m
+         </div><!-- /.container -->[m
+[32m+[m[32m        <canvas id="smile" width="200" height="200" border = 5>ff</canvas>[m
+     </body>[m
+ </html>[m
+\ No newline at end of file[m

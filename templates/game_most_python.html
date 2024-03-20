@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
     <head> <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,7 +36,7 @@
               position:relative;
               top:14px;
           }
-          BODY{background-image: url(/static/table2.jpg);
+          BODY{background-image: url(/static/images/table2.jpg);
                background-position: 0% 10%;
                background-repeat: no-repeat;
           }
@@ -101,9 +101,9 @@
 
 
     var image1 = document.createElement("img");
-    image1.src = "/static/cards.png";
+    image1.src = "/static/images/cards.png";
     var backImage = document.createElement("img");
-    backImage.src = "/static/back.jpg";
+    backImage.src = "/static/images/back.jpg";
     backImage.onload = function(){
         if({{round_is_ongoing}}){
     context.drawImage(backImage,2, 3,{{tile_width}},{{tile_heigth}},130,100,{{tile_width}},{{tile_heigth}});

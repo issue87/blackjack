@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head> <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<link rel = "stylesheet" href = "../static_files/css/game_most_js.css"> 
+<title> The game</title>
+       
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="static/js/ajax_lib.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="static/js/game_most_js.js" charset="UTF-8"></script>
+    </head>
+    <body>
+        <div  class="button_d" >
+             User: {{login}}
+        </div>
+        {% if not vk %}
+        <div>
+            <form action ="/logout" method=GET>
+                 <button class = "button_style" type="submit">
+                       Logout
+                 </button>
+
+            </form>
+        </div>
+        {% else %}
+        <div>
+            <form action ="/vk" method=GET>
+                 <button class = "button_style" type="submit">
+                       Back
+                 </button>
+
+            </form>
+        </div>
+        {% endif %}
+       <div id = "gameContainer">
+             <canvas id="gameCanvas">“Your browser does not support HTML5 Canvas.”</canvas>
+             <div id = "gameControlActions" class="gameControl">
+                   <div id="button_hit" class ="pos_center">
+                        <button id = "b_hit" class = "button_style"
+                              type="button" value="Hit">
+
+                        </button>
+                   </div>
+                   <div id="button_stand" class="pos_center">
+                        <button id = "b_stand" class = "button_style" type="button" value="Stand">
+
+                        </button>
+                   </div>
+                   <div id="button_split" class="pos_center">
+                        <button id = "b_split" class = "button_style" type="button">
+
+                        </button>
+                   </div>
+                   <div id="button_double" class="pos_center">
+                        <button id = "b_double" class = "button_style" type="button">
+
+                        </button>
+                   </div>
+             </div>
+             <div id = "gameControlBet" class="gameControl">
+                   <div id="button_bet" class="pos_center">
+                        <button id = "b_bet" class = "button_style" type="button">
+
+                        </button>
+                   </div>
+                   <div id="button_rebet" class="pos_center">
+                        <button id = "b_rebet" class = "button_style" type="button">
+
+                        </button>
+                   </div>
+                    <div id="button_deal" class="pos_center">
+                        <button id ="b_deal" class = "button_style" type="button">
+                        </button>
+                   </div>
+
+             </div>
+             <div id = "gameControlSlider" class="gameControl">
+                   <div id="sliderButton" class="pos_center">
+                        <input type="range" min=1 max={{money}} value = 1 class="slider" id="sliderRange"></input>
+                   </div>
+             </div>
+       </div>
+
+
+
+
+    </body>
+</html>

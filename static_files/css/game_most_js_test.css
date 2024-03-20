@@ -1,0 +1,179 @@
+.button_style{width:80px;
+    height:50px;
+    border-radius:10px;
+    border:none;
+}
+
+.button_d {
+float:left;
+}
+.par_d {
+font-family: 'Impact';
+font-size: 24pt;
+}
+.pos_center {
+display:inline-block;
+position:relative;
+}
+.slider {
+-webkit-appearance: none;
+width: 308px; /* Full-width */
+height: 48px; /* Specified height */
+outline: none; /* Remove outline */
+background:none;
+/* Set transparency (for mouse-over effects on hover) */
+-webkit-transition: .2s; /* 0.2 seconds transition on hover */
+transition: opacity .2s;
+}
+.slider::-webkit-slider-thumb {
+-webkit-appearance: none; /* Override default look */
+appearance: none;
+width: 96px; /* Set a specific slider handle width */
+height: 48px; /* Slider handle height */
+background-image: url("static/images/SliderButton6.png"); /* Green background */
+background-size:96px 48px;
+cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+width: 96px; /* Set a specific slider handle width */
+height: 48px; /* Slider handle height */
+background-image: url("static/images/SliderButton6.png"); /* Green background */
+cursor: pointer; /* Cursor on hover */
+}
+.navbar-nav li,.input-group span,.input_fieldset button{
+background:linear-gradient(to bottom, #B8860B, #DAA520);
+text-align:center;
+padding:5px;
+color:#FFFF00;
+}
+.navbar-nav li{
+margin:2px;
+}
+#info_panel{
+position:relative;
+top:14px;
+}
+#gameCanvas{ position:absolute;
+    z-index:1;
+    width:867px;
+    height:493px;
+    left:0;
+    top:0;
+    max-width:100%;
+}
+.gameControl{
+position:absolute;
+z-index:100;
+top:425px;
+left:0;
+width:867px;
+height:68px;
+
+}
+.input_fieldset{
+width:260px;
+}
+.navbar-toggle:focus {
+background-color: #fff;
+}
+.button-cancel {
+position:absolute;
+right:0;
+top:0;
+color:black;
+border:none;
+}
+.halfDiv{
+float:right;
+width: 49.23%;
+height:100%;
+border:none;
+display:inline-block;
+text-align:center;
+border-radius:0;
+}
+.inputFormHidden{
+visibility:hidden;
+}
+.inputFormVisible{
+visibility:visible;
+}
+#input_form_sign_up{
+position:absolute;
+top:0px;
+}
+#sliderButton{
+width:308px;
+height:48px;
+}
+#gameContainer{
+position:relative;
+width:867px;
+height:493px;
+}
+
+#b_hit{
+background-image:url('static/images/buttonHit.png');
+width:152px;
+}
+#b_stand{
+background-image:url('static/images/buttonStand.png');
+width:151px;
+}
+#b_double{
+background-image:url('static/images/buttonDouble2.png');
+width:186px;
+}
+#b_rebet{
+background-image:url('static/images/buttonRebet.png');
+width:148px;
+
+}
+#b_split{
+background-image:url('static/images/buttonSplit.png');
+width:153px;
+}
+#b_bet{
+background-image:url('static/images/buttonBet.png');
+width:146px;
+}
+#b_deal{
+background-image:url('static/images/buttonDeal.png');
+width:146px;
+}
+#gameControlActions{
+visibility:hidden;
+left:100px;
+}
+#gameControlBet{
+visibility:visible;
+left:200px;
+}
+#gameControlSlider{
+visibility:visible;
+top:367px;
+height:48px;
+left:270px;
+}
+#login_label{
+width:71px;
+}
+#regLoginSwitchPanelUnFocusText{
+position:relative;
+top:3px;
+}
+@media (max-width:767px){
+.input_form{
+position:relative;
+width:284px;
+left:50%;
+transform:translateX(-50%);
+}
+.input_form_hidden_xs{
+visibility:hidden;
+}
+.input_form_visible_xs{
+visibility:visible;
+}
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head> <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../static_files/css/game_most_js_test.css">
+       <title> The game</title>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="static/js/ajax_lib.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="static/js/game_most_js_test.js" charset="UTF-8"></script>
+       
+    </head>
+    <body onmousedown ="hideFormXS('input_form_login');hideFormXS('input_form_sign_up');">
+        <nav class ="navbar navbar-default">
+            <div class="container-fluid">
+                 <div class="navbar-header">
+                     <button type="button" id ="navbarToggleButton" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                     </button>
+                 </div>
+                 <div id = "logoutLabel" class="button_d hidden-xs">
+                     {% if logged_in %}
+					    {{login}}
+					 {% endif %}
+                 </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav visible-xs">
+                        <li onmousedown = "showFormXS('input_form_sign_up');event.stopPropagation();">sign up</li>
+                        <li onmousedown = "showFormXS('input_form_login');event.stopPropagation();">login</li>
+                        <li onmousedown = "logout();">log out</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+		<div style="position:relative">
+			<div class="input_form inputFormVisible input_form_hidden_xs" id="input_form_login" onmousedown="event.stopPropagation();">
+				<fieldset class="input_fieldset" id ="input_fieldset">
+					<div class="hidden-xs" id = "loginRegSwitchPanel">
+						 <button type="button" class="btn btn-primary halfDiv" onmousedown = "changeFloat()";>
+							  <span>sign up</span>
+						 </button>
+						 <div class = "halfDiv" >
+							  <span id = "regLoginSwitchPanelUnFocusText">sign in</span>
+						 </div>
+					 </div>
+					 <div class="input-group">
+						  <span class="input-group-addon" id="login_label">login </span>
+						  <input type="text" id ="login_log" class="form-control"  pattern="[A-Za-z]{2}[\w\.]{1,15}" title="17 Letters,numbers,'_','.'; first 2 must be the english alphabet letters></input>
+					 </div>
+					 <div class="input-group">
+						  <span class="input-group-addon">password</span>
+						  <input type="password" id ="password_log" class="form-control" minlength="6" maxlength="128" title="from 6 to 128 symbols"></input>
+					 </div>
+					 <button type="button" class="btn btn-primary btn-block" onmousedown="loginServer();">
+						  sign in
+					 </button>
+
+				</fieldset>
+				<span class="glyphicon glyphicon-remove button-cancel visible-xs" onmousedown = "hideFormXS(this.parentNode.id);"span>
+			</div>
+			<div class="input_form inputFormHidden input_form_hidden_xs" id="input_form_sign_up" onmousedown="event.stopPropagation()">
+				<fieldset class="input_fieldset" id ="sign_up_input_fieldset">
+					 <div class="hidden-xs" id = "loginRegSwitchPanel">
+						 <div class = "halfDiv" >
+							  <span id = "regLoginSwitchPanelUnFocusText">sign up</span>
+						 </div>
+						 <button type="button" class="btn btn-primary halfDiv" onmousedown = "changeFloat()";>
+							  <span>sign in</span>
+						 </button>
+
+					 </div>
+					 <div class="input-group">
+						  <span class="input-group-addon" id="login_label_sign_up">login </span>
+						  <input type="text" id ="login_sign_up" class="form-control"  pattern="[A-Za-z]{2}[\w\.]{1,15}" title="17 Letters,numbers,'_','.'; first 2 must be the english alphabet letters"></input>
+					 </div>
+					 <div class="input-group">
+						  <span class="input-group-addon">password</span>
+						  <input type="password" id ="password_log_sign_up" class="form-control" minlength="6" maxlength="128" title="from 6 to 128 symbols"></input>
+					 </div>
+					 <button type="button" class="btn btn-primary btn-block" onmousedown="sign_up();">
+						  sign up
+					 </button>
+
+				</fieldset>
+				<span class="glyphicon glyphicon-remove button-cancel visible-xs" onmousedown = "hideFormXS(this.parentNode.id);"></span>
+			</div>
+		</div>
+       <div id = "gameContainer">
+             <canvas id="gameCanvas">“Your browser does not support HTML5 Canvas.”</canvas>
+             <div id = "gameControlActions" class="gameControl">
+                   <div id="button_hit" class ="pos_center">
+                        <button id = "b_hit" class = "button_style"
+                              type="button" value="Hit">
+
+                        </button>
+                   </div>
+                   <div id="button_stand" class="pos_center">
+                        <button id = "b_stand" class = "button_style" type="button" value="Stand">
+
+                        </button>
+                   </div>
+                   <div id="button_split" class="pos_center">
+                        <button id = "b_split" class = "button_style" type="button">
+
+                        </button>
+                   </div>
+                   <div id="button_double" class="pos_center">
+                        <button id = "b_double" class = "button_style" type="button">
+
+                        </button>
+                   </div>
+             </div>
+             <div id = "gameControlBet" class="gameControl">
+                   <div id="button_bet" class="pos_center">
+                        <button id = "b_bet" class = "button_style" type="button">
+
+                        </button>
+                   </div>
+                   <div id="button_rebet" class="pos_center">
+                        <button id = "b_rebet" class = "button_style" type="button">
+
+                        </button>
+                   </div>
+                    <div id="button_deal" class="pos_center">
+                        <button id ="b_deal" class = "button_style" type="button">
+                        </button>
+                   </div>
+
+             </div>
+             <div id = "gameControlSlider" class="gameControl">
+                   <div id="sliderButton" class="pos_center">
+                        <input type="range" min=1 max={{money}} value = 1 class="slider" id="sliderRange"></input>
+                   </div>
+             </div>
+       </div>
+
+
+
+
+    </body>
+</html>

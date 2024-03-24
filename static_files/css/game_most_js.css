@@ -30,7 +30,7 @@ transition: opacity .2s;
 appearance: none;
 width: 96px; /* Set a specific slider handle width */
 height: 48px; /* Slider handle height */
-background-image: url("./images/SliderButton6.png"); /* Green background */
+background-image: url("../images/SliderButton6.png"); /* Green background */
 background-size:96px 48px;
 cursor: pointer; /* Cursor on hover */
 }
@@ -38,7 +38,7 @@ cursor: pointer; /* Cursor on hover */
 .slider::-moz-range-thumb {
 width: 96px; /* Set a specific slider handle width */
 height: 48px; /* Slider handle height */
-background-image: url("./images/SliderButton6.png"); /* Green background */
+background-image: url("../images/SliderButton6.png"); /* Green background */
 cursor: pointer; /* Cursor on hover */
 }
 #info_panel{
@@ -72,32 +72,32 @@ height:493px;
 }
 
 #b_hit{
-background-image:url('./images/buttonHit.png');
+background-image:url('../images/buttonHit.png');
 width:152px;
 }
 #b_stand{
-background-image:url('./images/buttonStand.png');
+background-image:url('../images/buttonStand.png');
 width:151px;
 }
 #b_double{
-background-image:url('./images/buttonDouble2.png');
+background-image:url('../images/buttonDouble2.png');
 width:186px;
 }
 #b_rebet{
-background-image:url('./images/buttonRebet.png');
+background-image:url('../images/buttonRebet.png');
 width:148px;
 
 }
 #b_split{
-background-image:url('./images/buttonSplit.png');
+background-image:url('../images/buttonSplit.png');
 width:153px;
 }
 #b_bet{
-background-image:url('./images/buttonBet.png');
+background-image:url('../images/buttonBet.png');
 width:146px;
 }
 #b_deal{
-background-image:url('./images/buttonDeal.png');
+background-image:url('../images/buttonDeal.png');
 width:146px;
 }
 #gameControlActions{

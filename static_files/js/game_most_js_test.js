@@ -174,7 +174,6 @@ $(function(){
      var gameControlSlider = document.getElementById("gameControlSlider");
      var PlayerHand = new Hand();
      var DealerHand = new Hand();
-     var money = {{money}};
      var sliderRange = document.getElementById("sliderRange");
      var betInSlider = 1;
      var betInGame = 1;

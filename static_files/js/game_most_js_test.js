@@ -8,8 +8,7 @@ $(function(){
        }
     )
  });
-
- var logged_in = !!{{logged_in}};
+ 
  function changeFloat (){
      var formLoginNode = document.getElementById("input_form_login");
      if (formLoginNode.classList.contains("inputFormHidden")){
@@ -287,7 +286,7 @@ $(function(){
              notificationDiv.innerHTML = notification;
              loginFieldset.appendChild(notificationDiv);
      };
-     var image1 = document.createElement("img");
+     var cardsImage = document.createElement("img");
      var tableImage = document.createElement('img');
      var imageGameScore = document.createElement("img");
      var balanceImage = document.createElement("img");
@@ -324,18 +323,18 @@ $(function(){
                   };
                   context.translate(playerHandX+i*tileWidth*0.1 + 0.5*(tileWidth/3),240+ 0.5*(tileHeigth/3));
                   context.rotate(Math.ceil(cards.length/2)*rad_angle*(Math.PI/180));
-                  context.drawImage(image1,57+(tileWidth+11)*(cards[i].getRang()%7),258+ ((tileHeigth+16)*2+36)*cards[i].getSuit()+Math.floor(cards[i].getRang()/7)*(tileHeigth+16),tileWidth,tileHeigth,-0.5*tileWidth/3,-0.5*tileHeigth/3,tileWidth/3,tileHeigth/3);
+                  context.drawImage(cardsImage,57+(tileWidth+11)*(cards[i].getRang()%7),258+ ((tileHeigth+16)*2+36)*cards[i].getSuit()+Math.floor(cards[i].getRang()/7)*(tileHeigth+16),tileWidth,tileHeigth,-0.5*tileWidth/3,-0.5*tileHeigth/3,tileWidth/3,tileHeigth/3);
               };
               context.setTransform(1,0,0,1,0,0);
               counter = 0;
               cards = DealerHand.getCardsInHand();
               if(roundIsOngoing){
-                  context.drawImage(image1,57+(tileWidth+11)*6, 258+tileHeigth+16,tileWidth,tileHeigth,410 - Math.ceil(cards.length/2)*tileWidth*0.1,70,tileWidth/3,tileHeigth/3);
+                  context.drawImage(cardsImage,57+(tileWidth+11)*6, 258+tileHeigth+16,tileWidth,tileHeigth,410 - Math.ceil(cards.length/2)*tileWidth*0.1,70,tileWidth/3,tileHeigth/3);
               };
               for ( i = 0;i<cards.length;i++)
               {
                    if (!(i==0&&roundIsOngoing)){
-                          context.drawImage(image1,57+(tileWidth+11)*(cards[i].getRang()%7),258+ ((tileHeigth+16)*2+36)*cards[i].getSuit()+Math.floor(cards[i].getRang()/7)*(tileHeigth+16),tileWidth,tileHeigth,410- Math.ceil(cards.length/2)*tileWidth*0.1+i*tileWidth*0.1,70,tileWidth/3,tileHeigth/3);
+                          context.drawImage(cardsImage,57+(tileWidth+11)*(cards[i].getRang()%7),258+ ((tileHeigth+16)*2+36)*cards[i].getSuit()+Math.floor(cards[i].getRang()/7)*(tileHeigth+16),tileWidth,tileHeigth,410- Math.ceil(cards.length/2)*tileWidth*0.1+i*tileWidth*0.1,70,tileWidth/3,tileHeigth/3);
                    };
               };
               context.drawImage(imageGameScore,410,140,50,26);
@@ -395,14 +394,14 @@ $(function(){
              canvasAnimation();
           };
      };
-     image1.src = "/static/images/Small_Cards.png";
+     cardsImage.src = "/static/images/Small_Cards.png";
      tableImage.src ="/static/images/table.jpg";
      imageGameScore.src = "/static/images/resultBox.png";
      balanceImage.src ="/static/images/balance.png";
      sliderButton.src="/static/images/SliderBase.png";
      sliderCashBase.src="/static/images/SliderCashBase.png";
      tableImage.onload = detectLoading;
-     image1.onload = detectLoading;
+     cardsImage.onload = detectLoading;
      imageGameScore.onload = detectLoading;
      balanceImage.onload = detectLoading;
      sliderButton.onload = detectLoading;

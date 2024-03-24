@@ -93,6 +93,7 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
         var resultGameHandler;
 
         function initGame(){
+            console.log("initGame");
             var roundIsOngoing = false;
             var busted = false;
             var GameDesk,GameStarted;
@@ -196,6 +197,7 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
 
             function canvasAnimation()
             {
+                console.log("canvasAnimation");
                  var tileWidth = 144;
                  var tileHeigth = 201;
                  var drawingCanvas = document.getElementById('gameCanvas');
@@ -293,6 +295,7 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                  images++;
                  console.log;
                  if (images == 6){
+                    console.log("canvasAnimation");
                     canvasAnimation();
                  };
             };
@@ -308,6 +311,6 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
 
         };
    window.onload = function() {
-
+        console.log("windowOnload");
         initGame();
        };

@@ -177,11 +177,6 @@ $(function(){
      var betInSlider = 1;
      var betInGame = 1;
      var resultOfTheRoundStr = "";
-     const sliderInput = document.querySelector("input.slider");
-     sliderInput.addEventListener("input", () => {betInGame = betInSlider;
-                                                  drawCanvasAnimation();
-                                                 }
-        );
      function resultOfRound(playerLose)
      {
               roundIsOngoing =false;

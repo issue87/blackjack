@@ -1,3 +1,4 @@
+
 CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
         function RandomSort(a,b){
                                      return (Math.random() - 0.5);
@@ -110,7 +111,8 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
             var betInSlider = 1;
             var betInGame = 1;
             var resultOfTheRoundStr = "";
-            console.log(money);
+            const sliderInput = document.querySelector("input.slider");
+            sliderInput.addEventListener("input",() => betInGame = betInSlider);
             function resultOfRound(playerLose)
             {
                      roundIsOngoing =false;

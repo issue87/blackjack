@@ -151,6 +151,7 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                      gameControlActions.style.visibility = "visible";
                      gameControlBet.style.visibility = "hidden";
                      gameControlSlider.style.visibility = "hidden";
+                     drawCanvasAnimation();
                 };
             };
             function stand()
@@ -162,6 +163,7 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                             getCardToHand(DealerHand,GameDesk);
                         };
                         resultOfRound(false);
+                        drawCanvasAnimation();
                };
             };
 
@@ -174,11 +176,13 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                            busted = true;
                            resultOfRound(true);
                        };
+                       drawCanvasAnimation();
 
                  };
             };
             function bet() {
                  betInGame = betInSlider;
+                 drawCanvasAnimation();
             };
             var resultGameHandler = function (res){
                 result_obj = JSON.parse(res.responseText);
@@ -186,6 +190,7 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 betInSlider = 1;
                 betInGame = 1;
                 sliderRange.setAttribute("max",money);
+                drawCanvasAnimation();
             };
             buttonDeal.addEventListener("click",deal);
             buttonHit.addEventListener("click",hit);
@@ -195,9 +200,8 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 betInSlider = sliderRange.value;
             };
 
-            function canvasAnimation()
+            function drawCanvasAnimation()
             {
-                console.log("canvasAnimation");
                  var tileWidth = 144;
                  var tileHeigth = 201;
                  var drawingCanvas = document.getElementById('gameCanvas');
@@ -286,20 +290,16 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                      context.fillText(betInSlider,430 - metrics.width/2,368);
                      };
                  };
-                 window.setTimeout(canvasAnimation,300);
 
             };
 
             var images = 0;
             var detectLoading = function (){
                  images++;
-                 console.log("detectLoading");
                  if (images == 6){
-                    console.log("canvasAnimation");
-                    canvasAnimation();
+                    drawCanvasAnimation();
                  };
             };
-            console.log("detectLoading");
             const cardsImage = document.createElement("img");
             const tableImage = document.createElement('img');
             const imageGameScore = document.createElement("img");
@@ -322,6 +322,5 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
 
         };
    window.onload = function() {
-        console.log("windowOnload");
         initGame();
        };

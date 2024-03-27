@@ -218,6 +218,7 @@ $(function(){
               gameControlActions.style.visibility = "visible";
               gameControlBet.style.visibility = "hidden";
               gameControlSlider.style.visibility = "hidden";
+              drawCanvasAnimation();
          };
      };
      function stand()
@@ -229,6 +230,7 @@ $(function(){
                      getCardToHand(DealerHand,GameDesk);
                  };
                  resultOfRound(false);
+                 drawCanvasAnimation();
         };
      };
 
@@ -241,11 +243,12 @@ $(function(){
                     busted = true;
                     resultOfRound(true);
                 };
-
+                drawCanvasAnimation();
           };
      };
      function bet() {
           betInGame = betInSlider;
+          drawCanvasAnimation();
      };
      var resultGameHandler = function (request){
          result_obj = JSON.parse(request.responseText);
@@ -253,6 +256,7 @@ $(function(){
          betInSlider = 1;
          betInGame = 1;
          sliderRange.setAttribute("max",money);
+         drawCanvasAnimation();
      };
      function sign_up(){
      };
@@ -262,6 +266,7 @@ $(function(){
      buttonBet.addEventListener("mousedown",bet);
      sliderRange.oninput = function setValueInBet(){
          betInSlider = sliderRange.value;
+         drawCanvasAnimation();
      };
      loginServerResponse = function (request){
              var notification = "";
@@ -292,7 +297,7 @@ $(function(){
      var balanceImage = document.createElement("img");
      var sliderButton = document.createElement("img");
      var sliderCashBase = document.createElement("img");
-     function canvasAnimation()
+     function drawCanvasAnimation()
      {
           var tileWidth = 144;
           var tileHeigth = 201;
@@ -382,7 +387,6 @@ $(function(){
               context.fillText(betInSlider,430 - metrics.width/2,368);
               };
           };
-          window.setTimeout(canvasAnimation,300);
 
      };
 
@@ -391,7 +395,7 @@ $(function(){
           images++;
           console.log;
           if (images == 6){
-             canvasAnimation();
+            drawCanvasAnimation();
           };
      };
      cardsImage.src = "/static/images/Small_Cards.png";

@@ -184,6 +184,17 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                  betInGame = betInSlider;
                  drawCanvasAnimation();
             };
+            function resizeCanvas(){
+                canvasEl = document.getElementById('gameCanvas');
+                console.log("canvas width");
+                console.log(canvasEl.width);
+                console.log("canvas height");
+                console.log(canvasEl.height);
+                console.log("window width");
+                console.log(window.innerWidth);
+                console.log("window height");
+                console.log(window.innerHeight);
+            };
             var resultGameHandler = function (res){
                 result_obj = JSON.parse(res.responseText);
                 money += result_obj.bet*(Number(result_obj.won)*2-1);
@@ -196,6 +207,7 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
             buttonHit.addEventListener("click",hit);
             buttonStand.addEventListener("click",stand);
             buttonBet.addEventListener("click",bet);
+            window.addEventListener("resize", resizeCanvas);
             sliderRange.oninput = function setValueInBet(){
                 betInSlider = sliderRange.value;
                 drawCanvasAnimation();

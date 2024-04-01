@@ -188,7 +188,10 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 const canvasEl = document.getElementById('gameCanvas');
                 let canvasWidth;
                 let canvasHeight;
+                console.log(window.innerWidth/canvasEl.style.width);
+                console.log(window.innerHeight/canvasEl.style.height);
                 if (window.innerWidth/canvasEl.style.width < window.innerHeight/canvasEl.style.height){
+                    console.log("first condition");
                     canvasWidth = window.innerWidth;
                     canvasHeight = (window.innerWidth/canvasEl.style.width) * canvasEl.style.height;
                 }else{

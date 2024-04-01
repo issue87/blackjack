@@ -188,15 +188,17 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 const canvasEl = document.getElementById('gameCanvas');
                 let canvasWidth;
                 let canvasHeight;
-                console.log(window.innerWidth/canvasEl.style.width);
-                console.log(window.innerHeight/canvasEl.style.height);
-                if (window.innerWidth/canvasEl.style.width < window.innerHeight/canvasEl.style.height){
+                console.log(window.innerWidth);
+                console.log(canvasEl.style.width);
+                console.log(window.innerHeight);
+                console.log(canvasEl.style.height);
+                if (window.innerWidth/canvasEl.width < window.innerHeight/canvasEl.height){
                     console.log("first condition");
                     canvasWidth = window.innerWidth;
-                    canvasHeight = (window.innerWidth/canvasEl.style.width) * canvasEl.style.height;
+                    canvasHeight = (window.innerWidth/canvasEl.width) * canvasEl.height;
                 }else{
                     canvasHeight = window.innerHeight;
-                    canvasWidth = (window.innerHeight/canvasEl.style.height) * canvasEl.style.width;
+                    canvasWidth = (window.innerHeight/canvasEl.height) * canvasEl.width;
                 };
                 canvasScaleRatio = canvasWidth/canvasEl.style.width;
                 ctx = canvasEl.getContext("2d");

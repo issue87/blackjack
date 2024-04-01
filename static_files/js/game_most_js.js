@@ -185,15 +185,20 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                  drawCanvasAnimation();
             };
             function resizeCanvas(){
-                canvasEl = document.getElementById('gameCanvas');
-                console.log("canvas width");
-                console.log(canvasEl.width);
-                console.log("canvas height");
-                console.log(canvasEl.height);
-                console.log("window width");
-                console.log(window.innerWidth);
-                console.log("window height");
-                console.log(window.innerHeight);
+                const canvasEl = document.getElementById('gameCanvas');
+                if (window.innerWidth/canvasEl.style.width < window.innerHeight/canvasEl.style.height){
+                    let canvasWidth = window.innerWidth;
+                    let canvasHeight = (window.innerWidth/canvasEl.style.width) * canvasEl.style.height;
+                }else{
+                    let canvasHeight = window.innerHeight;
+                    let canvasWidth = (window.innerHeight/canvasEl.style.height) * canvasEl.style.width;
+                };
+                canvasScaleRatio = canvasWidth/canvasEl.style.width;
+                ctx = canvasEl.getContext("2d");
+                ctx.scale(canvasScaleRatio, canvasScaleRatio);
+                canvas.style.width = `${canvasWidth}px`;
+                canvas.style.height = `${canvasHeight}px`;
+                drawCanvasAnimation();
             };
             var resultGameHandler = function (res){
                 result_obj = JSON.parse(res.responseText);

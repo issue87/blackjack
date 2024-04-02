@@ -200,7 +200,9 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 controlElements = document.getElementsByClassName("gameControl");
                 for (let i=0;i < controlElements.length;i++){
                     const topPosition = parseInt(controlElements[i].style.top) * canvasScaleRatio;
+                    console.log(topPosition);
                     controlElements[i].style.top = `${topPosition}px`;
+                    console.log(`${topPosition}px`);
                     console.log(controlElements[i].style.top);
                 }
                 ctx = canvasEl.getContext("2d");

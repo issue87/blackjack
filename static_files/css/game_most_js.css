@@ -45,6 +45,8 @@ cursor: pointer; /* Cursor on hover */
 position:relative;
 top:14px;
 }
+/*initialCanvasWidth and initialCanvasHeight in initGame() game_most_js.css use width and height. You must change them simultaneuasly*/
+
 #gameCanvas{ position:absolute;
     z-index:1;
     width:867px;

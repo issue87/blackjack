@@ -111,8 +111,9 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
             var betInGame = 1;
             var resultOfTheRoundStr = "";
             const canvasEl = document.getElementById('gameCanvas');
-            const initialCanvasWidth = canvasEl.width;
-            const initialCanvasHeight = canvasEl.height;
+            //variables store the same width and height as CSS #gameCanvas
+            const initialCanvasWidth = 867;
+            const initialCanvasHeight = 493;
             function resultOfRound(playerLose)
             {
                      roundIsOngoing =false;

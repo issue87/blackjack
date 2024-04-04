@@ -197,17 +197,16 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                     canvasHeight = window.innerHeight;
                     canvasWidth = (window.innerHeight/initialCanvasHeight) * initialCanvasWidth;
                 };
+                console.log(canvasWidth);
+                console.log(canvasHeight);
                 canvasScaleRatio = canvasWidth/initialCanvasWidth;
                 controlElements = document.getElementsByClassName("gameControl");
                 const initialGameControlTopPos = 425;
-                for (let i=0;i < controlElements.length;i++){
+
+                console.log(canvasScaleRatio);
+                for (let dummy_i = 0;i < controlElements.length;i++){
                     const topPosition = initialGameControlTopPos * canvasScaleRatio;
-                    console.log(controlElements[i].style.top);
-                    console.log(parseInt(controlElements[i].style.top));
                     console.log(topPosition);
-                    controlElements[i].style.top = `${topPosition}px`;
-                    console.log(`${topPosition}px`);
-                    console.log(controlElements[i].style.top);
                 }
                 ctx = canvasEl.getContext("2d");
                 ctx.scale(canvasScaleRatio, canvasScaleRatio);

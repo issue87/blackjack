@@ -207,7 +207,7 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 console.log(canvasScaleRatio);
                 for (let dummy_i = 0;i < controlElements.length;i++){
                     const topPosition = initialGameControlTopPos * canvasScaleRatio;
-                    console.log(topPosition);
+                    controlElements.style.top = `${topPosition}px`;
                 }
                 ctx = canvasEl.getContext("2d");
                 ctx.scale(canvasScaleRatio, canvasScaleRatio);

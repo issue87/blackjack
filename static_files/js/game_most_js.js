@@ -91,6 +91,28 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                      hand.giveCard(card);
                };
         };
+
+        /*This object allows easily scale groups of buttons as canvas resizing.
+        id means id of corresponding html element*/
+        class GameControlGroup{
+            constructor(id, top, left){
+                this.id = id;
+                this.top = top;
+                this.left = left
+            }
+            static scaleObjects(objects, scaleRatio){
+                for (let i = 0; i < objects.length;i++){
+                    objects[i].scale(scaleRatio);
+                }
+            }
+            scale(scaleRatio){
+                const newTop = this.top * scaleRatio;
+                const newLeft = this.left * scaleRatio;
+                htmlElement = document.getElementById(this.id);
+                htmlElement.style.top = newTop;
+                htmlElement.style.left = newLeft;
+            }
+        }
         var resultGameHandler;
 
         function initGame(){
@@ -114,11 +136,12 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
             //variables store the same width and height as CSS #gameCanvas
             const initialCanvasWidth = 867;
             const initialCanvasHeight = 493;
-            const initialGameControlTopPos = 425;
-            const initialGameSliderTopPos = 367;
-            const initialGameControlActionsLeft =100;
-            const initialGameControlBetLeft = 200;
-            const initialGameControlSliderLeft = 270;
+            /*creating objects refering to groups of buttons and their left and top coordinates in absolute display.
+            This object allows easily scale groups of buttons as canvas resizing*/
+            gameControlObjects = [];
+            gameControlObjects.push(GameControlGroup("gameControlActions", 425, 100));
+            gameControlObjects.push(GameControlGroup("gameControlBet", 425, 200));
+            gameControlObjects.push(GameControlGroup("gameControlSlider", 367, 270));
             function resultOfRound(playerLose)
             {
                      roundIsOngoing =false;
@@ -206,21 +229,7 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 console.log(canvasWidth);
                 console.log(initialCanvasWidth);
                 canvasScaleRatio = canvasWidth/initialCanvasWidth;
-                controlElements = document.getElementsByClassName("gameControl");
-                const gameControlActions = document.getElementById("gameControlActions");
-                const gameControlBet = document.getElementById("gameControlBet");
-                const gameControlSlider = document.getElementById("gameControlSlider");
-                const topPosition = initialGameControlTopPos * canvasScaleRatio;
-                const sliderTopPosition = initialGameSliderTopPos * canvasScaleRatio;
-                const controlActionsLeftPosition = initialGameControlActionsLeft * canvasScaleRatio;
-                const controBetLeftPosition = initialGameControlBetLeft * canvasScaleRatio;
-                const sliderLeftPosition = initialGameControlSliderLeft * canvasScaleRatio;
-                gameControlActions.style.top = `${topPosition}px`;
-                gameControlActions.style.left = `${controlActionsLeftPosition}px`;
-                gameControlBet.style.top = `${topPosition}px`;
-                gameControlBet.style.left = `${controBetLeftPosition}px`;
-                gameControlSlider.style.top = `${sliderTopPosition}px`;
-                gameControlSlider.style.left = `${sliderLeftPosition}px`;
+                GameControlGroup.scaleObjects(gameControlObjects, canvasScaleRatio);
                 ctx = canvasEl.getContext("2d");
                 ctx.scale(canvasScaleRatio, canvasScaleRatio);
                 canvasEl.style.width = `${canvasWidth}px`;

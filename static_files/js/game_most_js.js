@@ -202,13 +202,16 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 console.log(initialCanvasWidth);
                 canvasScaleRatio = canvasWidth/initialCanvasWidth;
                 controlElements = document.getElementsByClassName("gameControl");
+                const gameControlActions = document.getElementById("gameControlActions");
+                const gameControlBet = document.getElementById("gameControlBet");
+                const gameControlSlider = document.getElementById("gameControlSlider");
                 const initialGameControlTopPos = 425;
-
-                console.log(canvasScaleRatio);
-                for (let i = 0;i < controlElements.length;i++){
-                    const topPosition = initialGameControlTopPos * canvasScaleRatio;
-                    controlElements[i].style.top = `${topPosition}px`;
-                }
+                const initialGameSliderTopPos = 367;
+                const topPosition = initialGameControlTopPos * canvasScaleRatio;
+                const sliderTopPosition = initialGameSliderTopPos * canvasScaleRatio;
+                gameControlActions.style.top = `${topPosition}px`;
+                gameControlBet.style.top = `${topPosition}px`;
+                gameControlSlider.style.top = `${sliderTopPosition}px`;
                 ctx = canvasEl.getContext("2d");
                 ctx.scale(canvasScaleRatio, canvasScaleRatio);
                 canvasEl.style.width = `${canvasWidth}px`;

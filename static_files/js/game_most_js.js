@@ -139,9 +139,9 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
             /*creating objects refering to groups of buttons and their left and top coordinates in absolute display.
             This object allows easily scale groups of buttons as canvas resizing*/
             gameControlObjects = [];
-            gameControlObjects.push(GameControlGroup("gameControlActions", 425, 100));
-            gameControlObjects.push(GameControlGroup("gameControlBet", 425, 200));
-            gameControlObjects.push(GameControlGroup("gameControlSlider", 367, 270));
+            gameControlObjects.push(new GameControlGroup("gameControlActions", 425, 100));
+            gameControlObjects.push(new GameControlGroup("gameControlBet", 425, 200));
+            gameControlObjects.push(new GameControlGroup("gameControlSlider", 367, 270));
             function resultOfRound(playerLose)
             {
                      roundIsOngoing =false;

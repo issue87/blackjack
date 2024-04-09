@@ -74,31 +74,38 @@ height:493px;
 
 #b_hit{
 background-image:url('../images/buttonHit.png');
+background-size: cover;
 width:152px;
 }
 #b_stand{
 background-image:url('../images/buttonStand.png');
+background-size: cover;
 width:151px;
 }
 #b_double{
 background-image:url('../images/buttonDouble2.png');
+background-size: cover;
 width:186px;
 }
 #b_rebet{
 background-image:url('../images/buttonRebet.png');
+background-size: cover;
 width:148px;
 
 }
 #b_split{
 background-image:url('../images/buttonSplit.png');
+background-size: cover;
 width:153px;
 }
 #b_bet{
 background-image:url('../images/buttonBet.png');
+background-size: cover;
 width:146px;
 }
 #b_deal{
 background-image:url('../images/buttonDeal.png');
+background-size: cover;
 width:146px;
 }
 #gameControlActions{

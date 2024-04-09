@@ -156,14 +156,14 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
             gameControlObjects.push(new GameControlGroup("gameControlActions", 425, 100, 867, 68));
             gameControlObjects.push(new GameControlGroup("gameControlBet", 425, 200, 867, 68));
             gameControlObjects.push(new GameControlGroup("gameControlSlider", 367, 270, 867, 48));
-            gameControlObjects.push(new GameControlGroup("b_hit", , , 152, 50));
-            gameControlObjects.push(new GameControlGroup("b_stand", , , 151, 50));
-            gameControlObjects.push(new GameControlGroup("b_double", , , 186, 50));
-            gameControlObjects.push(new GameControlGroup("b_rebet", , , 148, 50));
-            gameControlObjects.push(new GameControlGroup("b_split", , , 153, 50));
-            gameControlObjects.push(new GameControlGroup("b_bet", , , 146, 50));
-            gameControlObjects.push(new GameControlGroup("b_deal", , , 146, 50));
-            gameControlObjects.push(new GameControlGroup("sliderButton", , , 308, 48));
+            gameControlObjects.push(new GameControlGroup("b_hit", undefined, undefined, 152, 50));
+            gameControlObjects.push(new GameControlGroup("b_stand", undefined, undefined, 151, 50));
+            gameControlObjects.push(new GameControlGroup("b_double", undefined, undefined, 186, 50));
+            gameControlObjects.push(new GameControlGroup("b_rebet", undefined, undefined, 148, 50));
+            gameControlObjects.push(new GameControlGroup("b_split", undefined, undefined, 153, 50));
+            gameControlObjects.push(new GameControlGroup("b_bet", undefined, undefined, 146, 50));
+            gameControlObjects.push(new GameControlGroup("b_deal", undefined, undefined, 146, 50));
+            gameControlObjects.push(new GameControlGroup("sliderButton", undefined, undefined, 308, 48));
             function resultOfRound(playerLose)
             {
                      roundIsOngoing =false;

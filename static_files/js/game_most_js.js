@@ -95,10 +95,12 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
         /*This object allows easily scale groups of buttons as canvas resizing.
         id means id of corresponding html element*/
         class GameControlGroup{
-            constructor(id, top, left){
+            constructor(id, top, left, width, height){
                 this.id = id;
                 this.top = top;
-                this.left = left
+                this.left = left;
+                this.width = width;
+                this.height = height;
             }
             static scaleObjects(objects, scaleRatio){
                 for (let i = 0; i < objects.length;i++){
@@ -108,9 +110,13 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
             scale(scaleRatio){
                 const newTop = this.top * scaleRatio;
                 const newLeft = this.left * scaleRatio;
+                const newWidth = this.width * scaleRatio;
+                const newHeight = this.height * scaleRatio;
                 const htmlElement = document.getElementById(this.id);
                 htmlElement.style.top = `${newTop}px`;
                 htmlElement.style.left = `${newLeft}px`;
+                htmlElement.style.width = `${newWidth}px`;
+                htmlElement.style.height = `${newHeight}px`;
             }
         }
         var resultGameHandler;
@@ -139,9 +145,9 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
             /*creating objects refering to groups of buttons and their left and top coordinates in absolute display.
             This object allows easily scale groups of buttons as canvas resizing*/
             gameControlObjects = [];
-            gameControlObjects.push(new GameControlGroup("gameControlActions", 425, 100));
-            gameControlObjects.push(new GameControlGroup("gameControlBet", 425, 200));
-            gameControlObjects.push(new GameControlGroup("gameControlSlider", 367, 270));
+            gameControlObjects.push(new GameControlGroup("gameControlActions", 425, 100, 867, 68));
+            gameControlObjects.push(new GameControlGroup("gameControlBet", 425, 200, 867, 68));
+            gameControlObjects.push(new GameControlGroup("gameControlSlider", 367, 270, 867, 48));
             function resultOfRound(playerLose)
             {
                      roundIsOngoing =false;

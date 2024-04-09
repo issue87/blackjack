@@ -113,10 +113,18 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 const newWidth = this.width * scaleRatio;
                 const newHeight = this.height * scaleRatio;
                 const htmlElement = document.getElementById(this.id);
-                htmlElement.style.top = `${newTop}px`;
-                htmlElement.style.left = `${newLeft}px`;
-                htmlElement.style.width = `${newWidth}px`;
-                htmlElement.style.height = `${newHeight}px`;
+                if (this.top !== undefined){
+                    htmlElement.style.top = `${newTop}px`;
+                };
+                if (this.left!== undefined){
+                    htmlElement.style.left = `${newLeft}px`;
+                };
+                if (this.width !== undefined){
+                    htmlElement.style.width = `${newWidth}px`;
+                };
+                if (this.height !== undefined){
+                    htmlElement.style.height = `${newHeight}px`;
+                };
             }
         }
         var resultGameHandler;
@@ -148,6 +156,14 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
             gameControlObjects.push(new GameControlGroup("gameControlActions", 425, 100, 867, 68));
             gameControlObjects.push(new GameControlGroup("gameControlBet", 425, 200, 867, 68));
             gameControlObjects.push(new GameControlGroup("gameControlSlider", 367, 270, 867, 48));
+            gameControlObjects.push(new GameControlGroup("b_hit", , , 152, 50));
+            gameControlObjects.push(new GameControlGroup("b_stand", , , 151, 50));
+            gameControlObjects.push(new GameControlGroup("b_double", , , 186, 50));
+            gameControlObjects.push(new GameControlGroup("b_rebet", , , 148, 50));
+            gameControlObjects.push(new GameControlGroup("b_split", , , 153, 50));
+            gameControlObjects.push(new GameControlGroup("b_bet", , , 146, 50));
+            gameControlObjects.push(new GameControlGroup("b_deal", , , 146, 50));
+            gameControlObjects.push(new GameControlGroup("sliderButton", , , 308, 48));
             function resultOfRound(playerLose)
             {
                      roundIsOngoing =false;

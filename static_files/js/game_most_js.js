@@ -164,6 +164,7 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
             gameControlObjects.push(new GameControlGroup("b_bet", undefined, undefined, 146, 50));
             gameControlObjects.push(new GameControlGroup("b_deal", undefined, undefined, 146, 50));
             gameControlObjects.push(new GameControlGroup("sliderButton", undefined, undefined, 308, 48));
+            gameControlObjects.push(new GameControlGroup("sliderRange", undefined, undefined, 96, 48));
             function resultOfRound(playerLose)
             {
                      roundIsOngoing =false;

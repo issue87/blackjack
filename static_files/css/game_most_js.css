@@ -31,7 +31,7 @@ appearance: none;
 width: 96px; /* Set a specific slider handle width */
 height: 48px; /* Slider handle height */
 background-image: url("../images/SliderButton6.png"); /* Green background */
-background-size:96px 48px;
+background-size:cover;
 cursor: pointer; /* Cursor on hover */
 }
 
@@ -39,6 +39,7 @@ cursor: pointer; /* Cursor on hover */
 width: 96px; /* Set a specific slider handle width */
 height: 48px; /* Slider handle height */
 background-image: url("../images/SliderButton6.png"); /* Green background */
+background-size:cover;
 cursor: pointer; /* Cursor on hover */
 }
 #info_panel{

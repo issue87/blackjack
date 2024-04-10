@@ -21,6 +21,7 @@ width: 308px; /* Full-width */
 height: 48px; /* Specified height */
 outline: none; /* Remove outline */
 background:none;
+background-size:cover;
 /* Set transparency (for mouse-over effects on hover) */
 -webkit-transition: .2s; /* 0.2 seconds transition on hover */
 transition: opacity .2s;

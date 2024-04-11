@@ -29,8 +29,8 @@ transition: opacity .2s;
 .slider::-webkit-slider-thumb {
 -webkit-appearance: none; /* Override default look */
 appearance: none;
-width: 31.17%; /* Set a specific slider handle width */
-height: 100%; /* Slider handle height */
+width: 96px; /* Set a specific slider handle width */
+height: 48px; /* Slider handle height */
 background-image: url("../images/SliderButton6.png"); /* Green background */
 background-size:cover;
 cursor: pointer; /* Cursor on hover */

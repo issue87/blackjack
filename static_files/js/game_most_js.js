@@ -112,7 +112,7 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 const newLeft = this.left * scaleRatio;
                 const newWidth = this.width * scaleRatio;
                 const newHeight = this.height * scaleRatio;
-                const htmlElement = document.getElementById(this.id);
+                const htmlElement = document.querySelector(this.id);
                 if (this.top !== undefined){
                     htmlElement.style.top = `${newTop}px`;
                 };
@@ -153,18 +153,19 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
             /*creating objects refering to groups of buttons and their left and top coordinates in absolute display.
             This object allows easily scale groups of buttons as canvas resizing*/
             gameControlObjects = [];
-            gameControlObjects.push(new GameControlGroup("gameControlActions", 425, 100, 867, 68));
-            gameControlObjects.push(new GameControlGroup("gameControlBet", 425, 200, 867, 68));
-            gameControlObjects.push(new GameControlGroup("gameControlSlider", 367, 270, 867, 48));
-            gameControlObjects.push(new GameControlGroup("b_hit", undefined, undefined, 152, 50));
-            gameControlObjects.push(new GameControlGroup("b_stand", undefined, undefined, 151, 50));
-            gameControlObjects.push(new GameControlGroup("b_double", undefined, undefined, 186, 50));
-            gameControlObjects.push(new GameControlGroup("b_rebet", undefined, undefined, 148, 50));
-            gameControlObjects.push(new GameControlGroup("b_split", undefined, undefined, 153, 50));
-            gameControlObjects.push(new GameControlGroup("b_bet", undefined, undefined, 146, 50));
-            gameControlObjects.push(new GameControlGroup("b_deal", undefined, undefined, 146, 50));
-            gameControlObjects.push(new GameControlGroup("sliderButton", undefined, undefined, 308, 48));
-            gameControlObjects.push(new GameControlGroup("sliderRange", undefined, undefined, 308, 48));
+            gameControlObjects.push(new GameControlGroup("#gameControlActions", 425, 100, 867, 68));
+            gameControlObjects.push(new GameControlGroup("#gameControlBet", 425, 200, 867, 68));
+            gameControlObjects.push(new GameControlGroup("#gameControlSlider", 367, 270, 867, 48));
+            gameControlObjects.push(new GameControlGroup("#b_hit", undefined, undefined, 152, 50));
+            gameControlObjects.push(new GameControlGroup("#b_stand", undefined, undefined, 151, 50));
+            gameControlObjects.push(new GameControlGroup("#b_double", undefined, undefined, 186, 50));
+            gameControlObjects.push(new GameControlGroup("#b_rebet", undefined, undefined, 148, 50));
+            gameControlObjects.push(new GameControlGroup("#b_split", undefined, undefined, 153, 50));
+            gameControlObjects.push(new GameControlGroup("#b_bet", undefined, undefined, 146, 50));
+            gameControlObjects.push(new GameControlGroup("#b_deal", undefined, undefined, 146, 50));
+            gameControlObjects.push(new GameControlGroup("#sliderButton", undefined, undefined, 308, 48));
+            gameControlObjects.push(new GameControlGroup("#sliderRange", undefined, undefined, 308, 48));
+            gameControlObjects.push(new GameControlGroup(".slider::-webkit-slider-thumb", undefined, undefined, 96, 48));
             function resultOfRound(playerLose)
             {
                      roundIsOngoing =false;

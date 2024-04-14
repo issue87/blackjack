@@ -253,7 +253,7 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 };
                 const canvasScaleRatio = canvasWidth/initialCanvasWidth;
                 GameControlGroup.scaleObjects(gameControlObjects, canvasScaleRatio);
-                const rangeElement = document.getElementById(sliderRange);
+                const rangeElement = document.getElementById("sliderRange");
                 const newRangeThumbWidth = initialRangeThumbWidth * canvasScaleRatio;
                 const newRangeThumbHeight = initialRangeThumbHeight * canvasScaleRatio;
                 rangeElement.style.setProperty('--sliderThumbWidth', `${newRangeThumbWidth}px`);

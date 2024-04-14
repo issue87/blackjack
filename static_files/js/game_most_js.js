@@ -244,16 +244,18 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 const canvasEl = document.getElementById('gameCanvas');
                 let canvasWidth;
                 let canvasHeight;
-                if (window.innerWidth/initialCanvasWidth < window.innerHeight/initialCanvasHeight){
-                    canvasWidth = window.innerWidth;
-                    canvasHeight = (window.innerWidth/initialCanvasWidth) * initialCanvasHeight;
+                if (screen.width/initialCanvasWidth < screen.height/initialCanvasHeight){
+                    //canvasWidth = window.innerWidth;
+                    canvasWidth = screen.width;
+                    //canvasHeight = (window.innerWidth/initialCanvasWidth) * initialCanvasHeight;
+                    canvasHeight = (screen.width/initialCanvasWidth) * initialCanvasHeight;
                 }else{
-                    canvasHeight = window.innerHeight;
-                    canvasWidth = (window.innerHeight/initialCanvasHeight) * initialCanvasWidth;
+                    //canvasHeight = window.innerHeight;
+                    canvasHeight = screen.height;
+                    //canvasWidth = (window.innerHeight/initialCanvasHeight) * initialCanvasWidth;
+                    canvasWidth = (screen.height/initialCanvasHeight) * initialCanvasWidth;
                 };
                 const devicePixelRatio = window.devicePixelRatio;
-                canvasWidth /= devicePixelRatio;
-                canvasHeight /= devicePixelRatio;
                 const canvasScaleRatio = canvasWidth/initialCanvasWidth;
                 GameControlGroup.scaleObjects(gameControlObjects, canvasScaleRatio);
                 const rangeElement = document.getElementById("sliderRange");

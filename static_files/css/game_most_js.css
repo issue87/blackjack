@@ -16,6 +16,8 @@ display:inline-block;
 position:relative;
 }
 .slider {
+--sliderThumbWidth: 96px;
+--sliderThumbHeight: 48px; 
 -webkit-appearance: none;
 width: 308px; /* Full-width */
 height: 48px; /* Specified height */
@@ -29,16 +31,16 @@ transition: opacity .2s;
 .slider::-webkit-slider-thumb {
 -webkit-appearance: none; /* Override default look */
 appearance: none;
-width: 96px; /* Set a specific slider handle width */
-height: 48px; /* Slider handle height */
+width: var(--sliderThumbWidth); /* Set a specific slider handle width */
+height: var(--sliderThumbHeight); /* Slider handle height */
 background-image: url("../images/SliderButton6.png"); /* Green background */
 background-size:cover;
 cursor: pointer; /* Cursor on hover */
 }
 
 .slider::-moz-range-thumb {
-width: 96px; /* Set a specific slider handle width */
-height: 48px; /* Slider handle height */
+width: var(--sliderThumbWidth); /* Set a specific slider handle width */
+height: var(--sliderThumbHeight); /* Slider handle height */
 background-image: url("../images/SliderButton6.png"); /* Green background */
 background-size:cover;
 cursor: pointer; /* Cursor on hover */

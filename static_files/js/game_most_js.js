@@ -150,6 +150,8 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
             //variables store the same width and height as CSS #gameCanvas
             const initialCanvasWidth = 867;
             const initialCanvasHeight = 493;
+            const initialRangeThumbWidth = 96;
+            const initialRangeThumbHeight = 48;
             /*creating objects refering to groups of buttons and their left and top coordinates in absolute display.
             This object allows easily scale groups of buttons as canvas resizing*/
             gameControlObjects = [];
@@ -165,7 +167,6 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
             gameControlObjects.push(new GameControlGroup("#b_deal", undefined, undefined, 146, 50));
             gameControlObjects.push(new GameControlGroup("#sliderButton", undefined, undefined, 308, 48));
             gameControlObjects.push(new GameControlGroup("#sliderRange", undefined, undefined, 308, 48));
-            gameControlObjects.push(new GameControlGroup(".slider::-webkit-slider-thumb", undefined, undefined, 96, 48));
             function resultOfRound(playerLose)
             {
                      roundIsOngoing =false;
@@ -250,10 +251,13 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                     canvasHeight = window.innerHeight;
                     canvasWidth = (window.innerHeight/initialCanvasHeight) * initialCanvasWidth;
                 };
-                console.log(canvasWidth);
-                console.log(initialCanvasWidth);
-                canvasScaleRatio = canvasWidth/initialCanvasWidth;
+                const canvasScaleRatio = canvasWidth/initialCanvasWidth;
                 GameControlGroup.scaleObjects(gameControlObjects, canvasScaleRatio);
+                const rangeElement = document.getElementById(sliderRange);
+                const newRangeThumbWidth = initialRangeThumbWidth * canvasScaleRatio;
+                const newRangeThumbHeight = initialRangeThumbHeight * canvasScaleRatio;
+                rangeElement.style.setProperty('--sliderThumbWidth', `${newRangeThumbWidth}px`);
+                rangeElement.style.setProperty('--sliderThumbHeight', `${newRangeThumbHeight}px`);
                 ctx = canvasEl.getContext("2d");
                 ctx.scale(canvasScaleRatio, canvasScaleRatio);
                 canvasEl.style.width = `${canvasWidth}px`;

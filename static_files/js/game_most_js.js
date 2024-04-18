@@ -245,15 +245,15 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 let canvasWidth;
                 let canvasHeight;
                 if (screen.width/initialCanvasWidth < screen.height/initialCanvasHeight){
-                    //canvasWidth = window.innerWidth;
-                    canvasWidth = screen.width;
-                    //canvasHeight = (window.innerWidth/initialCanvasWidth) * initialCanvasHeight;
-                    canvasHeight = (screen.width/initialCanvasWidth) * initialCanvasHeight;
+                    canvasWidth = window.innerWidth;
+                    //canvasWidth = screen.width;
+                    canvasHeight = (window.innerWidth/initialCanvasWidth) * initialCanvasHeight;
+                    //canvasHeight = (screen.width/initialCanvasWidth) * initialCanvasHeight;
                 }else{
-                    //canvasHeight = window.innerHeight;
-                    canvasHeight = screen.height;
-                    //canvasWidth = (window.innerHeight/initialCanvasHeight) * initialCanvasWidth;
-                    canvasWidth = (screen.height/initialCanvasHeight) * initialCanvasWidth;
+                    canvasHeight = window.innerHeight;
+                    //canvasHeight = screen.height;
+                    canvasWidth = (window.innerHeight/initialCanvasHeight) * initialCanvasWidth;
+                    //canvasWidth = (screen.height/initialCanvasHeight) * initialCanvasWidth;
                 };
                 const devicePixelRatio = window.devicePixelRatio;
                 console.log("devicePixelRatio");

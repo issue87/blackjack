@@ -258,6 +258,9 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 const devicePixelRatio = window.devicePixelRatio;
                 console.log(`screen.width: ${screen.width}`);
                 console.log(`screen.orientation: ${screen.orientation.type}`);
+                //adjusting width and height of the canvas with user device's scale of the page
+                canvasWidth /= window.visualViewport.scale;
+                canvasHeight /= window.visualViewport.scale;
                 const canvasScaleRatio = canvasWidth/initialCanvasWidth;
                 console.log(`canvasScaleRatio ${canvasScaleRatio}`);
                 console.log(`visualViewport scale: ${window.visualViewport.scale}`);

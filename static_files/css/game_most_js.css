@@ -131,4 +131,5 @@ left:270px;
     float: right;
 }
 .userName{background-color: #f0f8ff;
-          color:#000000}
+          color:#000000;
+          position: relative}

@@ -139,3 +139,5 @@ left:270px;
 .userName{background-color: #f0f8ff;
           color:#000000;
           position: relative}
+.menuItem{visibility: hidden;
+           display:block}

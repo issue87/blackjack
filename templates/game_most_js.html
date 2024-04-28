@@ -23,23 +23,23 @@
                          </span>
                          <div class="pos_center">
                               <button type="button" class="menuButton">
-                                   menu
+                                   Menu
                               </button>
-                                   <button type="button">Action</button>
-                                   <button type="button">Another action</button>
-                                   <button type="button">Something else here</button>
-                                   {% if not vk %}
-                                        <form action ="/logout" method=GET>
-                                        <button type="submit">
-                                             Logout
-                                        </button>
-                                        </form>
+                              <button type="button" class="menuItem">Log in</button>
+                              <button type="button" class="menuItem">Sign up</button>
+                              <button type="button" class="menuItem">Rating</button>
+                              {% if not vk %}
+                                   <form action ="/logout" method=GET>
+                                   <button class="menuItem" type="submit">
+                                        Logout
+                                   </button>
+                                   </form>
                               {% else %}
-                                        <form action ="/vk" method=GET>
-                                        <button type="submit">
-                                             Back
-                                        </button>
-                                        </form>
+                                   <form action ="/vk" method=GET>
+                                   <button class="menuItem" type="submit">
+                                        Back
+                                   </button>
+                                   </form>
                               {% endif %}
                          </div>
                     </div>

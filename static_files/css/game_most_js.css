@@ -141,3 +141,6 @@ left:270px;
           position: relative}
 .menuItem{visibility: hidden;
            display:block}
+#userName{
+    vertical-align: top;
+}

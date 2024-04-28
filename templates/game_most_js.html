@@ -18,25 +18,25 @@
        <div id = "gameContainer">
              <canvas id="gameCanvas">“Your browser does not support HTML5 Canvas.”</canvas>
                     <div class ="menuControl">
-                         <span>
+                         <span id ="userName">
                               {{login}}&nbsp;&nbsp;
                          </span>
                          <div class="pos_center">
-                              <button type="button" class="menuButton">
+                              <button type="button" class="menuButton" id="menuButton">
                                    Menu
                               </button>
-                              <button type="button" class="menuItem">Log in</button>
-                              <button type="button" class="menuItem">Sign up</button>
-                              <button type="button" class="menuItem">Rating</button>
+                              <button type="button" class="menuItem" id="logInButton">Log in</button>
+                              <button type="button" class="menuItem" id="signUpButton">Sign up</button>
+                              <button type="button" class="menuItem" id="ratingButton">Rating</button>
                               {% if not vk %}
                                    <form action ="/logout" method=GET>
-                                   <button class="menuItem" type="submit">
+                                   <button class="menuItem" type="submit" id="logOutButton">
                                         Logout
                                    </button>
                                    </form>
                               {% else %}
                                    <form action ="/vk" method=GET>
-                                   <button class="menuItem" type="submit">
+                                   <button class="menuItem" type="submit" id="backButton">
                                         Back
                                    </button>
                                    </form>

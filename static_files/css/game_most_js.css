@@ -64,7 +64,13 @@ z-index:100;
 top:425px;
 width:867px;
 height:68px;
-
+}
+.menuControl{
+    position:absolute;
+    z-index:100;
+    top:0px;
+    left:750px;
+    width:117px;
 }
 #sliderButton{
 width:308px;

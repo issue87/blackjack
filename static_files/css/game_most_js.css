@@ -126,3 +126,7 @@ top:367px;
 height:48px;
 left:270px;
 }
+.dropdown,.userName{
+    z-index: 100;
+    float: right;
+}

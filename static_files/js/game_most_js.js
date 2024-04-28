@@ -145,6 +145,7 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
             var sliderRange = document.getElementById("sliderRange");
             var betInSlider = 1;
             var betInGame = 1;
+            let droppedDown = false;
             var resultOfTheRoundStr = "";
             const menuButton = document.getElementById("menuButton");
             const canvasEl = document.getElementById('gameCanvas');
@@ -215,10 +216,12 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
             function dropDown(){
                const items = document.getElementsByClassName("menuItem");
                for (let i = 0; i < items.length;i++){
-                    console.log(items[i].style.visibility);
-                    if (items[i].style.visibility == "hidden"){
-                    console.log("worked out");
-                    };
+                    if (droppedDown){
+                        items[i].style.visibility = "hidden";
+                    }else{
+                        items[i].style.visibility = "visible";
+                    }
+                    ;
                };
             };
             function stand()

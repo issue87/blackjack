@@ -25,28 +25,22 @@
                               <button type="button" class="menuButton">
                                    menu
                               </button>
-                              <ul class="dropDownMenu">
-                                   <li><button type="button">Action</button></li>
-                                   <li><button type="button">Another action</button></li>
-                                   <li><button type="button">Something else here</button></li>
+                                   <button type="button">Action</button>
+                                   <button type="button">Another action</button>
+                                   <button type="button">Something else here</button>
                                    {% if not vk %}
-                                   <li>
                                         <form action ="/logout" method=GET>
                                         <button type="submit">
                                              Logout
                                         </button>
                                         </form>
-                                   </li>
                               {% else %}
-                                   <li>
                                         <form action ="/vk" method=GET>
                                         <button type="submit">
                                              Back
                                         </button>
                                         </form>
-                                   </li>
                               {% endif %}
-                              </ul>
                          </div>
                     </div>
              <div id = "gameControlActions" class="gameControl">

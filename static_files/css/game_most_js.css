@@ -136,12 +136,11 @@ left:270px;
     z-index: 100;
     float: right;
 }
-.userName{background-color: #f0f8ff;
-          color:#000000;
-          position: relative}
 .menuItem{visibility: hidden;
            display:block}
 #userName{
+    background-color: #f0f8ff;
+    color:#000000;
     vertical-align: top;
     display: inline-block;
     width:48%;

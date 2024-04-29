@@ -143,4 +143,10 @@ left:270px;
            display:block}
 #userName{
     vertical-align: top;
+    display: inline-block;
+    width:50%;
+}
+.menuButtons{
+    display: inline-block;
+    width:50%;
 }

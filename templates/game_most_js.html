@@ -17,32 +17,30 @@
     <body>
        <div id = "gameContainer">
              <canvas id="gameCanvas">“Your browser does not support HTML5 Canvas.”</canvas>
-                    <div class ="menuControl">
                          <div id ="userName">
                               {{login}}&nbsp;&nbsp;
                          </div>
-                         <div class="menuButtons">
-                              <button type="button" class="menuButton" id="menuButton">
-                                   Menu
-                              </button>
-                              <button type="button" class="menuItem" id="logInButton">Log in</button>
-                              <button type="button" class="menuItem" id="signUpButton">Sign up</button>
-                              <button type="button" class="menuItem" id="ratingButton">Rating</button>
-                              {% if not vk %}
-                                   <form action ="/logout" method=GET>
-                                   <button class="menuItem" type="submit" id="logOutButton">
-                                        Logout
+                         <div class ="menuControl">
+                                   <button type="button" class="menuButton" id="menuButton">
+                                        Menu
                                    </button>
-                                   </form>
-                              {% else %}
-                                   <form action ="/vk" method=GET>
-                                   <button class="menuItem" type="submit" id="backButton">
-                                        Back
-                                   </button>
-                                   </form>
-                              {% endif %}
+                                   <button type="button" class="menuItem" id="logInButton">Log in</button>
+                                   <button type="button" class="menuItem" id="signUpButton">Sign up</button>
+                                   <button type="button" class="menuItem" id="ratingButton">Rating</button>
+                                   {% if not vk %}
+                                        <form action ="/logout" method=GET>
+                                        <button class="menuItem" type="submit" id="logOutButton">
+                                             Logout
+                                        </button>
+                                        </form>
+                                   {% else %}
+                                        <form action ="/vk" method=GET>
+                                        <button class="menuItem" type="submit" id="backButton">
+                                             Back
+                                        </button>
+                                        </form>
+                                   {% endif %}
                          </div>
-                    </div>
              <div id = "gameControlActions" class="gameControl">
                    <div id="button_hit" class ="pos_center">
                         <button id = "b_hit" class = "button_style"

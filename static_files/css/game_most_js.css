@@ -141,9 +141,9 @@ left:270px;
 #userName{
     background-color: #f0f8ff;
     color:#000000;
-    vertical-align: top;
-    display: inline-block;
-    width:48%;
+    position: absolute;
+    left:10px;
+    top: 50px;
 }
 .menuButtons{
     display: inline-block;

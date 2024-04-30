@@ -140,6 +140,8 @@ left:270px;
            display:block}
 #userName{
     z-index: 100;
+    display: inline-block;
+    width:30px;
     background-color: #f0f8ff;
     color:#000000;
     position: absolute;

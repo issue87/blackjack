@@ -139,11 +139,12 @@ left:270px;
 .menuItem{visibility: hidden;
            display:block}
 #userName{
+    z-index: 100;
     background-color: #f0f8ff;
     color:#000000;
     position: absolute;
-    left:10px;
-    top: 50px;
+    left:6px;
+    top: 45px;
 }
 .menuButtons{
     display: inline-block;

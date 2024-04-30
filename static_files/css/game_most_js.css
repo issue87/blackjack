@@ -149,3 +149,6 @@ left:270px;
     display: inline-block;
     width:48%;
 }
+.menuItem, .menuButton, #userName{
+    font-size: 3vw;
+}

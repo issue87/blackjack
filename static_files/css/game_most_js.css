@@ -153,6 +153,7 @@ left:270px;
 }
 #userName:hover{
     overflow:visible;
+    text-overflow: initial;
 }
 .menuButtons{
     display: inline-block;

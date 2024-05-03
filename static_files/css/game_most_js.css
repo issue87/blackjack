@@ -142,11 +142,12 @@ left:270px;
     z-index: 100;
     display: inline-block;
     width:120px;
-    background-color: #543308;
-    color:#d5ec96;
+    background-color: #3b1c0b;
+    color:#eec95c;
     position: absolute;
     left:12px;
     top: 90px;
+    text-align: center;
 }
 .menuButtons{
     display: inline-block;
@@ -155,4 +156,9 @@ left:270px;
 
 .menuItem, .menuButton, #userName{
     font-size: 14px;
+}
+@media screen and (min-width:750px){
+    .menuItem, .menuButton, #userName{
+        font-size: 16px;
+    }
 }

@@ -85,6 +85,7 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(4096))
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+
 class UserData(db.Model):
     __tablename__ = "users"
     login = db.Column(db.String(10))
@@ -95,28 +96,39 @@ class UserData(db.Model):
     money = db.Column(db.Integer)
     comments = db.relationship("Comment",backref = "author",lazy = "dynamic")
     vk =db.Column(db.Boolean)
+
 def save_result_in_database(player_won,bet):
-    record_n = db.session.query(UserData).filter(UserData.login==session['username'])[0]
-    record_n.loses += int(not player_won)
-    record_n.wines += int(player_won)
-    record_n.money += bet*((player_won*2)-1)
-    db.session.commit()
+    if session['logged_in']:
+        record_n = db.session.query(UserData).filter(UserData.login==session['username'])[0]
+        record_n.loses += int(not player_won)
+        record_n.wines += int(player_won)
+        record_n.money += bet*((player_won*2)-1)
+        db.session.commit()
+    else:
+        session['wins'] = int(player_won)
+        session['loses'] = int(not player_won)
+        session['money'] = bet*((player_won*2)-1)
+
 def get_user_data(login):
     user_records = db.session.query(UserData).filter(UserData.login ==  login).all()
     if len(user_records) > 0:
         userInfo = user_records[0]
         return userInfo
     return False
+
 def init_user_in_game(login):
     session['username'] = login
     session['logged_in'] = True
+
 def sort_by_differ(user):
     return(int(user.password)*(-1))
+
 def register_user(login, password,vk):
     password_hash = generate_password_hash(password)
     user_info = UserData(login = login,password = password_hash,wines = 0,loses = 0,money = 100,vk=vk)
     db.session.add(user_info)
     db.session.commit()
+
 def get_comments_with_author(comments):
     comments_and_author = []
 
@@ -127,12 +139,14 @@ def get_comments_with_author(comments):
             login = comment.author.login
         comments_and_author.append([login,comment.content])
     return comments_and_author
+
 def addMoneyToUsers():
     users = UserData.query.all()
     for user in users:
         user.money += 100
     db.session.commit()
-@app.route('/', methods = ["GET","POST"])
+
+@app.route('/login', methods = ["GET","POST"])
 def login():
 
     if request.method == "GET":
@@ -191,19 +205,33 @@ def registration():
 def logout():
     session['logged_in'] = False
     return redirect(url_for('login'))
-@app.route('/blackjack', methods = ["GET","POST"])
+@app.route('/', methods = ["GET","POST"])
 def index():
-    if session['logged_in'] == False:
-        return redirect(url_for('login'))
+    #session['logged_in'] True or False
     if request.method == "GET":
-        user_data = get_user_data(session['username'])
+        vk = False
+        if session['logged_in']:
+            user_data = get_user_data(session['username'])
+            user_money = user_data.money
+            vk = int(user_data.vk)
+            player_wins = user_data.wines
+            dealer_wins = user_data.loses
+        else:
+            if 'money' not in session:
+                session['money'] = 100
+                session['wins'] = 0
+                session['loses'] = 0
+            user_money = session['money']
+            session['username'] = "guest"
+            player_wins = session['wins']
+            dealer_wins = session['loses']
         return render_template("game_most_js.html",
                                           comments = get_comments_with_author(Comment.query.all()),
-                                          player_wins = user_data.wines,
-                                          dealer_wins = user_data.loses,
-                                          money = user_data.money,
+                                          player_wins = player_wins,
+                                          dealer_wins = dealer_wins,
+                                          money = user_money,
                                           login = session['username'],
-                                          vk = int(user_data.vk)
+                                          vk = vk
                                           )
     author_id = get_user_data(session['username']).id
     comment = Comment(content = request.form["contents"],user_id = author_id)

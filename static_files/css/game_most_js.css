@@ -155,13 +155,11 @@ left:270px;
     overflow:visible;
     text-overflow: initial;
 }
-.menuButtons{
-    display: inline-block;
-    width:48%;
-}
 
 .menuItem, .menuButton, #userName{
     font-size: 14px;
+    background-color: #3b1c0b;
+    color:#eec95c;
 }
 @media screen and (min-width:750px){
     .menuItem, .menuButton, #userName{

@@ -231,7 +231,8 @@ def index():
                                           dealer_wins = dealer_wins,
                                           money = user_money,
                                           login = session['username'],
-                                          vk = vk
+                                          vk = vk,
+                                          logged_in = session['logged_in']
                                           )
     author_id = get_user_data(session['username']).id
     comment = Comment(content = request.form["contents"],user_id = author_id)

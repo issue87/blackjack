@@ -210,6 +210,8 @@ def index():
     #session['logged_in'] True or False
     if request.method == "GET":
         vk = False
+        if 'logged_in' not in session:
+            session['logged_in'] = False
         if session['logged_in']:
             user_data = get_user_data(session['username'])
             user_money = user_data.money

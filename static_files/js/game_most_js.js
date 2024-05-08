@@ -296,7 +296,7 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 const newRangeThumbHeight = initialRangeThumbHeight * canvasScaleRatio;
                 rangeElement.style.setProperty('--sliderThumbWidth', `${newRangeThumbWidth}px`);
                 rangeElement.style.setProperty('--sliderThumbHeight', `${newRangeThumbHeight}px`);
-                const newFontSize = 14 * canvasScaleRatio;
+                const newFontSize = 16 * canvasScaleRatio;
                 const nodes = document.querySelectorAll(".menuItem, .menuButton, #userName");
                 for (let i = 0; i < nodes.length; i++){
                     nodes[i].style.setProperty('--buttonFontSize', `${newFontSize}px`);

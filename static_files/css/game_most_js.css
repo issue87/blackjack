@@ -162,8 +162,3 @@ left:270px;
     background-color: #3b1c0b;
     color:#eec95c;
 }
-@media screen and (min-width:750px){
-    .menuItem, .menuButton, #userName{
-        font-size: 20px;
-    }
-}

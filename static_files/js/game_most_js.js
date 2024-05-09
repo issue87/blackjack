@@ -275,7 +275,7 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                     //canvasHeight = window.innerHeight;
                     canvasHeight = screen.availHeight * 0.9;
                     //canvasWidth = (window.innerHeight/initialCanvasHeight) * initialCanvasWidth;
-                    canvasWidth = (screen.availHeight/initialCanvasHeight) * initialCanvasWidth;
+                    canvasWidth = (screen.availHeight * 0.9/initialCanvasHeight) * initialCanvasWidth;
                 };
                 const devicePixelRatio = window.devicePixelRatio;
                 //adjusting width and height of the canvas with user device's scale of the page

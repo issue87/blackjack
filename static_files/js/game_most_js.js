@@ -282,12 +282,9 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 canvasWidth /= window.visualViewport.scale;
                 canvasHeight /= window.visualViewport.scale;
                 //limiting maximal size of canvas
-                console.log(window.visualViewport.scale);
-                console.log(screen.width);
-                console.log(window.innerWidth);
-                if (screen.width == window.innerWidth && window.innerWidth > 867 && window.innerHeight > 493){
-                    canvasWidth = 867/window.visualViewport.scale;
-                    canvasHeight = 493/window.visualViewport.scale;
+                if (canvasWidth/devicePixelRatio > 867){
+                    canvasWidth = 867 * devicePixelRatio;
+                    canvasHeight = 493 * devicePixelRatio;
                 }
                 const canvasScaleRatio = canvasWidth/initialCanvasWidth;
                 GameControlGroup.scaleObjects(gameControlObjects, canvasScaleRatio);

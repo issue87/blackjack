@@ -279,8 +279,8 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 };
                 const devicePixelRatio = window.devicePixelRatio;
                 //adjusting width and height of the canvas with user device's scale of the page
-                canvasWidth /= window.visualViewport.scale;
-                canvasHeight /= window.visualViewport.scale;
+                //canvasWidth /= window.visualViewport.scale;
+                //canvasHeight /= window.visualViewport.scale;
                 //limiting maximal size of canvas
                 console.log(canvasWidth);
                 console.log(devicePixelRatio);

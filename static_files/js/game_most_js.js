@@ -267,15 +267,15 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 let canvasWidth;
                 let canvasHeight;
                 if (screen.availWidth/initialCanvasWidth < screen.availHeight/initialCanvasHeight){
-                    //canvasWidth = window.innerWidth;740/867 360/493
-                    canvasWidth = screen.availWidth;
-                    //canvasHeight = (window.innerWidth/initialCanvasWidth) * initialCanvasHeight;
-                    canvasHeight = (screen.availWidth/initialCanvasWidth) * initialCanvasHeight;
+                    canvasWidth = window.innerWidth;740/867 360/493
+                    //canvasWidth = screen.availWidth;
+                    canvasHeight = (window.innerWidth/initialCanvasWidth) * initialCanvasHeight;
+                    //canvasHeight = (screen.availWidth/initialCanvasWidth) * initialCanvasHeight;
                 }else{
-                    //canvasHeight = window.innerHeight;
-                    canvasHeight = screen.availHeight;
-                    //canvasWidth = (window.innerHeight/initialCanvasHeight) * initialCanvasWidth;
-                    canvasWidth = (screen.availHeight/initialCanvasHeight) * initialCanvasWidth;
+                    canvasHeight = window.innerHeight;
+                    //canvasHeight = screen.availHeight;
+                    canvasWidth = (window.innerHeight/initialCanvasHeight) * initialCanvasWidth;
+                    //canvasWidth = (screen.availHeight/initialCanvasHeight) * initialCanvasWidth;
                 };
                 const devicePixelRatio = window.devicePixelRatio;
                 //adjusting width and height of the canvas with user device's scale of the page
@@ -284,9 +284,9 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 //limiting maximal size of canvas
                 console.log(canvasWidth);
                 console.log(devicePixelRatio);
-                if (canvasWidth/devicePixelRatio > 867){
-                    canvasWidth = 867 * devicePixelRatio;
-                    canvasHeight = 493 * devicePixelRatio;
+                if (canvasWidth > 867){
+                    canvasWidth = 867;
+                    canvasHeight = 493;
                     console.log("limit canvas:>867");
                 }
                 const canvasScaleRatio = canvasWidth/initialCanvasWidth;

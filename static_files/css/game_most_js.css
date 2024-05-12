@@ -70,7 +70,7 @@ height:68px;
     z-index:100;
     top:0px;
     left:650px;
-    width:217px;
+    width:auto;
 }
 #sliderButton{
 width:308px;
@@ -158,8 +158,9 @@ left:270px;
 
 .menuItem, .menuButton, #userName{
     --buttonFontSize: 14px;
+    width:100%;
     font-size: var(--buttonFontSize);
-    margin-bottom: calc(var(--buttonFontSize)*0.05);
+    margin-bottom: calc(var(--buttonFontSize) * 0.3);
     background-color: #3b1c0b;
     color:#eec95c;
 }

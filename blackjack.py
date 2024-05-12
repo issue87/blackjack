@@ -288,10 +288,15 @@ def vk_start():
         user_data = get_user_data(viewer_id)
         init_user_in_game(viewer_id)
     return redirect(url_for('index'))
-@app.route('/rating',methods = ["GET"])
+@app.route('/rating',methods = ["GET","POST"])
 def raiting():
-    users = UserData.query.all()
+    if request.method == "GET":
+        pass
+    elif request.method == "POST":
+        pass
+    users = UserData.query.order_by(UserData.wines - UserData.loses).all()
     for user in users:
+        print(user.login, user.wines - user.loses)
         user.password = str(user.wines-user.loses)
         user.wines = str(user.wines)
         user.loses = str(user.loses)

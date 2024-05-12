@@ -158,6 +158,7 @@ left:270px;
 
 .menuItem, .menuButton, #userName{
     --buttonFontSize: 14px;
+    text-wrap: nowrap;
     width:100%;
     font-size: var(--buttonFontSize);
     margin-bottom: calc(var(--buttonFontSize) * 0.3);

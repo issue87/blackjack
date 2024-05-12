@@ -159,6 +159,7 @@ left:270px;
 .menuItem, .menuButton, #userName{
     --buttonFontSize: 14px;
     font-size: var(--buttonFontSize);
+    margin-bottom: calc(var(--buttonFontSize)*0.05);
     background-color: #3b1c0b;
     color:#eec95c;
 }

@@ -294,7 +294,7 @@ def raiting():
         pass
     elif request.method == "POST":
         pass
-    users = UserData.query.order_by(UserData.wines - UserData.loses).limit(20).all()
+    users = UserData.query.order_by(desc(UserData.wines - UserData.loses)).limit(20).all()
     for user in users:
         user.password = str(user.wines-user.loses)
         user.wines = str(user.wines)

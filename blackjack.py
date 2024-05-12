@@ -1,6 +1,6 @@
 from flask import Flask,render_template,redirect,request,url_for,session,flash,jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask_sqlalchemy import desc
+from sqlalchemy import desc
 from werkzeug.security import generate_password_hash,check_password_hash
 import random
 games_session ={}

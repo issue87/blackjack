@@ -291,11 +291,11 @@ def vk_start():
     return redirect(url_for('index'))
 @app.route('/rating',methods = ["GET","POST"])
 def raiting():
-    if request.method == "GET":
+    start_raw = 1
+    if request.method == "POST":
         pass
-    elif request.method == "POST":
-        pass
-    users = UserData.query.order_by(desc(UserData.wines - UserData.loses)).limit(20).all()
+    offset_number = start_raw - 1
+    users = UserData.query.order_by(desc(UserData.wines - UserData.loses)).offset(offset_number).limit(20).all()
     for user in users:
         user.password = str(user.wines-user.loses)
         user.wines = str(user.wines)

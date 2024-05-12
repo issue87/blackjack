@@ -12,7 +12,7 @@ td{text-align:center;
 tr{
    border:none;
    display:grid;
-   grid-template-columns: 5% 30% 10% 10% 10%;
+   grid-template-columns: 10% 40% 10% 10% 10%;
    height:5%;
 }
 tr:nth-child(2n+2){

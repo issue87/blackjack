@@ -30,7 +30,9 @@
                                         </form>
                                    {% endif %}
                                    <button type="button" class="menuItem" id="signUpButton">Sign up</button>
-                                   <button type="button" class="menuItem" id="ratingButton">Rating</button>
+                                   <form action ="/rating" method=GET>
+                                        <button type="submit" class="menuItem" id="ratingButton">Rating</button>
+                                   </form>
                                    {% if not vk %}
                                         {% if logged_in%}
                                              <form action ="/logout" method=GET>

@@ -288,7 +288,7 @@ def vk_start():
         user_data = get_user_data(viewer_id)
         init_user_in_game(viewer_id)
     return redirect(url_for('index'))
-@app.route('/raiting',methods = ["GET"])
+@app.route('/rating',methods = ["GET"])
 def raiting():
     users = UserData.query.all()
     for user in users:
@@ -296,7 +296,7 @@ def raiting():
         user.wines = str(user.wines)
         user.loses = str(user.loses)
     users.sort(key=sort_by_differ)
-    return render_template("raiting.html",users = users )
+    return render_template("rating.html",users = users )
 @app.route('/record_result',methods = ["GET"])
 def record_result():
     flash("Record function worked")

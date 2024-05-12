@@ -1,6 +1,6 @@
 table{width:60%;
     border:none;
-    height:100%
+    height:100vh;
 }
 th{
    border:none;
@@ -13,7 +13,7 @@ tr{
    border:none;
    display:grid;
    grid-template-columns: 5% 30% 10% 10% 10%;
-   height:5%
+   height:5%;
 }
 tr:nth-child(2n+2){
    background-color:pink;

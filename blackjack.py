@@ -291,17 +291,17 @@ def vk_start():
     return redirect(url_for('index'))
 @app.route('/rating',methods = ["GET","POST"])
 def raiting():
-    start_raw = 1
+    start_row = 1
     if request.method == "POST":
         pass
-    offset_number = start_raw - 1
+    offset_number = start_row - 1
     users = UserData.query.order_by(desc(UserData.wines - UserData.loses)).offset(offset_number).limit(20).all()
     for user in users:
         user.password = str(user.wines-user.loses)
         user.wines = str(user.wines)
         user.loses = str(user.loses)
     users.sort(key=sort_by_differ)
-    return render_template("rating.html",users = users, startRaw =  start_raw)
+    return render_template("rating.html",users = users, startRow =  start_row)
 @app.route('/record_result',methods = ["GET"])
 def record_result():
     flash("Record function worked")

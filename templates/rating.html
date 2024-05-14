@@ -6,7 +6,7 @@
       <link rel = "stylesheet" href = "static/css/rating.css">
 </head>
 <body>
-    {% if startRow > 1}
+    {% if startRow > 1 %}
         <a href = "#"> {{startRow - 20}} - {{startRow - 1}}</a>
     {% endif %}
     {% if users|length >= startRow + 20 %}

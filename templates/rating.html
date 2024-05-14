@@ -6,13 +6,21 @@
       <link rel = "stylesheet" href = "static/css/rating.css">
 </head>
 <body>
-    <div>
-         <table border = "2">
-              <tr><th>№</th><th>User</th><th>Wines</th><th>Loses</th></tr>
-              {% for user in users %}
-              <tr><td>{{loop.index}}</td><td>{{user.login}}</td><td>{{user.wines}}</td><td>{{user.loses}}</td><td>{{user.password}}</td></tr>
-              {% endfor %}
-         </table>
-    </div>
+    {% if startRow > 1}
+        <a href = "#"> {{startRow - 20}} - {{startRow - 1}}</a>
+    {% endif %}
+    {% if users|length >= startRow + 20 %}
+        {% if users|length >= startRow + 40 %}
+            <a href = "#"> {{startRow + 20}} - {{startRow + 39}}</a>
+        {% else %}
+            <a href = "#"> {{startRow + 20}} - {{users|length}}</a>
+        {% endif %}
+    {% endif %}
+    <table border = "2">
+        <tr><th>№</th><th>User</th><th>Wines</th><th>Loses</th></tr>
+        {% for user in users %}
+            <tr><td>{{loop.index}}</td><td>{{user.login}}</td><td>{{user.wines}}</td><td>{{user.loses}}</td><td>{{user.password}}</td></tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

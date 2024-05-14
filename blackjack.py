@@ -301,7 +301,7 @@ def raiting():
         user.wines = str(user.wines)
         user.loses = str(user.loses)
     users.sort(key=sort_by_differ)
-    return render_template("rating.html",users = users )
+    return render_template("rating.html",users = users, startRaw =  start_raw)
 @app.route('/record_result',methods = ["GET"])
 def record_result():
     flash("Record function worked")

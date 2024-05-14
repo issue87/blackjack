@@ -295,13 +295,14 @@ def raiting():
     if request.method == "POST":
         pass
     offset_number = start_row - 1
+    number_of_users = UserData.query.count()
     users = UserData.query.order_by(desc(UserData.wines - UserData.loses)).offset(offset_number).limit(20).all()
     for user in users:
         user.password = str(user.wines-user.loses)
         user.wines = str(user.wines)
         user.loses = str(user.loses)
     users.sort(key=sort_by_differ)
-    return render_template("rating.html",users = users, startRow =  start_row)
+    return render_template("rating.html",users = users, startRow =  start_row, numberOfUsers = number_of_users)
 @app.route('/record_result',methods = ["GET"])
 def record_result():
     flash("Record function worked")

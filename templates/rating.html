@@ -26,7 +26,7 @@
     <table border = "2">
         <tr><th>№</th><th>User</th><th>Wines</th><th>Loses</th></tr>
         {% for user in users %}
-            <tr><td>{{loop.index}}</td><td>{{user.login}}</td><td>{{user.wines}}</td><td>{{user.loses}}</td><td>{{user.password}}</td></tr>
+            <tr><td>{{loop.index + startRow - 1}}</td><td>{{user.login}}</td><td>{{user.wines}}</td><td>{{user.loses}}</td><td>{{user.password}}</td></tr>
         {% endfor %}
     </table>
 </body>

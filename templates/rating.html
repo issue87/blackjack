@@ -13,13 +13,13 @@
     <form id = "ratingNavigationForm" method = "post">
         <input id="targetNavPage" name="targetNavPage" type="hidden">
     {% if startRow > 1 %}
-        <a href = "#" class="ratingNavigationLink" data-incrementStartRow="-20"> {{startRow - 20}} - {{startRow - 1}}</a>
+        <a href = "#" class="ratingNavigationLink" data-increment="-20"> {{startRow - 20}} - {{startRow - 1}}</a>
     {% endif %}
     {% if numberOfUsers >= startRow + 20 %}
         {% if numberOfUsers >= startRow + 40 %}
-            <a href = "#" class="ratingNavigationLink" data-incrementStartRow="20"> {{startRow + 20}} - {{startRow + 39}}</a>
+            <a href = "#" class="ratingNavigationLink" data-increment="20"> {{startRow + 20}} - {{startRow + 39}}</a>
         {% else %}
-            <a href = "#" class="ratingNavigationLink" data-incrementStartRow="20"> {{startRow + 20}} - {{numberOfUsers}}</a>
+            <a href = "#" class="ratingNavigationLink" data-increment="20"> {{startRow + 20}} - {{numberOfUsers}}</a>
         {% endif %}
     {% endif %}
     </form>

@@ -5,9 +5,8 @@ for (let i = 0; i<navLinks.length; i++){
     navLinks[i].addEventListener("click",submitNavForm);
 };
 function submitNavForm(){
-    const incrementStartRow = Number(this.dataset.incrementStartRow);
-    console.log(this);
-    console.log(this.dataset.incrementStartRow);
+    const incrementStartRow = Number(this.dataset.incrementstartrow);
+    console.log(this.dataset.incrementstartrow);
     console.log(typeof(incrementStartRow));
     console.log(incrementStartRow);
     startRow += incrementStartRow;

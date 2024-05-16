@@ -293,7 +293,7 @@ def vk_start():
 def raiting():
     start_row = 1
     if request.method == "POST":
-        pass
+        start_row = int(request.form["targetNavPage"]);
     offset_number = start_row - 1
     number_of_users = UserData.query.count()
     users = UserData.query.order_by(desc(UserData.wines - UserData.loses)).offset(offset_number).limit(20).all()

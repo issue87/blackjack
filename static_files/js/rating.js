@@ -6,6 +6,7 @@ for (let i = 0; i<navLinks.length; i++){
 };
 function submitNavForm(){
     const incrementStartRow = Number(this.dataset.incrementStartRow);
+    console.log(this);
     console.log(this.dataset.incrementStartRow);
     console.log(typeof(incrementStartRow));
     console.log(incrementStartRow);

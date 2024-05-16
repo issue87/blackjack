@@ -7,7 +7,11 @@ for (let i = 0; i<navLinks.length; i++){
 }
 function submitNavForm(){
     const incrementStartRow = Number(this.dataset.incrementStartRow);
+    console.log(typeof(incrementStartRow));
+    console.log(incrementStartRow);
     startRow += incrementStartRow;
+    console.log(typeof(startRow));
+    console.log(startRow);
     targetPageInput.setAttribute("value",startRow.toString());
-    navForm.submit();
+    //navForm.submit();
 }

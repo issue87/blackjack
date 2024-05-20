@@ -1,9 +1,7 @@
 const navLinks = document.getElementsByClassName("ratingNavigationLink");
 const navForm = document.getElementById("ratingNavigationForm");
 const targetPageInput = document.getElementById("targetNavPage");
-console.log(navLinks);
-for (let i = 0; i<navLinks.length; i++){
-    console.log("in loop");
+for (let node of navLinks){
     navLinks[i].addEventListener("click",submitNavForm);
 };
 function submitNavForm(){

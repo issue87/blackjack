@@ -2,7 +2,7 @@ const navLinks = document.getElementsByClassName("ratingNavigationLink");
 const navForm = document.getElementById("ratingNavigationForm");
 const targetPageInput = document.getElementById("targetNavPage");
 for (let node of navLinks){
-    navLinks[i].addEventListener("click",submitNavForm);
+    node.addEventListener("click",submitNavForm);
 };
 function submitNavForm(){
     const incrementStartRow = Number(this.dataset.increment);

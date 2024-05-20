@@ -8,5 +8,7 @@ function submitNavForm(){
     const incrementStartRow = Number(this.dataset.increment);
     startRow += incrementStartRow;
     targetPageInput.setAttribute("value",startRow.toString());
+    console.log(startRow);
+    console.log(document.getElementById("targetNavPage"));
     navForm.submit();
 }

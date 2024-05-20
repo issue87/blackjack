@@ -3,6 +3,7 @@ const navForm = document.getElementById("ratingNavigationForm");
 const targetPageInput = document.getElementById("targetNavPage");
 console.log(navLinks);
 for (let i = 0; i<navLinks.length; i++){
+    console.log("in loop");
     navLinks[i].addEventListener("click",submitNavForm);
 };
 function submitNavForm(){

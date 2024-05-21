@@ -10,24 +10,26 @@
       </script>
 </head>
 <body>
-    <form id = "ratingNavigationForm" method = "post">
-        <input id="targetNavPage" name="targetNavPage" type="hidden">
-    {% if startRow > 1 %}
-        <a href = "#" class="ratingNavigationLink" data-increment="-20"> {{startRow - 20}} - {{startRow - 1}}</a>
-    {% endif %}
-    {% if numberOfUsers >= startRow + 20 %}
-        {% if numberOfUsers >= startRow + 40 %}
-            <a href = "#" class="ratingNavigationLink" data-increment="20"> {{startRow + 20}} - {{startRow + 39}}</a>
-        {% else %}
-            <a href = "#" class="ratingNavigationLink" data-increment="20"> {{startRow + 20}} - {{numberOfUsers}}</a>
+    <div class="mainContainer">
+        <form id = "ratingNavigationForm" method = "post">
+            <input id="targetNavPage" name="targetNavPage" type="hidden">
+        {% if startRow > 1 %}
+            <a href = "#" class="ratingNavigationLink" data-increment="-20"> {{startRow - 20}} - {{startRow - 1}}</a>
         {% endif %}
-    {% endif %}
-    </form>
-    <table border = "2">
-        <tr><th>№</th><th>User</th><th>Wines</th><th>Loses</th></tr>
-        {% for user in users %}
-            <tr><td>{{loop.index + startRow - 1}}</td><td>{{user.login}}</td><td>{{user.wines}}</td><td>{{user.loses}}</td><td>{{user.password}}</td></tr>
-        {% endfor %}
-    </table>
+        {% if numberOfUsers >= startRow + 20 %}
+            {% if numberOfUsers >= startRow + 40 %}
+                <a href = "#" class="ratingNavigationLink" data-increment="20"> {{startRow + 20}} - {{startRow + 39}}</a>
+            {% else %}
+                <a href = "#" class="ratingNavigationLink" data-increment="20"> {{startRow + 20}} - {{numberOfUsers}}</a>
+            {% endif %}
+        {% endif %}
+        </form>
+        <table border = "2">
+            <tr><th>№</th><th>User</th><th>Wines</th><th>Loses</th></tr>
+            {% for user in users %}
+                <tr><td>{{loop.index + startRow - 1}}</td><td>{{user.login}}</td><td>{{user.wines}}</td><td>{{user.loses}}</td><td>{{user.password}}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 </html>

@@ -1,20 +1,23 @@
 table{width:100%;
     border:none;
     height:100svh;
-    margin:auto;
 }
 th{
    border:none;
 }
 td{text-align:center;
    border:none;
-
 }
 tr{
    border:none;
    display:grid;
    grid-template-columns: 15% 40% 15% 15% 15%;
    height:5%;
+}
+.mainContainer{
+   display:inline-block;
+   width:100%;
+   margin:auto;
 }
 tr:nth-child(2n+2){
    background-color:pink;
@@ -23,12 +26,12 @@ tr:nth-child(2n+3){
    background-color:lime;
 }
 @media screen and (min-width:750px){
-   table{
+   .mainContainer{
       width:80%;
    }
 }
 @media screen and (min-width:1024px){
-   table{
+   .mainContainer{
       width:60%;
    }
 }

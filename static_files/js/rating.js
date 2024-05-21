@@ -3,8 +3,8 @@ const navForm = document.getElementById("ratingNavigationForm");
 const targetPageInput = document.getElementById("targetNavPage");
 console.log(navLinks);
 for (let node of navLinks){
-    node.addEventListener("click",submitNavForm);
     console.log("innerLoop");
+    node.addEventListener("click",submitNavForm);
 };
 function submitNavForm(){
     const incrementStartRow = Number(this.dataset.increment);

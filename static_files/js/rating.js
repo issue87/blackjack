@@ -1,8 +1,8 @@
 const navLinks = document.getElementsByClassName("ratingNavigationLink");
 const navForm = document.getElementById("ratingNavigationForm");
 const targetPageInput = document.getElementById("targetNavPage");
-console.log(navLinks);
-for (let node of navLinks){
+iterableNavLinks = Array.from(htmlCollection);
+for (let node of iterableNavLinks){
     console.log("innerLoop");
     node.addEventListener("click",submitNavForm);
 };

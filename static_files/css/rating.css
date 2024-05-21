@@ -15,9 +15,8 @@ tr{
    height:5%;
 }
 .mainContainer{
-   display:inline-block;
    width:100%;
-   margin:auto;
+   margin:0 auto;
 }
 tr:nth-child(2n+2){
    background-color:pink;

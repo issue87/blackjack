@@ -1,4 +1,4 @@
-table{width:60%;
+table{width:100%;
     border:none;
     height:100svh;
 }
@@ -20,4 +20,14 @@ tr:nth-child(2n+2){
 }
 tr:nth-child(2n+3){
    background-color:lime;
+}
+@media screen and (min-width:750px){
+   table{
+      width:80%;
+   }
+}
+@media screen and (min-width:1024px){
+   table{
+      width:60%;
+   }
 }

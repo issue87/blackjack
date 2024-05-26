@@ -168,3 +168,6 @@ left:270px;
     background-color: #3b1c0b;
     color:#eec95c;
 }
+#beforeLoad{
+    visibility: visible;
+}

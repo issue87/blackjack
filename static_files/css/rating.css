@@ -26,9 +26,15 @@ tr:nth-child(2n+3){
 }
 a{
    color:#ffffff;
-   background-color: #00ff00;
+   background-color: #015b01;
    text-decoration: none;
    font-size:2em;
+   padding-left: 0.3em;
+   padding-right: 0.3em;
+}
+#ratingNavigationForm{
+   display: flex;
+   justify-content: space-between;
 }
 @media screen and (min-width:750px){
    .mainContainer{

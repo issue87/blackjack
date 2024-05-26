@@ -4,6 +4,7 @@ table{width:100%;
 }
 th{
    border:none;
+   background-color: #f0e68c;
 }
 td{text-align:center;
    border:none;
@@ -12,7 +13,7 @@ tr{
    border:none;
    display:grid;
    grid-template-columns: 15% 40% 15% 15% 15%;
-   height:5%;
+   height:4.5%;
 }
 .mainContainer{
    width:100%;

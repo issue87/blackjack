@@ -14,7 +14,7 @@ tr{
    display:grid;
    grid-template-columns: 15% 40% 15% 15% 15%;
    height:4.5%;
-   vertical-align:center;
+   vertical-align:middle;
 }
 .mainContainer{
    width:100%;

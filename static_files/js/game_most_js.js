@@ -419,6 +419,8 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
             var detectLoading = function (){
                  images++;
                  if (images == 6){
+                    const gameContainer = getElementById("gameContainer");
+                    gameContainer.style.visibility = "visible";
                     resizeCanvas();
                  };
             };

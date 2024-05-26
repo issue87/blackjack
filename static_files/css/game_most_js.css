@@ -124,11 +124,11 @@ visibility:hidden;
 left:100px;
 }
 #gameControlBet{
-visibility:visible;
+visibility:hidden;
 left:200px;
 }
 #gameControlSlider{
-visibility:visible;
+visibility:hidden;
 top:367px;
 height:48px;
 left:270px;

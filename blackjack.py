@@ -23,7 +23,6 @@ SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostnam
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 db = SQLAlchemy(app)
-session.permanent = True
 # class Desk:
 #     def __init__(self,number_of_cards):
 #         self.cards = []
@@ -225,6 +224,7 @@ def index():
                 session['money'] = 100
                 session['wins'] = 0
                 session['loses'] = 0
+                session.permanent = True
             user_money = session['money']
             session['username'] = "guest"
             player_wins = session['wins']

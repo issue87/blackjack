@@ -164,7 +164,7 @@ left:270px;
     font-size: var(--buttonFontSize);
     margin-bottom: calc(var(--buttonFontSize) * 0.3);
     padding-left: calc(var(--buttonFontSize) * 0.3);
-    padding-right: calc(var(--buttonFontSize) * 0.3);;
+    padding-right: calc(var(--buttonFontSize) * 0.3);
     background-color: #3b1c0b;
     color:#eec95c;
 }

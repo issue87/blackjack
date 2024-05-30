@@ -170,7 +170,7 @@ left:270px;
 }
 #beforeLoad{
     --buttonFontSize: 14px;
-    font-size: var(--buttonFontSize);
+    font-size:calc(var(--buttonFontSize) * 2);
     visibility: visible;
     text-align: center;
     vertical-align: middle;

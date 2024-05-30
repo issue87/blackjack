@@ -220,11 +220,9 @@ def index():
             player_wins = user_data.wines
             dealer_wins = user_data.loses
         else:
-            if 'money' not in session:
-                session['money'] = 100
-                session['wins'] = 0
-                session['loses'] = 0
-                session.permanent = True
+            session['money'] = 100
+            session['wins'] = 0
+            session['loses'] = 0
             user_money = session['money']
             session['username'] = "guest"
             player_wins = session['wins']

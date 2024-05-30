@@ -289,7 +289,6 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
                 rangeElement.style.setProperty('--sliderThumbWidth', `${newRangeThumbWidth}px`);
                 rangeElement.style.setProperty('--sliderThumbHeight', `${newRangeThumbHeight}px`);
                 const newFontSize = 20 * canvasScaleRatio;
-#beforeLoad{
                 const nodes = document.querySelectorAll(".menuItem, .menuButton, #userName, #beforeLoad");
                 for (let i = 0; i < nodes.length; i++){
                     nodes[i].style.setProperty('--buttonFontSize', `${newFontSize}px`);

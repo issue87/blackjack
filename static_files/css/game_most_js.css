@@ -169,6 +169,8 @@ left:270px;
     color:#eec95c;
 }
 #beforeLoad{
+    --buttonFontSize: 14px;
+    font-size: var(--buttonFontSize);
     visibility: visible;
     text-align: center;
     vertical-align: middle;

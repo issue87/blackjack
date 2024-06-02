@@ -157,7 +157,7 @@ CardValues = {0:2,1:3,2:4,3:5,4:6,5:7,6:8,7:9,8:10,9:10,10:10,11:10,12:11};
             This object allows easily scale groups of buttons as canvas resizing*/
             gameControlObjects = [];
             gameControlObjects.push(new GameControlGroup("#gameControlActions", 425, 100, 867, 68));
-            gameControlObjects.push(new GameControlGroup("#gameControlBet", 425, 127, 867, 68));
+            gameControlObjects.push(new GameControlGroup("#gameControlBet", 425, 200, 867, 68));
             gameControlObjects.push(new GameControlGroup("#gameControlSlider", 367, 270, 867, 48));
             gameControlObjects.push(new GameControlGroup("#b_hit", undefined, undefined, 152, 50));
             gameControlObjects.push(new GameControlGroup("#b_stand", undefined, undefined, 151, 50));
